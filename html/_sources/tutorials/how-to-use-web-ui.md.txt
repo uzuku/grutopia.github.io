@@ -1,0 +1,67 @@
+# how to use web ui
+
+> This tutorial will show you how to use webui
+
+> We only suggest use webui with docker
+
+## Build docker image
+
+```bash
+cd ${path_to_source_code}
+
+docker build -t tao_yuan:0.0.1 .
+```
+
+## Start a WebUI demo
+
+Start docker container.
+
+```bash
+cd ${path_to_source_code}
+
+docker run --name isaac-sim --entrypoint bash -it --rm --gpus all \
+  -e "ACCEPT_EULA=Y" \
+  -e "PRIVACY_CONSENT=Y" \
+  -v ./TY-1:/isaac-sim/TY-1 \
+  -v ./TY-1/test/.test_scripts:/isaac-sim/run_scripts \
+  -v ~/docker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw \
+  -v ~/docker/isaac-sim/cache/ov:/root/.cache/ov:rw \
+  -v ~/docker/isaac-sim/cache/pip:/root/.cache/pip:rw \
+  -v ~/docker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw \
+  -v ~/docker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw \
+  -v ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw \
+  -v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
+  -v ~/docker/isaac-sim/documents:/root/Documents:rw \
+  tao_yuan:0.0.1
+```
+
+Then start demo
+
+```bash
+# in container
+./docker_start.sh ./TY-1/
+```
+
+## How to write a WebUI Case
+
+### 1. Enable WebRTC
+
+```Python
+import numpy as np
+
+from tao_yuan.core.config import SimulatorConfig
+from tao_yuan.core.env import BaseEnv
+
+sim_config = SimulatorConfig('/path/to/your/config.yml')  # noqa
+env = BaseEnv(sim_config, headless=True, webrtc=True)  # Set `webrtc`
+```
+
+### 2. Run loop
+
+```Python
+while env.simulation_app.is_running():
+    # Before step <>
+    obs = env.step(actions=[])
+    # After step <>
+env.simulation_app.close()
+```

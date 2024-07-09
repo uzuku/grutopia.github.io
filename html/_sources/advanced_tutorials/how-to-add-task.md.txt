@@ -1,0 +1,11 @@
+# how to add custom task
+
+> Wrap a task as you wish
+
+## When I need a custom task
+
+> WIP
+
+## How to wrap the Task
+
+> WIP

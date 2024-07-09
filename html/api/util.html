@@ -1,0 +1,1571 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>grutopia.core.util &mdash; GRUtopia v0.1.0 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="prev" title="grutopia.core.task" href="task.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenRobotLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                OpenRobotLab
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/OpenRobotLab" target="_blank">
+                  <span class="dropdown-title">GitHub </span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/" target="_blank">
+                  <span class="dropdown-title">OpenMMLab GitHub </span>
+                  <p></p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="env.html">grutopia.core.env</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datahub.html">grutopia.core.datahub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register.html">grutopia.core.register</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot.html">grutopia.core.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scene.html">grutopia.core.scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task.html">grutopia.core.task</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">grutopia.core.util</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>grutopia.core.util</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            
+            
+            
+              <a href="/zh_CN//api/util.html" class="fa fa-language"> 以中文阅读</a>
+            
+        
+      </li>
+      
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+                
+  <section id="grutopia-core-util">
+<h1>grutopia.core.util<a class="headerlink" href="#grutopia-core-util" title="Permalink to this heading">¶</a></h1>
+<section id="module-grutopia.core.util.array">
+<span id="array"></span><h2>array<a class="headerlink" href="#module-grutopia.core.util.array" title="Permalink to this heading">¶</a></h2>
+<p>Sub-module containing utilities for working with different array backends.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="grutopia.core.util.array.TENSOR_TYPES">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.array.</span></span><span class="sig-name descname"><span class="pre">TENSOR_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'numpy':</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.ndarray'&gt;,</span> <span class="pre">'torch':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.Tensor'&gt;,</span> <span class="pre">'warp':</span> <span class="pre">&lt;class</span> <span class="pre">'warp.types.array'&gt;}</span></em><a class="headerlink" href="#grutopia.core.util.array.TENSOR_TYPES" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary containing the types for each backend.</p>
+<p>The keys are the name of the backend (“numpy”, “torch”, “warp”) and the values are the corresponding type
+(<code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>, <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.array</span></code>).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="grutopia.core.util.array.TENSOR_TYPE_CONVERSIONS">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.array.</span></span><span class="sig-name descname"><span class="pre">TENSOR_TYPE_CONVERSIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'numpy':</span> <span class="pre">{&lt;class</span> <span class="pre">'warp.types.array'&gt;:</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'torch.Tensor'&gt;:</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;},</span> <span class="pre">'torch':</span> <span class="pre">{&lt;class</span> <span class="pre">'warp.types.array'&gt;:</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'numpy.ndarray'&gt;:</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;},</span> <span class="pre">'warp':</span> <span class="pre">{&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;:</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'torch.Tensor'&gt;:</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;}}</span></em><a class="headerlink" href="#grutopia.core.util.array.TENSOR_TYPE_CONVERSIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A nested dictionary containing the conversion functions for each backend.</p>
+<p>The keys of the outer dictionary are the name of target backend (“numpy”, “torch”, “warp”). The keys of the
+inner dictionary are the source backend (<code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>, <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, <code class="docutils literal notranslate"><span class="pre">wp.array</span></code>).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="grutopia.core.util.array.TensorData">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.array.</span></span><span class="sig-name descname"><span class="pre">TensorData</span></span><a class="headerlink" href="#grutopia.core.util.array.TensorData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type definition for a tensor data.</p>
+<p>Union of numpy, torch, and warp arrays.</p>
+<p>alias of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code>]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.array.convert_to_torch">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.array.</span></span><span class="sig-name descname"><span class="pre">convert_to_torch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dtype</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/array.html#convert_to_torch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.array.convert_to_torch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given array into a torch tensor.</p>
+<p>The function tries to convert the array to a torch tensor. If the array is a numpy/warp arrays, or python
+list/tuples, it is converted to a torch tensor. If the array is already a torch tensor, it is returned
+directly.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">device</span></code> is None, then the function deduces the current device of the data. For numpy arrays,
+this defaults to “cpu”, for torch tensors it is “cpu” or “cuda”, and for warp arrays it is “cuda”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since PyTorch does not support unsigned integer types, unsigned integer arrays are converted to
+signed integer arrays. This is done by casting the array to the corresponding signed integer type.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> – The input array. It can be a numpy array, warp array, python list/tuple, or torch tensor.</p></li>
+<li><p><strong>dtype</strong> – Target data-type for the tensor.</p></li>
+<li><p><strong>device</strong> – The target device for the tensor. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted array as torch tensor.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.util.assets">
+<span id="assets"></span><h2>assets<a class="headerlink" href="#module-grutopia.core.util.assets" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-grutopia.core.util.configclass">
+<span id="configclass"></span><h2>configclass<a class="headerlink" href="#module-grutopia.core.util.configclass" title="Permalink to this heading">¶</a></h2>
+<p>Sub-module that provides a wrapper around the Python 3.7 onwards <code class="docutils literal notranslate"><span class="pre">dataclasses</span></code> module.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.configclass.configclass">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.configclass.</span></span><span class="sig-name descname"><span class="pre">configclass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/configclass.html#configclass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.configclass.configclass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around <cite>dataclass</cite> functionality to add extra checks and utilities.</p>
+<p>As of Python 3.7, the standard dataclasses have two main issues which makes them non-generic for
+configuration use-cases. These include:</p>
+<ol class="arabic simple">
+<li><p>Requiring a type annotation for all its members.</p></li>
+<li><p>Requiring explicit usage of <code class="xref py py-meth docutils literal notranslate"><span class="pre">field(default_factory=...)()</span></code> to reinitialize mutable variables.</p></li>
+</ol>
+<p>This function provides a decorator that wraps around Python’s <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">dataclass</a> utility to deal with
+the above two issues. It also provides additional helper functions for dictionary &lt;-&gt; class
+conversion and easily copying class instances.</p>
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">MISSING</span>
+
+<span class="kn">from</span> <span class="nn">omni.isaac.orbit.utils.configclass</span> <span class="kn">import</span> <span class="n">configclass</span>
+
+
+<span class="nd">@configclass</span>
+<span class="k">class</span> <span class="nc">ViewerCfg</span><span class="p">:</span>
+    <span class="n">eye</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">]</span>  <span class="c1"># field missing on purpose</span>
+    <span class="n">lookat</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+
+<span class="nd">@configclass</span>
+<span class="k">class</span> <span class="nc">EnvCfg</span><span class="p">:</span>
+    <span class="n">num_envs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">MISSING</span>
+    <span class="n">episode_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2000</span>
+    <span class="n">viewer</span><span class="p">:</span> <span class="n">ViewerCfg</span> <span class="o">=</span> <span class="n">ViewerCfg</span><span class="p">()</span>
+
+<span class="c1"># create configuration instance</span>
+<span class="n">env_cfg</span> <span class="o">=</span> <span class="n">EnvCfg</span><span class="p">(</span><span class="n">num_envs</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># print information as a dictionary</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env_cfg</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+<span class="c1"># create a copy of the configuration</span>
+<span class="n">env_cfg_copy</span> <span class="o">=</span> <span class="n">env_cfg</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># replace arbitrary fields using keyword arguments</span>
+<span class="n">env_cfg_copy</span> <span class="o">=</span> <span class="n">env_cfg_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">num_envs</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> – The class to wrap around.</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">dataclass()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The wrapped class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.util.dict">
+<span id="dict"></span><h2>dict<a class="headerlink" href="#module-grutopia.core.util.dict" title="Permalink to this heading">¶</a></h2>
+<p>Sub-module for utilities for working with dictionaries.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.dict.class_to_dict">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.dict.</span></span><span class="sig-name descname"><span class="pre">class_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/dict.html#class_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.dict.class_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an object into dictionary recursively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ignores all names starting with “__” (i.e. built-in methods).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> – An instance of a class to convert.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – When input argument is not an object.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Converted dictionary mapping.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.dict.convert_dict_to_backend">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.dict.</span></span><span class="sig-name descname"><span class="pre">convert_dict_to_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'numpy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('numpy',</span> <span class="pre">'torch',</span> <span class="pre">'warp')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/dict.html#convert_dict_to_backend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.dict.convert_dict_to_backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert all arrays or tensors in a dictionary to a given backend.</p>
+<p>This function iterates over the dictionary, converts all arrays or tensors with the given types to
+the desired backend, and stores them in a new dictionary. It also works with nested dictionaries.</p>
+<p>Currently supported backends are “numpy”, “torch”, and “warp”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function only converts arrays or tensors. Other types of data are left unchanged. Mutable types
+(e.g. lists) are referenced by the new dictionary, so they are not copied.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – An input dict containing array or tensor data as values.</p></li>
+<li><p><strong>backend</strong> – The backend (“numpy”, “torch”, “warp”) to which arrays in this dict should be converted.
+Defaults to “numpy”.</p></li>
+<li><p><strong>array_types</strong> – A list containing the types of arrays that should be converted to
+the desired backend. Defaults to (“numpy”, “torch”, “warp”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the specified <code class="docutils literal notranslate"><span class="pre">backend</span></code> or <code class="docutils literal notranslate"><span class="pre">array_types</span></code> are unknown, i.e. not in the list of supported
+    backends (“numpy”, “torch”, “warp”).</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated dict with the data converted to the desired backend.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.dict.dict_to_md5_hash">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.dict.</span></span><span class="sig-name descname"><span class="pre">dict_to_md5_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/dict.html#dict_to_md5_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.dict.dict_to_md5_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a dictionary into a hashable key using MD5 hash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – Input dictionary or configuration object to convert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string object of double length containing only hexadecimal digits.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.dict.print_dict">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.dict.</span></span><span class="sig-name descname"><span class="pre">print_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nesting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/dict.html#print_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.dict.print_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs a nested dictionary.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.dict.update_class_from_dict">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.dict.</span></span><span class="sig-name descname"><span class="pre">update_class_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_ns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/dict.html#update_class_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.dict.update_class_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads a dictionary and sets object variables recursively.</p>
+<p>This function performs in-place update of the class member attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – An instance of a class to update.</p></li>
+<li><p><strong>data</strong> – Input dictionary to update from.</p></li>
+<li><p><strong>_ns</strong> – Namespace of the current object. This is useful for nested configuration
+classes or dictionaries. Defaults to “”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – When input is not a dictionary.</p></li>
+<li><p><strong>ValueError</strong> – When dictionary has a value that does not match default config type.</p></li>
+<li><p><strong>KeyError</strong> – When dictionary has a key that does not exist in the default config type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.dict.update_dict">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.dict.</span></span><span class="sig-name descname"><span class="pre">update_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/dict.html#update_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.dict.update_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates existing dictionary with values from a new dictionary.</p>
+<p>This function mimics the dict.update() function. However, it works for
+nested dictionaries as well.</p>
+<dl class="simple">
+<dt>Reference:</dt><dd><p><a class="reference external" href="https://stackoverflow.com/questions/3232943/update-value-of-a-nested-dictionary-of-varying-depth">https://stackoverflow.com/questions/3232943/update-value-of-a-nested-dictionary-of-varying-depth</a></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orig_dict</strong> – The original dictionary to insert items to.</p></li>
+<li><p><strong>new_dict</strong> – The new dictionary to insert items from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dictionary.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.util.math">
+<span id="math"></span><h2>math<a class="headerlink" href="#module-grutopia.core.util.math" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-grutopia.core.util.omni_usd_util">
+<span id="omni-usd-util"></span><h2>omni_usd_util<a class="headerlink" href="#module-grutopia.core.util.omni_usd_util" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.omni_usd_util.compute_path_bbox">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.omni_usd_util.</span></span><span class="sig-name descname"><span class="pre">compute_path_bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Double3</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Double3</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/omni_usd_util.html#compute_path_bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.omni_usd_util.compute_path_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Bounding Box using omni.usd.UsdContext.compute_path_world_bounding_box
+See <a class="reference external" href="https://docs.omniverse.nvidia.com/kit/docs/omni.usd/latest/omni.usd/omni.usd.UsdContext">https://docs.omniverse.nvidia.com/kit/docs/omni.usd/latest/omni.usd/omni.usd.UsdContext</a>.html#    omni.usd.UsdContext.compute_path_world_bounding_box</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prim_path</strong> – A prim path to compute the bounding box.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A range (i.e. bounding box) as a minimum point and maximum point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.omni_usd_util.get_grabbed_able_xform_paths">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.omni_usd_util.</span></span><span class="sig-name descname"><span class="pre">get_grabbed_able_xform_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Prim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/omni_usd_util.html#get_grabbed_able_xform_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.omni_usd_util.get_grabbed_able_xform_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>get all prim paths of Xform objects under specified prim.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root_path</strong> (<em>str</em>) – root path of scenes.</p></li>
+<li><p><strong>prim</strong> (<em>Usd.Prim</em>) – target prim.</p></li>
+<li><p><strong>depth</strong> (<em>int</em><em>, </em><em>optional</em>) – expected depth of Xform objects relative to root_path. Defaults to 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>prim paths.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.omni_usd_util.get_pick_position">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.omni_usd_util.</span></span><span class="sig-name descname"><span class="pre">get_pick_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_base_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prim_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/omni_usd_util.html#get_pick_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.omni_usd_util.get_pick_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the pick position for a manipulator robots to pick an objects at prim_path.
+The pick position is simply the nearest top vertex of the objects’s bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_base_position</strong> (<em>np.ndarray</em>) – robots base position.</p></li>
+<li><p><strong>prim_path</strong> (<em>str</em>) – prim path of objects to pick.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pick position.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.omni_usd_util.get_world_transform_xform">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.omni_usd_util.</span></span><span class="sig-name descname"><span class="pre">get_world_transform_xform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Prim</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Vec3d</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Rotation</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Vec3d</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/omni_usd_util.html#get_world_transform_xform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.omni_usd_util.get_world_transform_xform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the local transformation of a prim using omni.usd.get_world_transform_matrix().
+See <a class="reference external" href="https://docs.omniverse.nvidia.com/kit/docs/omni.usd/latest/omni.usd/omni.usd.get_world_transform_matrix.html">https://docs.omniverse.nvidia.com/kit/docs/omni.usd/latest/omni.usd/omni.usd.get_world_transform_matrix.html</a>
+:param prim: The prim to calculate the world transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>Translation vector.</p></li>
+<li><p>Rotation quaternion, i.e. 3d vector plus angle.</p></li>
+<li><p>Scale vector.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.omni_usd_util.nearest_xform_from_position">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.omni_usd_util.</span></span><span class="sig-name descname"><span class="pre">nearest_xform_from_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Stage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xform_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/omni_usd_util.html#nearest_xform_from_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.omni_usd_util.nearest_xform_from_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>get prim path of nearest Xform objects from the target position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stage</strong> (<em>Usd.Stage</em>) – usd stage.</p></li>
+<li><p><strong>xform_paths</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – full list of xforms paths.</p></li>
+<li><p><strong>position</strong> (<em>np.ndarray</em>) – target position.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – max distance. Defaults to 0 (unlimited).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>prim path of the Xform objects, None if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.util.python">
+<span id="python"></span><h2>python<a class="headerlink" href="#module-grutopia.core.util.python" title="Permalink to this heading">¶</a></h2>
+<p>A set of utility functions for general python usage</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Recreatable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">Recreatable</span></span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Recreatable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Recreatable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple class that provides an abstract interface automatically saving __init__ args of
+the classes inheriting it.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Recreatable.get_init_info">
+<span class="sig-name descname"><span class="pre">get_init_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Recreatable.get_init_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Recreatable.get_init_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grabs relevant initialization information for this class instance. Useful for directly
+reloading an objects from this information, using &#64;create_object_from_init_info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Nested dictionary that contains this objects’ initialization information</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.RecreatableAbcMeta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">RecreatableAbcMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clsname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clsdict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#RecreatableAbcMeta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.RecreatableAbcMeta" title="Permalink to this definition">¶</a></dt>
+<dd><p>A composite metaclass of both RecreatableMeta and ABCMeta.</p>
+<p>Adding in ABCMeta to resolve metadata conflicts.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.RecreatableMeta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">RecreatableMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clsname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clsdict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#RecreatableMeta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.RecreatableMeta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple metaclass that automatically saves __init__ args of the instances it creates.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Registerable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">Registerable</span></span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Registerable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Registerable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple class template that provides an abstract interface for registering classes.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Serializable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">Serializable</span></span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Serializable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Serializable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple class that provides an abstract interface to dump / load states, optionally with serialized functionality
+as well.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Serializable.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Serializable.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Serializable.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>De-serializes flattened 1D numpy array &#64;state into nested dictionary state.
+Should be implemented by subclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<em>n-array</em>) – encoded + serialized, 1D numerical np.array capturing this objects’s state</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Keyword-mapped states of these objects. Should match structure of output from</dt><dd><p>self._dump_state()</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Serializable.dump_state">
+<span class="sig-name descname"><span class="pre">dump_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serialized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Serializable.dump_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Serializable.dump_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dumps the state of this objects in either dictionary of flattened numerical form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>serialized</strong> (<em>bool</em>) – If True, will return the state of this objects as a 1D numpy array. Otherwise,</p></li>
+<li><p><strong>a</strong> (<em>will return</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Either:</dt><dd><ul class="simple">
+<li><p>Keyword-mapped states of these objects, or</p></li>
+<li><p>encoded + serialized, 1D numerical np.array                   capturing this objects’ state, where n is &#64;self.state_size</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict or n-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Serializable.load_state">
+<span class="sig-name descname"><span class="pre">load_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serialized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Serializable.load_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Serializable.load_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserializes and loads this objects’ state based on &#64;state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<em>dict</em><em> or </em><em>n-array</em>) – <p>Either:
+- Keyword-mapped states of these objects, or
+- encoded + serialized, 1D numerical np.array capturing this objects’ state,</p>
+<blockquote>
+<div><p>where n is &#64;self.state_size</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>serialized</strong> (<em>bool</em>) – If True, will interpret &#64;state as a 1D numpy array. Otherwise,
+will assume the input is a (potentially nested) dictionary of states for this objects</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Serializable.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Serializable.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Serializable.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serializes nested dictionary state &#64;state into a flattened 1D numpy array for encoding efficiency.
+Should be implemented by subclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<em>dict</em>) – Keyword-mapped states of this objects to encode. Should match structure of output from
+self._dump_state()</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>encoded + serialized, 1D numerical np.array capturing this objects’s state</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>n-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Serializable.state_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_size</span></span><a class="headerlink" href="#grutopia.core.util.python.Serializable.state_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns:
+int: Size of this objects’s serialized state</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.SerializableNonInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">SerializableNonInstance</span></span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#SerializableNonInstance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.SerializableNonInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identical to Serializable, but intended for non-instance classes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.SerializableNonInstance.deserialize">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#SerializableNonInstance.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.SerializableNonInstance.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>De-serializes flattened 1D numpy array &#64;state into nested dictionary state.
+Should be implemented by subclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<em>n-array</em>) – encoded + serialized, 1D numerical np.array capturing this objects’s state</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Keyword-mapped states of this objects. Should match structure of output from</dt><dd><p>self._dump_state()</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.SerializableNonInstance.dump_state">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dump_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serialized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#SerializableNonInstance.dump_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.SerializableNonInstance.dump_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dumps the state of this objects in either dictionary of flattened numerical form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>serialized</strong> (<em>bool</em>) – If True, will return the state of this objects as a 1D numpy array. Otherwise,</p></li>
+<li><p><strong>a</strong> (<em>will return</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Either:</dt><dd><ul class="simple">
+<li><p>Keyword-mapped states of these objects, or</p></li>
+<li><p>encoded + serialized, 1D numerical np.array capturing this objects’ state, where n is &#64;self.state_size</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict or n-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.SerializableNonInstance.load_state">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serialized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#SerializableNonInstance.load_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.SerializableNonInstance.load_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserializes and loads this objects’ state based on &#64;state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<em>dict</em><em> or </em><em>n-array</em>) – <p>Either:
+- Keyword-mapped states of these objects, or
+- encoded + serialized, 1D numerical np.array capturing this objects’ state,</p>
+<blockquote>
+<div><p>where n is &#64;self.state_size</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>serialized</strong> (<em>bool</em>) – If True, will interpret &#64;state as a 1D numpy array. Otherwise, will assume the input is
+a (potentially nested) dictionary of states for this objects</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.SerializableNonInstance.serialize">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#SerializableNonInstance.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.SerializableNonInstance.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serializes nested dictionary state &#64;state into a flattened 1D numpy array for encoding efficiency.
+Should be implemented by subclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<em>dict</em>) – Keyword-mapped states of these objects to encode. Should match structure of output from
+self._dump_state()</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>encoded + serialized, 1D numerical np.array capturing this objects’s state</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>n-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.UniquelyNamed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">UniquelyNamed</span></span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#UniquelyNamed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.UniquelyNamed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple class that implements a name property, that must be implemented by a subclass. Note that any &#64;Named
+entity must be UNIQUE!</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="grutopia.core.util.python.UniquelyNamed.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#grutopia.core.util.python.UniquelyNamed.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns:
+str: Name of this instance. Must be unique!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.util.python.UniquelyNamed.remove_names">
+<span class="sig-name descname"><span class="pre">remove_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_all_owned</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#UniquelyNamed.remove_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.UniquelyNamed.remove_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if self.name exists in the global NAMES registry, and deletes it if so. Possibly also iterates through
+all owned member variables and checks for their corresponding names if &#64;include_all_owned is True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>include_all_owned</strong> (<em>bool</em>) – If True, will iterate through all owned members of this instance and remove their
+names as well, if they are UniquelyNamed</p></li>
+<li><p><strong>skip_ids</strong> (<em>None</em><em> or </em><em>set</em><em> of </em><em>int</em>) – If specified, will skip over any ids in the specified set that are matched
+to any attributes found (this compares id(attr) to &#64;skip_ids).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.UniquelyNamedNonInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">UniquelyNamedNonInstance</span></span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#UniquelyNamedNonInstance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.UniquelyNamedNonInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identical to UniquelyNamed, but intended for non-instanceable classes</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Wrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">Wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#Wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.Wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for all wrapper in OmniGibson</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>any</em>) – Arbitrary python objects instance to wrap</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="grutopia.core.util.python.Wrapper.unwrapped">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unwrapped</span></span><a class="headerlink" href="#grutopia.core.util.python.Wrapper.unwrapped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grabs unwrapped objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The unwrapped objects instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>any</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.assert_valid_key">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">assert_valid_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#assert_valid_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.assert_valid_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function that asserts that &#64;key is in dictionary &#64;valid_keys keys. If not, it will raise an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>any</em>) – key to check for in dictionary &#64;dic’s keys</p></li>
+<li><p><strong>valid_keys</strong> (<em>Iterable</em>) – contains keys should be checked with &#64;key</p></li>
+<li><p><strong>name</strong> (<em>str</em><em> or </em><em>None</em>) – if specified, is the name associated with the key that will be printed out if the
+key is not found. If None, default is “value”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.camel_case_to_snake_case">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">camel_case_to_snake_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_case_text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#camel_case_to_snake_case"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.camel_case_to_snake_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to convert a camel case text to snake case, e.g. “StrawberrySmoothie” -&gt; “strawberry_smoothie”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>camel_case_text</strong> (<em>str</em>) – Text in camel case</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>snake case text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.clear">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear state tied to singleton classes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.create_class_from_registry_and_config">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">create_class_from_registry_and_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls_registry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls_type_descriptor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#create_class_from_registry_and_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.create_class_from_registry_and_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to create a class with str type &#64;cls_name, which should be a valid entry in &#64;cls_registry, using
+kwargs in dictionary form &#64;cfg to pass to the constructor, with &#64;cls_type_name specified for debugging</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls_name</strong> (<em>str</em>) – Name of the class to create. This should correspond to the actual class type, in string form</p></li>
+<li><p><strong>cls_registry</strong> (<em>dict</em>) – Class registry. This should map string names of valid classes to create to the
+actual class type itself</p></li>
+<li><p><strong>cfg</strong> (<em>dict</em>) – Any keyword arguments to pass to the class constructor</p></li>
+<li><p><strong>cls_type_descriptor</strong> (<em>str</em>) – Description of the class type being created. This can be any string and is used
+solely for debugging purposes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Created class instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.create_object_from_init_info">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">create_object_from_init_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#create_object_from_init_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.create_object_from_init_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new objects based on given init info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>init_info</strong> (<em>dict</em>) – Nested dictionary that contains an objects’s init information.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Newly created objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.extract_class_init_kwargs_from_dict">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">extract_class_init_kwargs_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#extract_class_init_kwargs_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.extract_class_init_kwargs_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to return a dictionary of key-values that specifically correspond to &#64;cls class’s __init__
+constructor method, from &#64;dic which may or may not contain additional, irrelevant kwargs.
+Note that &#64;dic may possibly be missing certain kwargs as specified by cls.__init__. No error will be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> (<em>object</em>) – Class from which to grab __init__ kwargs that will be be used as filtering keys for &#64;dic</p></li>
+<li><p><strong>dic</strong> (<em>dict</em>) – Dictionary containing multiple key-values</p></li>
+<li><p><strong>copy</strong> (<em>bool</em>) – If True, will deepcopy all values corresponding to the specified &#64;keys</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Extracted subset dictionary possibly containing only the specified keys from cls.__init__ and their</dt><dd><p>corresponding values</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.extract_subset_dict">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">extract_subset_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#extract_subset_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.extract_subset_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to extract a subset of dictionary key-values from a current dictionary. Optionally (deep)copies
+the values extracted from the original &#64;dic if &#64;copy is True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dic</strong> (<em>dict</em>) – Dictionary containing multiple key-values</p></li>
+<li><p><strong>keys</strong> (<em>Iterable</em>) – Specific keys to extract from &#64;dic. If the key doesn’t exist in &#64;dic, then the key is skipped</p></li>
+<li><p><strong>copy</strong> (<em>bool</em>) – If True, will deepcopy all values corresponding to the specified &#64;keys</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extracted subset dictionary containing only the specified &#64;keys and their corresponding values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.get_class_init_kwargs">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">get_class_init_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#get_class_init_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.get_class_init_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to return a list of all valid keyword arguments (excluding “self”) for the given &#64;cls class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cls</strong> (<em>object</em>) – Class from which to grab __init__ kwargs</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>All keyword arguments (excluding “self”) specified by &#64;cls __init__ constructor method</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.get_uuid">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">get_uuid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#get_uuid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.get_uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to create a unique &#64;n_digits uuid given a unique &#64;name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the objects or class</p></li>
+<li><p><strong>n_digits</strong> (<em>int</em>) – Number of digits of the uuid, default is 8</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>uuid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.meets_minimum_version">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">meets_minimum_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_version</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#meets_minimum_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.meets_minimum_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that &#64;test_version meets the &#64;minimum_version</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_version</strong> (<em>str</em>) – Python package version. Should be, e.g., 0.26.1</p></li>
+<li><p><strong>minimum_version</strong> (<em>str</em>) – Python package version to test against. Should be, e.g., 0.27.2</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether &#64;test_version meets &#64;minimum_version</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.merge_nested_dicts">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">merge_nested_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#merge_nested_dicts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.merge_nested_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iteratively updates &#64;base_dict with values from &#64;extra_dict. Note: This generates a new dictionary!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_dict</strong> (<em>dict</em>) – Nested base dictionary, which should be updated with all values from &#64;extra_dict</p></li>
+<li><p><strong>extra_dict</strong> (<em>dict</em>) – Nested extra dictionary, whose values will overwrite corresponding ones in &#64;base_dict</p></li>
+<li><p><strong>inplace</strong> (<em>bool</em>) – Whether to modify &#64;base_dict in place or not</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If True, will print when keys are mismatched</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated dictionary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.save_init_info">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">save_init_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#save_init_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.save_init_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator to save the init info of an objects to objects._init_info.</p>
+<p>_init_info contains class name and class constructor’s input args.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.snake_case_to_camel_case">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">snake_case_to_camel_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snake_case_text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#snake_case_to_camel_case"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.snake_case_to_camel_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to convert a snake case text to camel case, e.g. “strawberry_smoothie” -&gt; “StrawberrySmoothie”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>snake_case_text</strong> (<em>str</em>) – Text in snake case</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>camel case text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.python.subclass_factory">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.python.</span></span><span class="sig-name descname"><span class="pre">subclass_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">__init__</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/util/python.html#subclass_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.python.subclass_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Programmatically generates a new class type with name &#64;name, subclassing from base classes &#64;base_classes, with
+corresponding __init__ call &#64;__init__.</p>
+<p>NOTE: If __init__ is None (default), the __init__ call from &#64;base_classes will be used instead.</p>
+<p>cf. <a class="reference external" href="https://stackoverflow.com/questions/15247075/how-can-i-dynamically-create-derived-classes-from-a-base-class">https://stackoverflow.com/questions/15247075/how-can-i-dynamically-create-derived-classes-from-a-base-class</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Generated class name</p></li>
+<li><p><strong>base_classes</strong> (<em>type</em><em>, or </em><em>list</em><em> of </em><em>type</em>) – Base class(es) to use for generating the subclass</p></li>
+<li><p><strong>__init__</strong> (<em>None</em><em> or </em><em>function</em>) – Init call to use for the base class when it is instantiated. If None if specified,
+the newly generated class will automatically inherit the __init__ call from &#64;base_classes</p></li>
+<li><p><strong>**kwargs</strong> (<em>any</em>) – keyword-mapped parameters to override / set in the child class, where the keys represent
+the class / instance attribute to modify and the values represent the functions / value to set</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.util.string">
+<span id="string"></span><h2>string<a class="headerlink" href="#module-grutopia.core.util.string" title="Permalink to this heading">¶</a></h2>
+<p>Submodule containing utilities for transforming strings and regular expressions.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.callable_to_string">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">callable_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#callable_to_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.callable_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a callable object to a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – A callable object.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – When the input argument is not a callable object.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string representation of the callable object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.is_lambda_expression">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">is_lambda_expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#is_lambda_expression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.is_lambda_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the input string is a lambda expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – The input string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the input string is a lambda expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.resolve_matching_names">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">resolve_matching_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_strings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#resolve_matching_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.resolve_matching_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Match a list of query regular expressions against a list of strings and return the matched indices and names.</p>
+<p>When a list of query regular expressions is provided, the function checks each target string against each
+query regular expression and returns the indices of the matched strings and the matched strings.</p>
+<p>If the <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is True, the ordering of the matched indices and names is the same as the order
+of the provided list of strings. This means that the ordering is dictated by the order of the target strings
+and not the order of the query regular expressions.</p>
+<p>If the <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is False, the ordering of the matched indices and names is the same as the order
+of the provided list of query regular expressions.</p>
+<p>For example, consider the list of strings is [‘a’, ‘b’, ‘c’, ‘d’, ‘e’] and the regular expressions are [‘a|c’, ‘b’].
+If <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is False, then the function will return the indices of the matched strings and the
+strings as: ([0, 1, 2], [‘a’, ‘b’, ‘c’]). When <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is True, it will return them as:
+([0, 2, 1], [‘a’, ‘c’, ‘b’]).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function does not sort the indices. It returns the indices in the order they are found.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – A regular expression or a list of regular expressions to match the strings in the list.</p></li>
+<li><p><strong>list_of_strings</strong> – A list of strings to match.</p></li>
+<li><p><strong>preserve_order</strong> – Whether to preserve the order of the query keys in the returned values. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of lists containing the matched indices and names.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – When multiple matches are found for a string in the list.</p></li>
+<li><p><strong>ValueError</strong> – When not all regular expressions are matched.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.resolve_matching_names_values">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">resolve_matching_names_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_strings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#resolve_matching_names_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.resolve_matching_names_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Match a list of regular expressions in a dictionary against a list of strings and return
+the matched indices, names, and values.</p>
+<p>If the <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is True, the ordering of the matched indices and names is the same as the order
+of the provided list of strings. This means that the ordering is dictated by the order of the target strings
+and not the order of the query regular expressions.</p>
+<p>If the <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is False, the ordering of the matched indices and names is the same as the order
+of the provided list of query regular expressions.</p>
+<p>For example, consider the dictionary is {“a|d|e”: 1, “b|c”: 2}, the list of strings is [‘a’, ‘b’, ‘c’, ‘d’, ‘e’].
+If <code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is False, then the function will return the indices of the matched strings, the
+matched strings, and the values as: ([0, 1, 2, 3, 4], [‘a’, ‘b’, ‘c’, ‘d’, ‘e’], [1, 2, 2, 1, 1]). When
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">preserve_order</span></code> is True, it will return them as: ([0, 3, 4, 1, 2], [‘a’, ‘d’, ‘e’, ‘b’, ‘c’], [1, 1, 1, 2, 2]).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – A dictionary of regular expressions and values to match the strings in the list.</p></li>
+<li><p><strong>list_of_strings</strong> – A list of strings to match.</p></li>
+<li><p><strong>preserve_order</strong> – Whether to preserve the order of the query keys in the returned values. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of lists containing the matched indices, names, and values.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – When the input argument <code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code> is not a dictionary.</p></li>
+<li><p><strong>ValueError</strong> – When multiple matches are found for a string in the dictionary.</p></li>
+<li><p><strong>ValueError</strong> – When not all regular expressions in the data keys are matched.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.string_to_callable">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">string_to_callable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#string_to_callable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.string_to_callable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolves the module and function names to return the function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – The function name. The format should be ‘module:attribute_name’ or a
+lambda expression of format: ‘lambda x: x’.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – When the resolved attribute is not a function.</p></li>
+<li><p><strong>ValueError</strong> – When the module cannot be found.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The function loaded from the module.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.to_camel_case">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">to_camel_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snake_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cC'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#to_camel_case"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.to_camel_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a string from snake case to camel case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>snake_str</strong> – A string in snake case (i.e. with ‘_’)</p></li>
+<li><p><strong>to</strong> – Convention to convert string to. Defaults to “cC”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Invalid input argument <cite>to</cite>, i.e. not “cC” or “CC”.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string in camel-case format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.util.string.to_snake_case">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.util.string.</span></span><span class="sig-name descname"><span class="pre">to_snake_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/grutopia/core/util/string.html#to_snake_case"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.util.string.to_snake_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a string from camel case to snake case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>camel_str</strong> – A string in camel case.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string in snake case (i.e. with ‘_’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    
+    <a href="task.html" class="btn btn-neutral" title="grutopia.core.task" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, OpenRobotLab.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">grutopia.core.util</a><ul>
+<li><a class="reference internal" href="#module-grutopia.core.util.array">array</a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.array.TENSOR_TYPES"><code class="docutils literal notranslate"><span class="pre">TENSOR_TYPES</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.array.TENSOR_TYPE_CONVERSIONS"><code class="docutils literal notranslate"><span class="pre">TENSOR_TYPE_CONVERSIONS</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.array.TensorData"><code class="docutils literal notranslate"><span class="pre">TensorData</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.array.convert_to_torch"><code class="docutils literal notranslate"><span class="pre">convert_to_torch()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.util.assets">assets</a></li>
+<li><a class="reference internal" href="#module-grutopia.core.util.configclass">configclass</a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.configclass.configclass"><code class="docutils literal notranslate"><span class="pre">configclass()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.util.dict">dict</a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.dict.class_to_dict"><code class="docutils literal notranslate"><span class="pre">class_to_dict()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.dict.convert_dict_to_backend"><code class="docutils literal notranslate"><span class="pre">convert_dict_to_backend()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.dict.dict_to_md5_hash"><code class="docutils literal notranslate"><span class="pre">dict_to_md5_hash()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.dict.print_dict"><code class="docutils literal notranslate"><span class="pre">print_dict()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.dict.update_class_from_dict"><code class="docutils literal notranslate"><span class="pre">update_class_from_dict()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.dict.update_dict"><code class="docutils literal notranslate"><span class="pre">update_dict()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.util.math">math</a></li>
+<li><a class="reference internal" href="#module-grutopia.core.util.omni_usd_util">omni_usd_util</a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.omni_usd_util.compute_path_bbox"><code class="docutils literal notranslate"><span class="pre">compute_path_bbox()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.omni_usd_util.get_grabbed_able_xform_paths"><code class="docutils literal notranslate"><span class="pre">get_grabbed_able_xform_paths()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.omni_usd_util.get_pick_position"><code class="docutils literal notranslate"><span class="pre">get_pick_position()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.omni_usd_util.get_world_transform_xform"><code class="docutils literal notranslate"><span class="pre">get_world_transform_xform()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.omni_usd_util.nearest_xform_from_position"><code class="docutils literal notranslate"><span class="pre">nearest_xform_from_position()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.util.python">python</a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.python.Recreatable"><code class="docutils literal notranslate"><span class="pre">Recreatable</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.python.Recreatable.get_init_info"><code class="docutils literal notranslate"><span class="pre">Recreatable.get_init_info()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.util.python.RecreatableAbcMeta"><code class="docutils literal notranslate"><span class="pre">RecreatableAbcMeta</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.RecreatableMeta"><code class="docutils literal notranslate"><span class="pre">RecreatableMeta</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Registerable"><code class="docutils literal notranslate"><span class="pre">Registerable</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Serializable"><code class="docutils literal notranslate"><span class="pre">Serializable</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.python.Serializable.deserialize"><code class="docutils literal notranslate"><span class="pre">Serializable.deserialize()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Serializable.dump_state"><code class="docutils literal notranslate"><span class="pre">Serializable.dump_state()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Serializable.load_state"><code class="docutils literal notranslate"><span class="pre">Serializable.load_state()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Serializable.serialize"><code class="docutils literal notranslate"><span class="pre">Serializable.serialize()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Serializable.state_size"><code class="docutils literal notranslate"><span class="pre">Serializable.state_size</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.util.python.SerializableNonInstance"><code class="docutils literal notranslate"><span class="pre">SerializableNonInstance</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.python.SerializableNonInstance.deserialize"><code class="docutils literal notranslate"><span class="pre">SerializableNonInstance.deserialize()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.SerializableNonInstance.dump_state"><code class="docutils literal notranslate"><span class="pre">SerializableNonInstance.dump_state()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.SerializableNonInstance.load_state"><code class="docutils literal notranslate"><span class="pre">SerializableNonInstance.load_state()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.SerializableNonInstance.serialize"><code class="docutils literal notranslate"><span class="pre">SerializableNonInstance.serialize()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.util.python.UniquelyNamed"><code class="docutils literal notranslate"><span class="pre">UniquelyNamed</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.python.UniquelyNamed.name"><code class="docutils literal notranslate"><span class="pre">UniquelyNamed.name</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.UniquelyNamed.remove_names"><code class="docutils literal notranslate"><span class="pre">UniquelyNamed.remove_names()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.util.python.UniquelyNamedNonInstance"><code class="docutils literal notranslate"><span class="pre">UniquelyNamedNonInstance</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.Wrapper"><code class="docutils literal notranslate"><span class="pre">Wrapper</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.python.Wrapper.unwrapped"><code class="docutils literal notranslate"><span class="pre">Wrapper.unwrapped</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.util.python.assert_valid_key"><code class="docutils literal notranslate"><span class="pre">assert_valid_key()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.camel_case_to_snake_case"><code class="docutils literal notranslate"><span class="pre">camel_case_to_snake_case()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.clear"><code class="docutils literal notranslate"><span class="pre">clear()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.create_class_from_registry_and_config"><code class="docutils literal notranslate"><span class="pre">create_class_from_registry_and_config()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.create_object_from_init_info"><code class="docutils literal notranslate"><span class="pre">create_object_from_init_info()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.extract_class_init_kwargs_from_dict"><code class="docutils literal notranslate"><span class="pre">extract_class_init_kwargs_from_dict()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.extract_subset_dict"><code class="docutils literal notranslate"><span class="pre">extract_subset_dict()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.get_class_init_kwargs"><code class="docutils literal notranslate"><span class="pre">get_class_init_kwargs()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.get_uuid"><code class="docutils literal notranslate"><span class="pre">get_uuid()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.meets_minimum_version"><code class="docutils literal notranslate"><span class="pre">meets_minimum_version()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.merge_nested_dicts"><code class="docutils literal notranslate"><span class="pre">merge_nested_dicts()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.save_init_info"><code class="docutils literal notranslate"><span class="pre">save_init_info()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.snake_case_to_camel_case"><code class="docutils literal notranslate"><span class="pre">snake_case_to_camel_case()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.python.subclass_factory"><code class="docutils literal notranslate"><span class="pre">subclass_factory()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.util.string">string</a><ul>
+<li><a class="reference internal" href="#grutopia.core.util.string.callable_to_string"><code class="docutils literal notranslate"><span class="pre">callable_to_string()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.string.is_lambda_expression"><code class="docutils literal notranslate"><span class="pre">is_lambda_expression()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.string.resolve_matching_names"><code class="docutils literal notranslate"><span class="pre">resolve_matching_names()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.string.resolve_matching_names_values"><code class="docutils literal notranslate"><span class="pre">resolve_matching_names_values()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.string.string_to_callable"><code class="docutils literal notranslate"><span class="pre">string_to_callable()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.string.to_camel_case"><code class="docutils literal notranslate"><span class="pre">to_camel_case()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.util.string.to_snake_case"><code class="docutils literal notranslate"><span class="pre">to_snake_case()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenRobotLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

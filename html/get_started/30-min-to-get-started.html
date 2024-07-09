@@ -1,0 +1,985 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>30 minutes to get started &mdash; TY-1 v0.1.0 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="how to use npc" href="../tutorials/how-to-use-npc.html" />
+  <link rel="prev" title="installation" href="installation.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenRobotLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/TY-1.git" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                OpenRobotLab
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/OpenRobotLab" target="_blank">
+                  <span class="dropdown-title">GitHub </span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/" target="_blank">
+                  <span class="dropdown-title">OpenMMLab GitHub </span>
+                  <p></p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">30 minutes to get started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">how to use npc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">how to use robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">how to use controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">how to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-web-ui.html">how to use web ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">how to add custom robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">how to add custom controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">how to add custom sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/env.html">tao_yuan.core.env</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">tao_yuan.core.datahub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/register.html">tao_yuan.core.register</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/robot.html">tao_yuan.core.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/scene.html">tao_yuan.core.scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/task.html">tao_yuan.core.task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/util.html">tao_yuan.core.util</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>30 minutes to get started</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            
+            
+            
+              <a href="/zh_CN//get_started/30-min-to-get-started.html" class="fa fa-language"> 以中文阅读</a>
+            
+        
+      </li>
+      
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+                
+  <section id="minutes-to-get-started">
+<h1>30 minutes to get started<a class="headerlink" href="#minutes-to-get-started" title="Permalink to this heading">¶</a></h1>
+<p>In this tutorial, we’ll add a MyCobot280Pi to</p>
+<section id="get-robot-resources">
+<h2>Get robot resources<a class="headerlink" href="#get-robot-resources" title="Permalink to this heading">¶</a></h2>
+<section id="urdf-and-usd">
+<h3>1. URDF and usd<a class="headerlink" href="#urdf-and-usd" title="Permalink to this heading">¶</a></h3>
+<p>we can get full resources <a class="reference external" href="https://github.com/elephantrobotics/mycobot_ros/tree/noetic/mycobot_description/urdf/mycobot_280_pi">here</a></p>
+<p>if you are not familiar to <code class="docutils literal notranslate"><span class="pre">ROS</span></code>/<code class="docutils literal notranslate"><span class="pre">ROS2</span></code>, you need to rename the source path in <code class="docutils literal notranslate"><span class="pre">URDF</span></code> file</p>
+<p><img alt="img.png" src="../_images/before_rename_urdf_img.png" /></p>
+<p>my resource path is <code class="docutils literal notranslate"><span class="pre">/home/apx103/Desktop/mycobot_280_pi</span></code>, so change meshes’ <code class="docutils literal notranslate"><span class="pre">filename</span></code> attr like this:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;visual&gt;</span>
+<span class="w">  </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;file:///home/apx103/Desktop/mycobot_280_pi/joint4.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz =</span><span class="w"> </span><span class="s">&quot;0.0 0 0.03056 &quot;</span><span class="w"> </span><span class="na">rpy =</span><span class="w"> </span><span class="s">&quot; 0 -1.5708 0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/visual&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="import-urdf-and-gen-usd-file">
+<h3>2. import URDF and gen usd file<a class="headerlink" href="#import-urdf-and-gen-usd-file" title="Permalink to this heading">¶</a></h3>
+<p>follow this <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/advanced_tutorials/tutorial_advanced_import_urdf.html">instruction</a> to get usd like this:</p>
+<div class="highlight-log notranslate"><div class="highlight"><pre><span></span>.
+├── materials
+│   ├── joint2.png
+│   ├── joint3.png
+│   ├── joint4.png
+│   ├── joint5.png
+│   ├── joint6.png
+│   └── joint7.png
+└──  mycobot_280pi_with_camera_flange.usd
+</pre></div>
+</div>
+<p>then follow this <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/advanced_tutorials/tutorial_motion_generation_robot_description_editor.html">instruction</a> to get robot description</p>
+<p>my description is like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># The robot description defines the generalized coordinates and how to map those</span>
+<span class="c1"># to the underlying URDF dofs.</span>
+
+<span class="nt">api_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+
+<span class="c1"># Defines the generalized coordinates. Each generalized coordinate is assumed</span>
+<span class="c1"># to have an entry in the URDF.</span>
+<span class="c1"># Lula will only use these joints to control the robot position.</span>
+<span class="nt">cspace</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint2_to_joint1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint3_to_joint2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint4_to_joint3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint5_to_joint4</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint6_to_joint5</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint6output_to_joint6</span>
+
+<span class="nt">root_link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">g_base</span>
+
+<span class="nt">default_q</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">    </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nv">-0.0</span>
+<span class="p p-Indicator">]</span>
+
+<span class="c1"># Most dimensions of the cspace have a direct corresponding element</span>
+<span class="c1"># in the URDF. This list of rules defines how unspecified coordinates</span>
+<span class="c1"># should be extracted or how values in the URDF should be overwritten.</span>
+
+<span class="nt">cspace_to_urdf_rules</span><span class="p">:</span>
+
+<span class="c1"># Lula uses collision spheres to define the robot geometry in order to avoid</span>
+<span class="c1"># collisions with external obstacles.  If no spheres are specified, Lula will</span>
+<span class="c1"># not be able to avoid obstacles.</span>
+
+<span class="nt">collision_spheres</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint1</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.039</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.035</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint2</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.045</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.011</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.023</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.034</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint4</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.094</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.016</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.031</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.047</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.063</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.078</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint3</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.107</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.018</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.036</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.053</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.071</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.089</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.064</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint5</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">joint6</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="s">&quot;radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+</pre></div>
+</div>
+</section>
+<section id="test-files">
+<h3>3. Test files<a class="headerlink" href="#test-files" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p>Test whether these files work</p>
+</div></blockquote>
+<p>open <code class="docutils literal notranslate"><span class="pre">lula</span> <span class="pre">test</span> <span class="pre">extension</span></code> in isaac sim to test files we get before</p>
+<p><img alt="img.png" src="../_images/lula_test_extension.png" /></p>
+<p>we only need to test <code class="docutils literal notranslate"><span class="pre">lula</span> <span class="pre">Kunematics</span> <span class="pre">Solver</span></code>. And then we know:</p>
+<ol class="arabic simple">
+<li><p>robot(manipulator) can get solve using <code class="docutils literal notranslate"><span class="pre">lula</span> <span class="pre">Kunematics</span> <span class="pre">Solver</span></code>.</p></li>
+<li><p>description file of robot(manipulator) is work.</p></li>
+</ol>
+</section>
+</section>
+<section id="add-robot">
+<h2>Add Robot<a class="headerlink" href="#add-robot" title="Permalink to this heading">¶</a></h2>
+<section id="what-we-need-to-do">
+<h3>What we need to do<a class="headerlink" href="#what-we-need-to-do" title="Permalink to this heading">¶</a></h3>
+<p>In this example, we just add a IK controller to set the position(angle included) of manipulator’s end effector.</p>
+</section>
+<section id="move-resources-to-assets">
+<h3>move resources to <code class="docutils literal notranslate"><span class="pre">assets</span></code><a class="headerlink" href="#move-resources-to-assets" title="Permalink to this heading">¶</a></h3>
+<p>we need to move resources to <code class="docutils literal notranslate"><span class="pre">assets/robots/mycobot_280_pi_with_camera_flange</span></code> like:</p>
+<div class="highlight-log notranslate"><div class="highlight"><pre><span></span>.
+├── materials
+│   ├── joint2.png
+│   ├── joint3.png
+│   ├── joint4.png
+│   ├── joint5.png
+│   ├── joint6.png
+│   └── joint7.png
+├── mycobot_280pi_with_camera_flange.urdf
+├── mycobot_280pi_with_camera_flange.usd
+└── robot_descriptor.yaml
+</pre></div>
+</div>
+</section>
+<section id="add-robot-class">
+<h3>Add Robot Class<a class="headerlink" href="#add-robot-class" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>At first, we need to define a Robot class based on <code class="docutils literal notranslate"><span class="pre">omni.isaac.core.robots.robot.Robot</span></code>. It wraps <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">effector</span></code> and <code class="docutils literal notranslate"><span class="pre">articulation</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.prims</span> <span class="kn">import</span> <span class="n">RigidPrim</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.robots.robot</span> <span class="kn">import</span> <span class="n">Robot</span> <span class="k">as</span> <span class="n">IsaacRobot</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.scenes</span> <span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.nucleus</span> <span class="kn">import</span> <span class="n">get_assets_root_path</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.stage</span> <span class="kn">import</span> <span class="n">add_reference_to_stage</span>
+
+<span class="kn">from</span> <span class="nn">tao_yuan.core.config.robot</span> <span class="kn">import</span> <span class="n">RobotUserConfig</span> <span class="k">as</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">tao_yuan.core.robot.robot</span> <span class="kn">import</span> <span class="n">BaseRobot</span>
+<span class="kn">from</span> <span class="nn">tao_yuan.core.robot.robot_model</span> <span class="kn">import</span> <span class="n">RobotModel</span>
+<span class="kn">from</span> <span class="nn">tao_yuan.core.util</span> <span class="kn">import</span> <span class="n">log</span>
+
+
+
+<span class="k">class</span> <span class="nc">MyCobot280</span><span class="p">(</span><span class="n">IsaacRobot</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">usd_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">position</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">orientation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">scale</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">add_reference_to_stage</span><span class="p">(</span>
+            <span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span> <span class="n">usd_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">usd_path</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">,</span>
+            <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_effector_prim_path</span> <span class="o">=</span> <span class="n">prim_path</span> <span class="o">+</span> <span class="s1">&#39;/joint6_flange&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_effector</span> <span class="o">=</span> <span class="n">RigidPrim</span><span class="p">(</span>
+            <span class="n">prim_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_end_effector_prim_path</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_end_effector&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">end_effector_prim_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_effector_prim_path</span>
+
+<span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">end_effector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_effector</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then we need to wrap this Robot with <code class="docutils literal notranslate"><span class="pre">tao_yuan.core.robot.BaseRobot</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@BaseRobot</span><span class="o">.</span><span class="n">regester</span><span class="p">(</span><span class="s1">&#39;MyCobot280PiRobot&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyCobot280PiRobot</span><span class="p">(</span><span class="n">BaseRobot</span><span class="p">):</span>
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">:</span> <span class="n">RobotModel</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_sensor_config</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">sensors</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">position</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_start_orientation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">orientation</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">orientation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mycobot_280_pi </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: position    : &#39;</span> <span class="o">+</span>
+              <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span><span class="p">))</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mycobot_280_pi </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: orientation : &#39;</span> <span class="o">+</span>
+              <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_orientation</span><span class="p">))</span>
+
+    <span class="n">usd_path</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">usd_path</span>
+    <span class="k">if</span> <span class="n">usd_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;/Isaac&#39;</span><span class="p">):</span>
+        <span class="n">usd_path</span> <span class="o">=</span> <span class="n">get_assets_root_path</span><span class="p">()</span> <span class="o">+</span> <span class="n">usd_path</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">usd_path</span><span class="p">)</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mycobot_280_pi </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: usd_path         : &#39;</span> <span class="o">+</span>
+              <span class="nb">str</span><span class="p">(</span><span class="n">usd_path</span><span class="p">))</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mycobot_280_pi </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: config.prim_path : &#39;</span> <span class="o">+</span>
+              <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span> <span class="o">=</span> <span class="n">MyCobot280</span><span class="p">(</span>
+        <span class="n">prim_path</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">position</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span><span class="p">,</span>
+        <span class="n">orientation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_orientation</span><span class="p">,</span>
+        <span class="n">usd_path</span><span class="o">=</span><span class="n">usd_path</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">scale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">set_local_scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_robot_ik_base</span> <span class="o">=</span> <span class="n">RigidPrim</span><span class="p">(</span>
+        <span class="n">prim_path</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span> <span class="o">+</span> <span class="s1">&#39;/joint1&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_ik_base_link&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_robot_base</span> <span class="o">=</span> <span class="n">RigidPrim</span><span class="p">(</span>
+        <span class="n">prim_path</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span> <span class="o">+</span> <span class="s1">&#39;/g_base&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_base_link&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_robot_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span>
+
+<span class="k">def</span> <span class="nf">get_robot_ik_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_ik_base</span>
+
+<span class="k">def</span> <span class="nf">get_world_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_base</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">apply_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        action (dict): inputs for controllers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">controller_name</span><span class="p">,</span> <span class="n">controller_action</span> <span class="ow">in</span> <span class="n">action</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">controller_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unknown controller </span><span class="si">{</span><span class="n">controller_name</span><span class="si">}</span><span class="s1"> in action&#39;</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">[</span><span class="n">controller_name</span><span class="p">]</span>
+        <span class="n">control</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">action_to_control</span><span class="p">(</span><span class="n">controller_action</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">apply_action</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add obs you need here.&quot;&quot;&quot;</span>
+    <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_base</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+
+    <span class="c1"># custom</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+        <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="n">orientation</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">eef_world_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">end_effector</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+    <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;eef_position&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eef_world_pose</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;eef_orientation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eef_world_pose</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># common</span>
+    <span class="n">obs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_obs</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">obs</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="add-controller">
+<h3>Add Controller<a class="headerlink" href="#add-controller" title="Permalink to this heading">¶</a></h3>
+<p>In this example, we use a framework integrated controller <code class="docutils literal notranslate"><span class="pre">ty_extension.controllers.ik_controller</span></code> to solve IK for our robot.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># yapf: disable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.articulations</span> <span class="kn">import</span> <span class="n">Articulation</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.scenes</span> <span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.numpy.rotations</span> <span class="kn">import</span> <span class="n">rot_matrices_to_quats</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.types</span> <span class="kn">import</span> <span class="n">ArticulationAction</span>
+<span class="kn">from</span> <span class="nn">omni.isaac.motion_generation</span> <span class="kn">import</span> <span class="n">ArticulationKinematicsSolver</span><span class="p">,</span> <span class="n">LulaKinematicsSolver</span>
+
+<span class="kn">from</span> <span class="nn">tao_yuan.core.robot.controller</span> <span class="kn">import</span> <span class="n">BaseController</span>
+<span class="kn">from</span> <span class="nn">tao_yuan.core.robot.robot</span> <span class="kn">import</span> <span class="n">BaseRobot</span>
+<span class="kn">from</span> <span class="nn">tao_yuan.core.robot.robot_model</span> <span class="kn">import</span> <span class="n">ControllerModel</span>
+
+<span class="c1"># yapf: enable</span>
+
+
+<span class="nd">@BaseController</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;InverseKinematicsController&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">InverseKinematicsController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ControllerModel</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">scene</span><span class="o">=</span><span class="n">scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span> <span class="o">=</span> <span class="n">KinematicsSolver</span><span class="p">(</span>
+            <span class="n">robot_articulation</span><span class="o">=</span><span class="n">robot</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">,</span>
+            <span class="n">robot_description_path</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">robot_description_path</span><span class="p">,</span>
+            <span class="n">robot_urdf_path</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">robot_urdf_path</span><span class="p">,</span>
+            <span class="n">end_effector_frame_name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">end_effector_frame_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span><span class="o">.</span><span class="n">get_joints_subset</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">reference</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="n">reference</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;robot&#39;</span><span class="p">,</span> <span class="s1">&#39;arm_base&#39;</span><span class="p">],</span> \
+                <span class="sa">f</span><span class="s1">&#39;unknown ik controller reference </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">reference</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">reference</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span> <span class="o">=</span> <span class="s1">&#39;world&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_action</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">threshold</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ik_base</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_robot_ik_base</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_robot_scale</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span> <span class="o">==</span> <span class="s1">&#39;robot&#39;</span><span class="p">:</span>
+            <span class="c1"># The local pose of ik base is assumed not to change during simulation for ik controlled parts.</span>
+            <span class="c1"># However, the world pose won&#39;t change even its base link has moved for some robots like ridgeback franka,</span>
+            <span class="c1"># so the ik base pose returned by get_local_pose may change during simulation, which is unexpected.</span>
+            <span class="c1"># So the initial local pose of ik base is saved at first and used during the whole simulation.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ik_base_local_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ik_base</span><span class="o">.</span><span class="n">get_local_pose</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_ik_base_world_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span> <span class="o">==</span> <span class="s1">&#39;robot&#39;</span><span class="p">:</span>
+            <span class="n">ik_base_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ik_base_local_pose</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span> <span class="o">==</span> <span class="s1">&#39;arm_base&#39;</span><span class="p">:</span>
+            <span class="c1"># Robot base is always at the origin.</span>
+            <span class="n">ik_base_pose</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ik_base_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ik_base</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ik_base_pose</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eef_target_position</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                <span class="n">eef_target_orientation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ArticulationAction</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_action</span> <span class="o">=</span> <span class="p">[</span><span class="n">eef_target_position</span><span class="p">,</span> <span class="n">eef_target_orientation</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">eef_target_position</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Keep joint positions to lock pose.</span>
+            <span class="n">subset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span><span class="o">.</span><span class="n">get_joints_subset</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">subset</span><span class="o">.</span><span class="n">make_articulation_action</span><span class="p">(</span><span class="n">joint_positions</span><span class="o">=</span><span class="n">subset</span><span class="o">.</span><span class="n">get_joint_positions</span><span class="p">(),</span>
+                                                   <span class="n">joint_velocities</span><span class="o">=</span><span class="n">subset</span><span class="o">.</span><span class="n">get_joint_velocities</span><span class="p">()),</span> <span class="kc">True</span>
+
+        <span class="n">ik_base_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ik_base_world_pose</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span><span class="o">.</span><span class="n">set_robot_base_pose</span><span class="p">(</span><span class="n">robot_position</span><span class="o">=</span><span class="n">ik_base_pose</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span><span class="p">,</span>
+                                                    <span class="n">robot_orientation</span><span class="o">=</span><span class="n">ik_base_pose</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span><span class="o">.</span><span class="n">compute_inverse_kinematics</span><span class="p">(</span>
+            <span class="n">target_position</span><span class="o">=</span><span class="n">eef_target_position</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span><span class="p">,</span>
+            <span class="n">target_orientation</span><span class="o">=</span><span class="n">eef_target_orientation</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">action_to_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">List</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            action (np.ndarray): n-element 1d array containing:</span>
+<span class="sd">              0. eef_target_position</span>
+<span class="sd">              1. eef_target_orientation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;action must contain 2 elements&#39;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;kinematics solver is not initialized&#39;</span>
+
+        <span class="n">eef_target_position</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">eef_target_orientation</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">action</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span>
+            <span class="n">eef_target_position</span><span class="o">=</span><span class="n">eef_target_position</span><span class="p">,</span>
+            <span class="n">eef_target_orientation</span><span class="o">=</span><span class="n">eef_target_orientation</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the pose of the robot end effector using the simulated robot&#39;s current joint positions</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, np.ndarray]:</span>
+<span class="sd">            - eef_position: eef position</span>
+<span class="sd">            - eef_orientation: eef orientation quats</span>
+<span class="sd">            - success: if solver converged successfully</span>
+<span class="sd">            - finished: applied action has been finished</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ik_base_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ik_base_world_pose</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span><span class="o">.</span><span class="n">set_robot_base_pose</span><span class="p">(</span><span class="n">robot_position</span><span class="o">=</span><span class="n">ik_base_pose</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span><span class="p">,</span>
+                                                    <span class="n">robot_orientation</span><span class="o">=</span><span class="n">ik_base_pose</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">pos</span><span class="p">,</span> <span class="n">ori</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics_solver</span><span class="o">.</span><span class="n">compute_end_effector_pose</span><span class="p">()</span>
+
+        <span class="n">finished</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_action</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dist_from_goal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_action</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">dist_from_goal</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_robot_scale</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">finished</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;eef_position&#39;</span><span class="p">:</span> <span class="n">pos</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span><span class="p">,</span>
+            <span class="s1">&#39;eef_orientation&#39;</span><span class="p">:</span> <span class="n">rot_matrices_to_quats</span><span class="p">(</span><span class="n">ori</span><span class="p">),</span>
+            <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+            <span class="s1">&#39;finished&#39;</span><span class="p">:</span> <span class="n">finished</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">KinematicsSolver</span><span class="p">(</span><span class="n">ArticulationKinematicsSolver</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Kinematics Solver for robot.  This class loads a LulaKinematicsSovler object</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        robot_description_path (str): path to a robot description yaml file \</span>
+<span class="sd">            describing the cspace of the robot and other relevant parameters</span>
+<span class="sd">        robot_urdf_path (str): path to a URDF file describing the robot</span>
+<span class="sd">        end_effector_frame_name (str): The name of the end effector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_articulation</span><span class="p">:</span> <span class="n">Articulation</span><span class="p">,</span> <span class="n">robot_description_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_urdf_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">end_effector_frame_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics</span> <span class="o">=</span> <span class="n">LulaKinematicsSolver</span><span class="p">(</span><span class="n">robot_description_path</span><span class="p">,</span> <span class="n">robot_urdf_path</span><span class="p">)</span>
+
+        <span class="n">ArticulationKinematicsSolver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_articulation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics</span><span class="p">,</span> <span class="n">end_effector_frame_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kinematics</span><span class="p">,</span> <span class="s1">&#39;set_max_iterations&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics</span><span class="o">.</span><span class="n">set_max_iterations</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics</span><span class="o">.</span><span class="n">ccd_max_iterations</span> <span class="o">=</span> <span class="mi">150</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">set_robot_base_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_position</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">robot_orientation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kinematics</span><span class="o">.</span><span class="n">set_robot_base_pose</span><span class="p">(</span><span class="n">robot_position</span><span class="o">=</span><span class="n">robot_position</span><span class="p">,</span> <span class="n">robot_orientation</span><span class="o">=</span><span class="n">robot_orientation</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="add-config">
+<h3>Add config<a class="headerlink" href="#add-config" title="Permalink to this heading">¶</a></h3>
+<p>After add robot and add controller, we need register our robot to <code class="docutils literal notranslate"><span class="pre">ty_extension/robots/robot_models.yaml</span></code> as follows</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MyCobot280PiRobot&quot;</span>
+<span class="w">  </span><span class="nt">usd_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;TY-1/assets/robots/mycobot_280pi_with_camera_flange/mycobot_280pi_with_camera_flange.usd&quot;</span>
+<span class="w">  </span><span class="nt">controllers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ik_controller&quot;</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;InverseKinematicsController&quot;</span>
+<span class="w">    </span><span class="nt">robot_description_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;TY-1/assets/robots/mycobot_280pi_with_camera_flange/robot_descriptor.yaml&quot;</span>
+<span class="w">    </span><span class="nt">robot_urdf_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;TY-1/assets/robots/mycobot_280pi_with_camera_flange/mycobot_280pi_with_camera_flange.urdf&quot;</span>
+<span class="w">    </span><span class="nt">end_effector_frame_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;joint6_flange&quot;</span>
+<span class="w">    </span><span class="nt">threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</pre></div>
+</div>
+<p>this file combine robot with controllers and sensors, and setup some param that app users have not deed to know.</p>
+</section>
+</section>
+<section id="test">
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this heading">¶</a></h2>
+<p>to test a new robot in our framework. we need to create two files:</p>
+<ol class="arabic simple">
+<li><p>run file: define running process.</p></li>
+<li><p>config file: define scene\robots\objects and any well load to isaac sim dynamically.</p></li>
+</ol>
+<section id="run-file">
+<h3><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">file</span></code><a class="headerlink" href="#run-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tao_yuan.core.config</span> <span class="kn">import</span> <span class="n">SimulatorConfig</span>
+<span class="kn">from</span> <span class="nn">tao_yuan.core.env</span> <span class="kn">import</span> <span class="n">BaseEnv</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;./TY-1/demo/configs/follow_target_mycobot.yaml&#39;</span>
+<span class="n">sim_config</span> <span class="o">=</span> <span class="n">SimulatorConfig</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+<span class="c1"># env = BaseEnv(sim_config)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">BaseEnv</span><span class="p">(</span><span class="n">sim_config</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+        <span class="n">target_cube_pose</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">runner</span><span class="o">.</span><span class="n">get_obj</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;mycobot&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;ik_controller&#39;</span><span class="p">:</span> <span class="n">target_cube_pose</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">observations</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="config">
+<h3><code class="docutils literal notranslate"><span class="pre">config</span></code><a class="headerlink" href="#config" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulator</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">physics_dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01666</span><span class="w">  </span><span class="c1"># 1 / 60</span>
+<span class="w">  </span><span class="nt">rendering_dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01666</span><span class="w">  </span><span class="c1"># 1 / 60</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">bg_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+
+<span class="nt">render</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">tasks</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SingleInferenceTask&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mycobot280pi_follow_cube&quot;</span>
+<span class="w">  </span><span class="nt">env_num</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">offset_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">  </span><span class="nt">robots</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mycobot</span>
+<span class="w">    </span><span class="nt">prim_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/mycobot&quot;</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MyCobot280PiRobot&quot;</span>
+<span class="w">    </span><span class="nt">position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">.0</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">controller_params</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ik_controller&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rmp_controller&quot;</span>
+
+<span class="w">  </span><span class="nt">objects</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_cube</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VisualCube</span>
+<span class="w">    </span><span class="nt">prim_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/target_cube</span>
+<span class="w">    </span><span class="nt">position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.08</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.05015</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05015</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05015</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">color</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+<section id="run-test">
+<h3>Run Test<a class="headerlink" href="#run-test" title="Permalink to this heading">¶</a></h3>
+<p>Run test file at root path of isaac sim like:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>./TY-1/demo/follow_target_mycobot280.py
+</pre></div>
+</div>
+<p>we get a follow target mycobot demo</p>
+<p><img alt="img.png" src="../_images/follow_target_mycobot_demo.png" /></p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="../tutorials/how-to-use-npc.html" class="btn btn-neutral float-right" title="how to use npc" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="installation.html" class="btn btn-neutral" title="installation" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, OpenRobotLab.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">30 minutes to get started</a><ul>
+<li><a class="reference internal" href="#get-robot-resources">Get robot resources</a><ul>
+<li><a class="reference internal" href="#urdf-and-usd">1. URDF and usd</a></li>
+<li><a class="reference internal" href="#import-urdf-and-gen-usd-file">2. import URDF and gen usd file</a></li>
+<li><a class="reference internal" href="#test-files">3. Test files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#add-robot">Add Robot</a><ul>
+<li><a class="reference internal" href="#what-we-need-to-do">What we need to do</a></li>
+<li><a class="reference internal" href="#move-resources-to-assets">move resources to <code class="docutils literal notranslate"><span class="pre">assets</span></code></a></li>
+<li><a class="reference internal" href="#add-robot-class">Add Robot Class</a></li>
+<li><a class="reference internal" href="#add-controller">Add Controller</a></li>
+<li><a class="reference internal" href="#add-config">Add config</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#test">Test</a><ul>
+<li><a class="reference internal" href="#run-file"><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">file</span></code></a></li>
+<li><a class="reference internal" href="#config"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
+<li><a class="reference internal" href="#run-test">Run Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenRobotLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/TY-1.git" target="_blank">GitHub</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>
