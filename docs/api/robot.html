@@ -1,0 +1,781 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>grutopia.core.robot &mdash; GRUtopia v0.1.0 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="grutopia.core.scene" href="scene.html" />
+  <link rel="prev" title="grutopia.core.register" href="register.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenRobotLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                OpenRobotLab
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/OpenRobotLab" target="_blank">
+                  <span class="dropdown-title">GitHub </span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/" target="_blank">
+                  <span class="dropdown-title">OpenMMLab GitHub </span>
+                  <p></p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="env.html">grutopia.core.env</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datahub.html">grutopia.core.datahub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register.html">grutopia.core.register</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">grutopia.core.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scene.html">grutopia.core.scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task.html">grutopia.core.task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">grutopia.core.util</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>grutopia.core.robot</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            
+            
+        
+      </li>
+      
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+                
+  <section id="grutopia-core-robot">
+<h1>grutopia.core.robot<a class="headerlink" href="#grutopia-core-robot" title="Permalink to this heading">¶</a></h1>
+<section id="module-grutopia.core.robot.robot">
+<span id="robot"></span><h2>robot<a class="headerlink" href="#module-grutopia.core.robot.robot" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.robot.</span></span><span class="sig-name descname"><span class="pre">BaseRobot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotUserConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class of robot.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.apply_action">
+<span class="sig-name descname"><span class="pre">apply_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.apply_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.apply_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply actions of controllers to robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>dict</em>) – action dict.
+key: controller name.
+value: corresponding action array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.get_obs">
+<span class="sig-name descname"><span class="pre">get_obs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.get_obs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.get_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get observation of robot, including controllers, sensors, and world pose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.get_robot_articulation">
+<span class="sig-name descname"><span class="pre">get_robot_articulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Robot</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.get_robot_articulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.get_robot_articulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get isaac robots instance (articulation).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot articulation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Robot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.get_robot_base">
+<span class="sig-name descname"><span class="pre">get_robot_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RigidPrim</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.get_robot_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.get_robot_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get base link of robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rigid prim of robot base link.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>RigidPrim</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.get_robot_ik_base">
+<span class="sig-name descname"><span class="pre">get_robot_ik_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RigidPrim</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.get_robot_ik_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.get_robot_ik_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get base link of ik controlled parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rigid prim of ik base link.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>RigidPrim</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.get_robot_scale">
+<span class="sig-name descname"><span class="pre">get_robot_scale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.get_robot_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.get_robot_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get robot scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot scale in (x, y, z).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.post_reset">
+<span class="sig-name descname"><span class="pre">post_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.post_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.post_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up things that happen after the world resets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.register">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a robot class with its name(decorator).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the robot class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.BaseRobot.set_up_to_scene">
+<span class="sig-name descname"><span class="pre">set_up_to_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#BaseRobot.set_up_to_scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.BaseRobot.set_up_to_scene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up robot in the scene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scene</strong> (<em>Scene</em>) – scene to setup.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.robot.robot.create_robots">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.robot.</span></span><span class="sig-name descname"><span class="pre">create_robots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TaskUserConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotModels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><span class="pre">BaseRobot</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/robot.html#create_robots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.robot.create_robots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create robot instances in config.
+:param config: user config.
+:type config: TaskUserConfig
+:param robot_models: robot models.
+:type robot_models: RobotModels
+:param scene: isaac scene.
+:type scene: Scene</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot instances dictionary.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, <a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot">BaseRobot</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.robot.controller">
+<span id="controller"></span><h2>controller<a class="headerlink" href="#module-grutopia.core.robot.controller" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.BaseController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.controller.</span></span><span class="sig-name descname"><span class="pre">BaseController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ControllerModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><span class="pre">BaseRobot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#BaseController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.BaseController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class of controller.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.BaseController.action_to_control">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_to_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArticulationAction</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#BaseController.action_to_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.BaseController.action_to_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert input action (in 1d array format) to joint signals to apply.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>, </em><em>List</em><em>]</em>) – input control action.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>joint signals to apply</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ArticulationAction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.BaseController.get_joint_subset">
+<span class="sig-name descname"><span class="pre">get_joint_subset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArticulationSubset</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#BaseController.get_joint_subset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.BaseController.get_joint_subset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the joint subset controlled by the controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>joint subset.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ArticulationSubset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.BaseController.get_obs">
+<span class="sig-name descname"><span class="pre">get_obs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#BaseController.get_obs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.BaseController.get_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get observation of controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>observation key and value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.BaseController.register">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#BaseController.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.BaseController.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a controller with its name(decorator).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the controller</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.config_inject">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.controller.</span></span><span class="sig-name descname"><span class="pre">config_inject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ControllerParams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ControllerModel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ControllerModel</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#config_inject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.config_inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge controller config from user config and robot model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_config</strong> (<em>ControllerParams</em>) – user config.</p></li>
+<li><p><strong>model</strong> (<em>ControllerModel</em>) – controller config from robot model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>merged controller config.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ControllerModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.create_controllers">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.controller.</span></span><span class="sig-name descname"><span class="pre">create_controllers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotUserConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><span class="pre">BaseRobot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#grutopia.core.robot.controller.BaseController" title="grutopia.core.robot.controller.BaseController"><span class="pre">BaseController</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#create_controllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.create_controllers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create all controllers of one robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>RobotUserConfig</em>) – user config of the robot.</p></li>
+<li><p><strong>robot_model</strong> (<em>RobotModel</em>) – model of the robot.</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><em>BaseRobot</em></a>) – robot instance.</p></li>
+<li><p><strong>scene</strong> (<em>Scene</em>) – scene from isaac sim.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict of controllers with controller name as key.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, <a class="reference internal" href="#grutopia.core.robot.controller.BaseController" title="grutopia.core.robot.controller.BaseController">BaseController</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.robot.controller.inject_sub_controllers">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.controller.</span></span><span class="sig-name descname"><span class="pre">inject_sub_controllers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.robot.controller.BaseController" title="grutopia.core.robot.controller.BaseController"><span class="pre">BaseController</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ControllerParams</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">available</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ControllerModel</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><span class="pre">BaseRobot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/controller.html#inject_sub_controllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.controller.inject_sub_controllers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively create and inject sub-controlllers into parent controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<a class="reference internal" href="#grutopia.core.robot.controller.BaseController" title="grutopia.core.robot.controller.BaseController"><em>BaseController</em></a>) – parent controller instance.</p></li>
+<li><p><strong>configs</strong> (<em>List</em><em>[</em><em>ControllerParams</em><em>]</em>) – user configs of sub-controllers.</p></li>
+<li><p><strong>available</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ControllerModel</em><em>]</em>) – available controllers.</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><em>BaseRobot</em></a>) – robot instance.</p></li>
+<li><p><strong>scene</strong> (<em>Scene</em>) – scene from isaac sim.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.robot.sensor">
+<span id="sensor"></span><h2>sensor<a class="headerlink" href="#module-grutopia.core.robot.sensor" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.robot.sensor.BaseSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.sensor.</span></span><span class="sig-name descname"><span class="pre">BaseSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SensorModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><span class="pre">BaseRobot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/sensor.html#BaseSensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.sensor.BaseSensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class of sensor.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.sensor.BaseSensor.get_data">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/sensor.html#BaseSensor.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.sensor.BaseSensor.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data from sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>data dict of sensor.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.robot.sensor.BaseSensor.register">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/robot/sensor.html#BaseSensor.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.sensor.BaseSensor.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a sensor class with the given name(decorator).
+:param name: name of the sensor class.
+:type name: str</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.robot.sensor.config_inject">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.sensor.</span></span><span class="sig-name descname"><span class="pre">config_inject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SensorParams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SensorModel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SensorModel</span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/sensor.html#config_inject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.sensor.config_inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge sensor config from user config and robot model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>SensorParams</em>) – user config.</p></li>
+<li><p><strong>model</strong> (<em>SensorModel</em>) – sensor config from robot model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>merged sensor config.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SensorModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.robot.sensor.create_sensors">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.robot.sensor.</span></span><span class="sig-name descname"><span class="pre">create_sensors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotUserConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RobotModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><span class="pre">BaseRobot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#grutopia.core.robot.sensor.BaseSensor" title="grutopia.core.robot.sensor.BaseSensor"><span class="pre">BaseSensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/robot/sensor.html#create_sensors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.robot.sensor.create_sensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create all sensors of one robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>RobotUserConfig</em>) – user config of the robot.</p></li>
+<li><p><strong>robot_model</strong> (<em>RobotModel</em>) – model of the robot.</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot" title="grutopia.core.robot.robot.BaseRobot"><em>BaseRobot</em></a>) – robot instance.</p></li>
+<li><p><strong>scene</strong> (<em>Scene</em>) – scene from isaac sim.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict of sensors with sensor name as key.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, <a class="reference internal" href="#grutopia.core.robot.sensor.BaseSensor" title="grutopia.core.robot.sensor.BaseSensor">BaseSensor</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="scene.html" class="btn btn-neutral float-right" title="grutopia.core.scene" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="register.html" class="btn btn-neutral" title="grutopia.core.register" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, OpenRobotLab.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">grutopia.core.robot</a><ul>
+<li><a class="reference internal" href="#module-grutopia.core.robot.robot">robot</a><ul>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot"><code class="docutils literal notranslate"><span class="pre">BaseRobot</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.apply_action"><code class="docutils literal notranslate"><span class="pre">BaseRobot.apply_action()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.get_obs"><code class="docutils literal notranslate"><span class="pre">BaseRobot.get_obs()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.get_robot_articulation"><code class="docutils literal notranslate"><span class="pre">BaseRobot.get_robot_articulation()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.get_robot_base"><code class="docutils literal notranslate"><span class="pre">BaseRobot.get_robot_base()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.get_robot_ik_base"><code class="docutils literal notranslate"><span class="pre">BaseRobot.get_robot_ik_base()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.get_robot_scale"><code class="docutils literal notranslate"><span class="pre">BaseRobot.get_robot_scale()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.post_reset"><code class="docutils literal notranslate"><span class="pre">BaseRobot.post_reset()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.register"><code class="docutils literal notranslate"><span class="pre">BaseRobot.register()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.BaseRobot.set_up_to_scene"><code class="docutils literal notranslate"><span class="pre">BaseRobot.set_up_to_scene()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.robot.robot.create_robots"><code class="docutils literal notranslate"><span class="pre">create_robots()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.robot.controller">controller</a><ul>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.BaseController"><code class="docutils literal notranslate"><span class="pre">BaseController</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.BaseController.action_to_control"><code class="docutils literal notranslate"><span class="pre">BaseController.action_to_control()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.BaseController.get_joint_subset"><code class="docutils literal notranslate"><span class="pre">BaseController.get_joint_subset()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.BaseController.get_obs"><code class="docutils literal notranslate"><span class="pre">BaseController.get_obs()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.BaseController.register"><code class="docutils literal notranslate"><span class="pre">BaseController.register()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.config_inject"><code class="docutils literal notranslate"><span class="pre">config_inject()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.create_controllers"><code class="docutils literal notranslate"><span class="pre">create_controllers()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.controller.inject_sub_controllers"><code class="docutils literal notranslate"><span class="pre">inject_sub_controllers()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.robot.sensor">sensor</a><ul>
+<li><a class="reference internal" href="#grutopia.core.robot.sensor.BaseSensor"><code class="docutils literal notranslate"><span class="pre">BaseSensor</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.robot.sensor.BaseSensor.get_data"><code class="docutils literal notranslate"><span class="pre">BaseSensor.get_data()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.sensor.BaseSensor.register"><code class="docutils literal notranslate"><span class="pre">BaseSensor.register()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grutopia.core.robot.sensor.config_inject"><code class="docutils literal notranslate"><span class="pre">config_inject()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.robot.sensor.create_sensors"><code class="docutils literal notranslate"><span class="pre">create_sensors()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenRobotLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

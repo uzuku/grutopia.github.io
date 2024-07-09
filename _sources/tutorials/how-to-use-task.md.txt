@@ -1,7 +1,0 @@
-# how to use task
-
-> This tutorial will show you how to use task
-
-## What is `Task`
-
-WIP

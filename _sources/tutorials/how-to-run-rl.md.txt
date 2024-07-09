@@ -1,3 +1,0 @@
-# how to run rl on TY-1
-
-> WIP

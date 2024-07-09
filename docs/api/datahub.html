@@ -1,0 +1,770 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>grutopia.core.datahub &mdash; GRUtopia v0.1.0 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="grutopia.core.register" href="register.html" />
+  <link rel="prev" title="grutopia.core.env" href="env.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenRobotLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                OpenRobotLab
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/OpenRobotLab" target="_blank">
+                  <span class="dropdown-title">GitHub </span>
+                  <p></p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/" target="_blank">
+                  <span class="dropdown-title">OpenMMLab GitHub </span>
+                  <p></p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="env.html">grutopia.core.env</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">grutopia.core.datahub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register.html">grutopia.core.register</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot.html">grutopia.core.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scene.html">grutopia.core.scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task.html">grutopia.core.task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">grutopia.core.util</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>grutopia.core.datahub</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            
+            
+        
+      </li>
+      
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+                
+  <section id="grutopia-core-datahub">
+<h1>grutopia.core.datahub<a class="headerlink" href="#grutopia-core-datahub" title="Permalink to this heading">¶</a></h1>
+<section id="datahub">
+<h2>datahub<a class="headerlink" href="#datahub" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.datahub.IsaacData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.</span></span><span class="sig-name descname"><span class="pre">IsaacData</span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/isaac_data.html#IsaacData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.IsaacData" title="Permalink to this definition">¶</a></dt>
+<dd><p>isaac status in grutopia</p>
+<p>There are two types of isaac status:</p>
+<ul class="simple">
+<li><p>Action</p></li>
+<li><p>Observation</p></li>
+</ul>
+<p>structure of isaac status like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">actions</span><span class="p">:</span> <span class="p">{</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="n">robot_1</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="n">cap</span><span class="p">:</span> <span class="n">param</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">observations</span><span class="p">:</span> <span class="p">{</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="n">robot_1</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="n">obs_1</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+                    <span class="n">obs_2</span><span class="p">:</span> <span class="n">data</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.datahub.IsaacData.add_actions">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_actions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ActionData</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/datahub/isaac_data.html#IsaacData.add_actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.IsaacData.add_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add actions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>actions</strong> – action list</p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.datahub.IsaacData.get_action_by_id">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_action_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/isaac_data.html#IsaacData.get_action_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.IsaacData.get_action_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get action by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{controller_name: param}})</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>action(dict like {robot_name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.datahub.IsaacData.get_actions">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_actions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/isaac_data.html#IsaacData.get_actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.IsaacData.get_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get actions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{controller_name: param}}) list</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>action(dict like {robot_name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.datahub.IsaacData.get_obs">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_obs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/isaac_data.html#IsaacData.get_obs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.IsaacData.get_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get isaac observation data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>isaac observation data list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.datahub.IsaacData.get_obs_by_id">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_obs_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/isaac_data.html#IsaacData.get_obs_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.IsaacData.get_obs_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get isaac observation by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task_id</strong> – isaac task id</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>isaac observation data</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-grutopia.core.datahub.api">
+<span id="local-api"></span><h2>local api<a class="headerlink" href="#module-grutopia.core.datahub.api" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.api.get_actions">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.api.</span></span><span class="sig-name descname"><span class="pre">get_actions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/api.html#get_actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.api.get_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all actions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>action data dict</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.api.get_all_obs">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.api.</span></span><span class="sig-name descname"><span class="pre">get_all_obs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/api.html#get_all_obs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.api.get_all_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all observation data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sensor data dict</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Dict[str, Any]]</p>
+</dd>
+</dl>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.api.get_obs_by_id">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.api.</span></span><span class="sig-name descname"><span class="pre">get_obs_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/api.html#get_obs_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.api.get_obs_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get observation by task_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>obs data dict</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.api.send_actions">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.api.</span></span><span class="sig-name descname"><span class="pre">send_actions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ActionData</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/datahub/api.html#send_actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.api.send_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>send actions to datahub
+:param actions: list of [dict of {robot_id: ActionData}]
+:type actions: List[ActionData]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.api.set_obs_data">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.api.</span></span><span class="sig-name descname"><span class="pre">set_obs_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/api.html#set_obs_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.api.set_obs_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flush observation data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obs</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – observation data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-grutopia.core.datahub.model_data"></span></section>
+<section id="module-grutopia.core.datahub.web_ui_api">
+<span id="web-api"></span><h2>web api<a class="headerlink" href="#module-grutopia.core.datahub.web_ui_api" title="Permalink to this heading">¶</a></h2>
+<p>Includes web ui interactive</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_ui_api.clear">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_ui_api.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_ui_api.html#clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_ui_api.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear all data in webui.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_ui_api.get_chat_control">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_ui_api.</span></span><span class="sig-name descname"><span class="pre">get_chat_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_ui_api.html#get_chat_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_ui_api.get_chat_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get chat control data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>uuid</strong> (<em>str</em>) – chat control uuid. default: none.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>chat control data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>chat_control (List[Dict[str, Any]])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_ui_api.get_log_data">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_ui_api.</span></span><span class="sig-name descname"><span class="pre">get_log_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_ui_api.html#get_log_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_ui_api.get_log_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get log data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>uuid</strong> (<em>str</em>) – log data uuid. default: none.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>log data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>log_data (list[dict])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_ui_api.send_chain_of_thought">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_ui_api.</span></span><span class="sig-name descname"><span class="pre">send_chain_of_thought</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_ui_api.html#send_chain_of_thought"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_ui_api.send_chain_of_thought" title="Permalink to this definition">¶</a></dt>
+<dd><p>chain of thought data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>str</em>) – uuid of chain of thought data, defaults to “none”.</p></li>
+<li><p><strong>cot</strong> (<em>str</em>) – chain of thought data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_ui_api.send_chat_control">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_ui_api.</span></span><span class="sig-name descname"><span class="pre">send_chat_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nickname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'user'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_ui_api.html#send_chat_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_ui_api.send_chat_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a new message to the chatbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nickname</strong> (<em>str</em>) – nickname displayed in the chatbox.</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – text to send to the chatbox.</p></li>
+<li><p><strong>img</strong> (<em>str</em><em>, </em><em>optional</em>) – image to send to the chatbox. Defaults to None.</p></li>
+<li><p><strong>role</strong> (<em>str</em><em>, </em><em>optional</em>) – role name, user or agent. Defaults to “user”.</p></li>
+<li><p><strong>uuid</strong> (<em>str</em><em>, </em><em>optional</em>) – uuid of the message. Defaults to ‘none’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_ui_api.send_log_data">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_ui_api.</span></span><span class="sig-name descname"><span class="pre">send_log_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'message'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Bob'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:8080/static/avatar_default.jpg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_ui_api.html#send_log_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_ui_api.send_log_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send log data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>str</em>) – uuid of log, default is none.</p></li>
+<li><p><strong>log_data</strong> (<em>str</em>) – log data.</p></li>
+<li><p><strong>log_type</strong> (<em>str</em>) – type of log. ‘message’ or ‘user’.</p></li>
+<li><p><strong>user</strong> (<em>str</em>) – logger name. default: Bob.</p></li>
+<li><p><strong>photo_url</strong> (<em>str</em>) – log photo url path.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-grutopia.core.datahub.web_api"></span><p>Includes web api endpoints</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_api.get_actions_by_id">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_api.</span></span><span class="sig-name descname"><span class="pre">get_actions_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_api.html#get_actions_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_api.get_actions_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get actions by task id(int)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task_id</strong> (<em>int</em>) – id of task</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>msg str(or None)
+data: data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>msg</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_api.get_all_obs">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_api.</span></span><span class="sig-name descname"><span class="pre">get_all_obs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_api.html#get_all_obs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_api.get_all_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all observation data
+:returns: List of all observation data
+:rtype: obs (List[Dict[str, Any]])</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_api.get_obs_by_id">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_api.</span></span><span class="sig-name descname"><span class="pre">get_obs_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_api.html#get_obs_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_api.get_obs_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get observation by id
+:param task_id: id of observation data
+:type task_id: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Observation data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>obs (Any)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_api.send_actions">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_api.</span></span><span class="sig-name descname"><span class="pre">send_actions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ActionData</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_api.html#send_actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_api.send_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>send actions
+:param actions: action data list
+:type actions: List[ActionData]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Send message successfully or not</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grutopia.core.datahub.web_api.set_obs_data">
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.datahub.web_api.</span></span><span class="sig-name descname"><span class="pre">set_obs_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/grutopia/core/datahub/web_api.html#set_obs_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.datahub.web_api.set_obs_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set observation data web API
+:param obs: isaac observation data
+:type obs: List[Dict[str, Any]]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>OK if set successfully</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="register.html" class="btn btn-neutral float-right" title="grutopia.core.register" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="env.html" class="btn btn-neutral" title="grutopia.core.env" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2024, OpenRobotLab.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">grutopia.core.datahub</a><ul>
+<li><a class="reference internal" href="#datahub">datahub</a><ul>
+<li><a class="reference internal" href="#grutopia.core.datahub.IsaacData"><code class="docutils literal notranslate"><span class="pre">IsaacData</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.datahub.IsaacData.add_actions"><code class="docutils literal notranslate"><span class="pre">IsaacData.add_actions()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.IsaacData.get_action_by_id"><code class="docutils literal notranslate"><span class="pre">IsaacData.get_action_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.IsaacData.get_actions"><code class="docutils literal notranslate"><span class="pre">IsaacData.get_actions()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.IsaacData.get_obs"><code class="docutils literal notranslate"><span class="pre">IsaacData.get_obs()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.IsaacData.get_obs_by_id"><code class="docutils literal notranslate"><span class="pre">IsaacData.get_obs_by_id()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.datahub.api">local api</a><ul>
+<li><a class="reference internal" href="#grutopia.core.datahub.api.get_actions"><code class="docutils literal notranslate"><span class="pre">get_actions()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.api.get_all_obs"><code class="docutils literal notranslate"><span class="pre">get_all_obs()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.api.get_obs_by_id"><code class="docutils literal notranslate"><span class="pre">get_obs_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.api.send_actions"><code class="docutils literal notranslate"><span class="pre">send_actions()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.api.set_obs_data"><code class="docutils literal notranslate"><span class="pre">set_obs_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-grutopia.core.datahub.web_ui_api">web api</a><ul>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_ui_api.clear"><code class="docutils literal notranslate"><span class="pre">clear()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_ui_api.get_chat_control"><code class="docutils literal notranslate"><span class="pre">get_chat_control()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_ui_api.get_log_data"><code class="docutils literal notranslate"><span class="pre">get_log_data()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_ui_api.send_chain_of_thought"><code class="docutils literal notranslate"><span class="pre">send_chain_of_thought()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_ui_api.send_chat_control"><code class="docutils literal notranslate"><span class="pre">send_chat_control()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_ui_api.send_log_data"><code class="docutils literal notranslate"><span class="pre">send_log_data()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_api.get_actions_by_id"><code class="docutils literal notranslate"><span class="pre">get_actions_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_api.get_all_obs"><code class="docutils literal notranslate"><span class="pre">get_all_obs()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_api.get_obs_by_id"><code class="docutils literal notranslate"><span class="pre">get_obs_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_api.send_actions"><code class="docutils literal notranslate"><span class="pre">send_actions()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.datahub.web_api.set_obs_data"><code class="docutils literal notranslate"><span class="pre">set_obs_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenRobotLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>
