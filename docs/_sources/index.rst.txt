@@ -8,10 +8,10 @@ Welcome to GRUtopia's documentation!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Introduction
+   :caption: Overview
 
 
-   introduction/introduction.md
+   introduction/overview.md
 
 .. toctree::
    :maxdepth: 1

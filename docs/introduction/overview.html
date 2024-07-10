@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to use robot &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>Overview &mdash; GRUtopia v0.1.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="How to use controller" href="how-to-use-controller.html" />
-  <link rel="prev" title="Customize NPC with your algorithm" href="how-to-use-npc.html" />
+  <link rel="next" title="Installation" href="../get_started/installation.html" />
+  <link rel="prev" title="Welcome to GRUtopia’s documentation!" href="../index.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
     var collapsedSections = [];
@@ -161,8 +161,8 @@
         
         
         <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../introduction/overview.html">Overview</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -171,11 +171,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-sensor.html">How to use sensor</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
@@ -230,7 +230,7 @@
       </li>
 
         
-      <li>How to use robot</li>
+      <li>Overview</li>
     
     
       <li class="pytorch-breadcrumbs-aside">
@@ -262,69 +262,10 @@
               <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
                 
                 
-  <section id="how-to-use-robot">
-<h1>How to use robot<a class="headerlink" href="#how-to-use-robot" title="Permalink to this heading">¶</a></h1>
-<blockquote>
-<div><p>This tutorial will show you how to use an existing robot.</p>
-</div></blockquote>
-<section id="all-available-robots">
-<h2>All available robots<a class="headerlink" href="#all-available-robots" title="Permalink to this heading">¶</a></h2>
-<p>See <code class="docutils literal notranslate"><span class="pre">grutopia_extension/robots/robot_models.yaml</span></code>.</p>
-<p><img alt="img.png" src="../_images/robot_model_yml.png" /></p>
-</section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<section id="add-robot-to-config">
-<h3>Add robot to config<a class="headerlink" href="#add-robot-to-config" title="Permalink to this heading">¶</a></h3>
-<p>Add a robot to config:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulator</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">physics_dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/240</span>
-<span class="w">  </span><span class="nt">rendering_dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/240</span>
-
-<span class="nt">env</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">bg_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-
-<span class="nt">render</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-
-<span class="nt">tasks</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SingleInferenceTask&quot;</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;h1_locomotion&quot;</span>
-<span class="w">  </span><span class="nt">env_num</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="nt">offset_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-<span class="w">  </span><span class="nt">robots</span><span class="p">:</span><span class="w">  </span><span class="c1"># Add robots here</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">h1</span>
-<span class="w">    </span><span class="nt">prim_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/World/h1&quot;</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;HumanoidRobot&quot;</span>
-<span class="w">    </span><span class="nt">position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.05</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]</span>
-</pre></div>
-</div>
-<p>Done.</p>
-</section>
-<section id="run-demo">
-<h3>Run demo<a class="headerlink" href="#run-demo" title="Permalink to this heading">¶</a></h3>
-<p>try this demo:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">grutopia.core.config</span> <span class="kn">import</span> <span class="n">SimulatorConfig</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.env</span> <span class="kn">import</span> <span class="n">BaseEnv</span>
-
-<span class="n">file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">config</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="n">sim_config</span> <span class="o">=</span> <span class="n">SimulatorConfig</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-
-<span class="n">env</span> <span class="o">=</span> <span class="n">BaseEnv</span><span class="p">(</span><span class="n">sim_config</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
-
-    <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="n">env_actions</span><span class="p">)</span>
-<span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>It runs, but the robot doesn’t move.</p>
-<p>We need to add controller for this robot to make it move.</p>
-<p>See <a class="reference internal" href="how-to-use-controller.html"><span class="std std-doc">how to use controller</span></a></p>
-</section>
-</section>
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h1>
+<p>This document introduces installation steps, tutorials, and reference APIs of <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia">GRUtopia</a>.</p>
+<p>GRUtopia, built on NVIDIA Isaac Sim, is an embodied AI research platform. It aims to reduce the burden of engineering implementation, tackle the data scarcity in the field of embodied intelligence, and offer simulations that are more reflective of real-world scenarios.</p>
 </section>
 
 
@@ -335,12 +276,12 @@
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="how-to-use-controller.html" class="btn btn-neutral float-right" title="How to use controller" accesskey="n"
+    <a href="../get_started/installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
     
-    <a href="how-to-use-npc.html" class="btn btn-neutral" title="Customize NPC with your algorithm" accesskey="p"
+    <a href="../index.html" class="btn btn-neutral" title="Welcome to GRUtopia’s documentation!" accesskey="p"
       rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
     
   </div>
@@ -370,15 +311,7 @@
           <div class="pytorch-right-menu" id="pytorch-right-menu">
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
-<li><a class="reference internal" href="#">How to use robot</a><ul>
-<li><a class="reference internal" href="#all-available-robots">All available robots</a></li>
-<li><a class="reference internal" href="#usage">Usage</a><ul>
-<li><a class="reference internal" href="#add-robot-to-config">Add robot to config</a></li>
-<li><a class="reference internal" href="#run-demo">Run demo</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Overview</a></li>
 </ul>
 
             </div>
