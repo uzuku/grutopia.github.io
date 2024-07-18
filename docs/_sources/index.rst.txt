@@ -8,7 +8,7 @@ Welcome to GRUtopia's documentation!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Overview
+   :caption: Introduction
 
 
    introduction/overview.md
