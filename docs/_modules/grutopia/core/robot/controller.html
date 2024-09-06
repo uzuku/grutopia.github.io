@@ -401,6 +401,8 @@
     <span class="n">controller_map</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">available_controllers</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">controllers</span><span class="p">}</span>
 
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">controller_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">controller_map</span>
     <span class="k">for</span> <span class="n">controller_param</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">controller_params</span><span class="p">:</span>
         <span class="n">controller_name</span> <span class="o">=</span> <span class="n">controller_param</span><span class="o">.</span><span class="n">name</span>
         <span class="k">if</span> <span class="n">controller_name</span> <span class="ow">in</span> <span class="n">available_controllers</span><span class="p">:</span>

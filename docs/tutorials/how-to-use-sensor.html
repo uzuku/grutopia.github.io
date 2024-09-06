@@ -287,10 +287,12 @@
 <p>When we run <code class="docutils literal notranslate"><span class="pre">demo/h1_locomotion.py</span></code>, observation from sensors can be got from <code class="docutils literal notranslate"><span class="pre">obs</span></code> (obs = env.step(actions=env_actions))</p>
 <p>Use them in isaac simulation_app’s step loops.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
-   <span class="o">...</span>
-   <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
-   <span class="n">photo</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;robot_name_in_config&#39;</span><span class="p">][</span><span class="s1">&#39;camera&#39;</span><span class="p">][</span><span class="s1">&#39;rgba&#39;</span><span class="p">]</span>  <span class="c1"># here get `camera` data</span>
-   <span class="o">...</span>
+    <span class="o">...</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+    <span class="n">task_name</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">robot_name</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">robots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">photo</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">][</span><span class="s1">&#39;camera&#39;</span><span class="p">][</span><span class="s1">&#39;rgba&#39;</span><span class="p">]</span>  <span class="c1"># here get `camera` data</span>
+    <span class="o">...</span>
 <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
