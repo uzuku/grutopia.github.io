@@ -1,0 +1,608 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How To Run Benchmark With Custom Agent &mdash; GRUtopia v2.0.0 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenRobotLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                OpenRobotLab
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/OpenRobotLab" target="_blank">
+                  <span class="dropdown-title">GitHub </span>
+                  <p></p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/overview.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-task.html">How to Use Task</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/task.html">grutopia.core.task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/util.html">grutopia.core.util</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>How To Run Benchmark With Custom Agent</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            
+            
+        
+      </li>
+      
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+                
+  <section id="how-to-run-benchmark-with-custom-agent">
+<h1>How To Run Benchmark With Custom Agent<a class="headerlink" href="#how-to-run-benchmark-with-custom-agent" title="Permalink to this heading">¶</a></h1>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">¶</a></h2>
+<p>Currently, GRUtopia supports benchmark for social navigation and mobile manipulation.</p>
+<p>You can download the dataset for both social navigation and mobile manipulation tasks by referring to this <a class="reference internal" href="#"><span class="xref myst">doc</span></a>.</p>
+</section>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>NVIDIA’s RTX-supported GPU</p></li>
+<li><p>GPU memory should be greater than 16G</p></li>
+<li><p>To run the entire benchmark, you will need at least 400GB of hard disk space (SSD is required)</p></li>
+<li><p>32GB of RAM is required.</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Note</strong>: We’ve tested our benchmarks on RTX 4090, and you can take it as a spec reference.</p>
+</div></blockquote>
+</section>
+<section id="datasets">
+<h2>Datasets<a class="headerlink" href="#datasets" title="Permalink to this heading">¶</a></h2>
+<section id="introduction-for-social-navigation-dataset">
+<h3>Introduction for Social Navigation Dataset<a class="headerlink" href="#introduction-for-social-navigation-dataset" title="Permalink to this heading">¶</a></h3>
+<p>Here is a brief introduction for some files in the datasets:</p>
+<ul class="simple">
+<li><p>benchmark/sn_episodes.json: episodes for social navigation task</p></li>
+<li><p>benchmark/meta/{scene_id}/model_mapping.json: name mapping from object name in scene to object’s own name</p></li>
+<li><p>benchmark/meta/{scene_id}/object_dict_with_caption.json: object captions and relations in scene</p></li>
+</ul>
+</section>
+<section id="introduction-for-mobile-manipulation-dataset">
+<h3>Introduction for Mobile Manipulation Dataset<a class="headerlink" href="#introduction-for-mobile-manipulation-dataset" title="Permalink to this heading">¶</a></h3>
+<p>Here is a brief introduction for some files in the datasets:</p>
+<ul class="simple">
+<li><p>benchmark/meta/{scene_id}/annotation.json: Polygons of room regions</p></li>
+<li><p>benchmark/mm_episodes.json: episodes for mobile manipulation task</p></li>
+<li><p>benchmark/meta/{scene_id}/paths.json: ground truth path to specific object from start point</p></li>
+</ul>
+</section>
+</section>
+<section id="agent">
+<h2><strong>Agent</strong><a class="headerlink" href="#agent" title="Permalink to this heading">¶</a></h2>
+<p>In GRUtopia, Agent is defined as the “brain” that receives observation and outputs action to control the robot’s
+movement. It has the following features</p>
+<ul class="simple">
+<li><p>Robot is not Agent</p></li>
+<li><p>Agent only interacts with the environment through Robot</p></li>
+<li><p>If there are multiple Agents, the interaction between Agents must be implemented separately outside GRUtopia (such as
+online chat)</p></li>
+</ul>
+<p><img alt="agent_definition.png" src="../_images/agent_definition.png" /></p>
+<p>The GRUtopia framework does not define an Agent base class. You can create your own Agent in any form.
+You can also consider the following paradigm</p>
+<p>Take demo/h1_locomation.py as an example. If you want to use an Agent to control the robot, you can consider making the
+following changes</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="c1"># The module import part and the config and runtime definition parts are omitted above.</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">Env</span><span class="p">(</span><span class="n">sim_runtime</span><span class="p">)</span>
+<span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="c1"># print(f&#39;========INIT OBS{obs}=============&#39;)</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="o">-</span> <span class="n">move_action</span> <span class="o">=</span> <span class="p">{</span><span class="n">move_along_path_cfg</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">[</span><span class="n">path</span><span class="p">]}</span>
+<span class="o">+</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">YouAgent</span>
+
+<span class="o">+</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">YouAgent</span><span class="p">(</span><span class="n">you_agent_config</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">move_action</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+    <span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">500</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="c1"># print(obs)</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="agent-interface">
+<h2>Agent Interface<a class="headerlink" href="#agent-interface" title="Permalink to this heading">¶</a></h2>
+<p>As mentioned above, the use of an agent primarily involves computing the action based on the observation (obs), so it is
+necessary to know the formats of both the observation and the action.</p>
+<section id="to-use-social-navigation-benchmark">
+<h3>To use Social Navigation Benchmark<a class="headerlink" href="#to-use-social-navigation-benchmark" title="Permalink to this heading">¶</a></h3>
+<p>the obs format received by your agent is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># python dict structure</span>
+<span class="p">{</span>
+       <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">,</span> <span class="mi">3</span> <span class="n">elements</span><span class="p">,</span> <span class="n">XYZ</span> <span class="p">],</span>
+       <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">,</span> <span class="mi">4</span> <span class="n">elements</span><span class="p">,</span> <span class="n">Quaternions</span> <span class="p">],</span>
+       <span class="o">...</span>
+       <span class="s2">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;camera&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;bounding_box_2d_tight&quot;</span><span class="p">:</span> <span class="p">{</span>
+                           <span class="o">...</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;landmarks&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                    <span class="s2">&quot;rgba&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">uint8</span><span class="p">),</span>
+                    <span class="s2">&quot;depth&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span>
+                    <span class="s2">&quot;camera_params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="o">...</span>
+                     <span class="p">},</span>
+                    <span class="s2">&quot;pointcloud&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[]])</span>
+                    <span class="p">},</span>
+             <span class="s2">&quot;tp_camera&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="o">...</span>
+             <span class="p">},</span>
+       <span class="s2">&quot;render&quot;</span><span class="p">:</span> <span class="kc">False</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>the action should return from agent is as follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not every key needs to be returned, only the used keys are returned</span>
+<span class="p">{</span>
+    <span class="s1">&#39;h1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;move_along_path&#39;</span><span class="p">:</span> <span class="p">[[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]],</span>
+        <span class="s1">&#39;rotate&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">Quaternions</span><span class="p">]],</span>
+        <span class="s1">&#39;terminate&#39;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Among them:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">move_along_path</span></code> is to move along the point, input is the list in the example</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rotate</span></code> is to rotate, input is quaternion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terminate</span></code> means the end instruction returned by the agent when it thinks the task has been completed, bool</p></li>
+</ol>
+</section>
+<section id="to-use-mobile-manipulation-benchmark">
+<h3>To use Mobile Manipulation Benchmark<a class="headerlink" href="#to-use-mobile-manipulation-benchmark" title="Permalink to this heading">¶</a></h3>
+<p>the obs format received by your agent is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># python dict structure</span>
+<span class="p">{</span>
+       <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">,</span> <span class="mi">3</span> <span class="n">elements</span><span class="p">,</span> <span class="n">XYZ</span> <span class="p">],</span>
+       <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">,</span> <span class="mi">4</span> <span class="n">elements</span><span class="p">,</span> <span class="n">Quaternions</span> <span class="p">],</span>
+       <span class="o">...</span>
+       <span class="s2">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;camera&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;bounding_box_2d_tight&quot;</span><span class="p">:</span> <span class="p">{</span>
+                           <span class="o">...</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;landmarks&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                    <span class="s2">&quot;rgba&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">uint8</span><span class="p">),</span>
+                    <span class="s2">&quot;depth&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span>
+                    <span class="s2">&quot;camera_params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="o">...</span>
+                     <span class="p">},</span>
+                    <span class="s2">&quot;pointcloud&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[]])</span>
+                    <span class="p">},</span>
+             <span class="s2">&quot;tp_camera&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="o">...</span>
+             <span class="p">},</span>
+       <span class="s2">&quot;render&quot;</span><span class="p">:</span> <span class="kc">False</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>the action should return from agent is as follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not every key needs to be returned, only the used keys are returned</span>
+<span class="p">{</span>
+    <span class="s1">&#39;h1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;move_along_path&#39;</span><span class="p">:</span> <span class="p">[[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]],</span>
+        <span class="s1">&#39;rotate&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">Quaternions</span><span class="p">]],</span>
+        <span class="s1">&#39;terminate&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;right_arm_ik_controller_cfg&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">3</span><span class="n">d_point</span><span class="p">]],</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Among them:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">move_along_path</span></code> is to move along the point, input is the list in the example</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rotate</span></code> is to rotate, input is quaternion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terminate</span></code> means the end instruction returned by the agent when it thinks the task has been completed, bool</p></li>
+</ol>
+</section>
+</section>
+<section id="step">
+<h2>Step<a class="headerlink" href="#step" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>If necessary, start the agent service first (if your agent is implemented as a service call).</p></li>
+<li><p>Generate the execution script for the episodes.</p></li>
+<li><p>Run the execution script on any server that can run GRUtopia and has the assets downloaded. The only part that might
+be challenging is generating the execution script for the episodes.</p></li>
+</ol>
+<section id="generating-episodes">
+<h3>Generating Episodes<a class="headerlink" href="#generating-episodes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># It is recommended to execute this script at the root directory of the project.</span>
+python<span class="w"> </span>grutopia_extension.agents.social_navigation_agent.generate_sn_episodes.py<span class="w"> </span>--help
+<span class="c1"># or</span>
+python<span class="w"> </span>grutopia_extension.agents.mobile_manipulation_agent.generate_mm_episodes.py<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>You can learn how to use this episode generator by checking its help documentation.</p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2025, OpenRobotLab.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">How To Run Benchmark With Custom Agent</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li><a class="reference internal" href="#datasets">Datasets</a><ul>
+<li><a class="reference internal" href="#introduction-for-social-navigation-dataset">Introduction for Social Navigation Dataset</a></li>
+<li><a class="reference internal" href="#introduction-for-mobile-manipulation-dataset">Introduction for Mobile Manipulation Dataset</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agent"><strong>Agent</strong></a></li>
+<li><a class="reference internal" href="#agent-interface">Agent Interface</a><ul>
+<li><a class="reference internal" href="#to-use-social-navigation-benchmark">To use Social Navigation Benchmark</a></li>
+<li><a class="reference internal" href="#to-use-mobile-manipulation-benchmark">To use Mobile Manipulation Benchmark</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step">Step</a><ul>
+<li><a class="reference internal" href="#generating-episodes">Generating Episodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenRobotLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/OpenRobotLab/GRUtopia.git" target="_blank">GitHub</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>
