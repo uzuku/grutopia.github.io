@@ -165,25 +165,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/scene.html">grutopia.core.scene</a></li>
@@ -258,10 +261,10 @@
                 
                 
   <h1>Source code for grutopia.core.register.register</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">grutopia.core.util</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
 
 <span class="n">ALL_MODULES</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">MODEL_MODULES</span> <span class="o">=</span> <span class="p">[</span>
@@ -271,13 +274,14 @@
     <span class="s1">&#39;robots&#39;</span><span class="p">,</span>
     <span class="s1">&#39;sensors&#39;</span><span class="p">,</span>
     <span class="s1">&#39;tasks&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;interactions&#39;</span>
+    <span class="s1">&#39;interactions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;agents&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="n">DEFAULT_EXTENSION_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;../../../grutopia_extension&#39;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_handle_errors</span><span class="p">(</span><span class="n">errors</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_handle_errors</span><span class="p">(</span><span class="n">errors</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Log out and possibly reraise errors during import.</span>
 
@@ -290,7 +294,7 @@
         <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Module </span><span class="si">{}</span><span class="s1"> import failed: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">err</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="import_all_modules_for_register"><a class="viewcode-back" href="../../../../api/register.html#grutopia.core.register.register.import_all_modules_for_register">[docs]</a><span class="k">def</span> <span class="nf">import_all_modules_for_register</span><span class="p">(</span><span class="n">custom_module_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extension_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="import_all_modules_for_register"><a class="viewcode-back" href="../../../../api/register.html#grutopia.core.register.register.import_all_modules_for_register">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">import_all_modules_for_register</span><span class="p">(</span><span class="n">custom_module_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extension_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Import all modules for register.</span>
 

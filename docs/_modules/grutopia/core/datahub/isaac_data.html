@@ -165,25 +165,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/scene.html">grutopia.core.scene</a></li>
@@ -258,144 +261,239 @@
                 
                 
   <h1>Source code for grutopia.core.datahub.isaac_data</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
 
 
-<span class="k">class</span> <span class="nc">MetaActionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MetaActionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    action status in grutopia</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">controller</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">Any</span>
 
 
-<span class="k">class</span> <span class="nc">ActionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ActionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    action status in grutopia</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">robot</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">controllers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MetaActionData</span><span class="p">]</span>
 
 
-<span class="k">class</span> <span class="nc">_IsaacData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_IsaacData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    isaac status in grutopia</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">actions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span>
-    <span class="n">obs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span>
+
+    <span class="n">actions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">obs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">task_idx_counter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">finished_tasks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 
 
-<div class="viewcode-block" id="IsaacData"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData">[docs]</a><span class="k">class</span> <span class="nc">IsaacData</span><span class="p">:</span>
+<div class="viewcode-block" id="IsaacData"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">IsaacData</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    isaac status in grutopia</span>
 
-<span class="sd">    There are two types of isaac status:</span>
+<span class="sd">    There are three types of isaac status:</span>
 
 <span class="sd">    * Action</span>
 <span class="sd">    * Observation</span>
+<span class="sd">    * Episode</span>
 
 <span class="sd">    structure of isaac status like this::</span>
 
 <span class="sd">            {</span>
 <span class="sd">                actions: {</span>
-<span class="sd">                    [</span>
-<span class="sd">                        {</span>
-<span class="sd">                            robot_1: {</span>
-<span class="sd">                                cap: param,</span>
-<span class="sd">                            }</span>
+<span class="sd">                    &quot;task_0&quot;:{</span>
+<span class="sd">                        robot_1: {</span>
+<span class="sd">                            cap: param,</span>
+<span class="sd">                            controller: param,</span>
 <span class="sd">                        }</span>
-<span class="sd">                    ]</span>
+<span class="sd">                    }</span>
 <span class="sd">                },</span>
 <span class="sd">                observations: {</span>
-<span class="sd">                    [</span>
-<span class="sd">                        {</span>
-<span class="sd">                            robot_1: {</span>
-<span class="sd">                                obs_1: data,</span>
-<span class="sd">                                obs_2: data</span>
-<span class="sd">                            }</span>
+<span class="sd">                    &quot;task_0&quot;:{</span>
+<span class="sd">                        robot_1: {</span>
+<span class="sd">                            obs_1: data,</span>
+<span class="sd">                            obs_2: data</span>
 <span class="sd">                        }</span>
-<span class="sd">                    ]</span>
-<span class="sd">                }</span>
+<span class="sd">                    }</span>
+<span class="sd">                },</span>
+<span class="sd">                task_idx_counter: 0</span>
+<span class="sd">                finished_tasks: []</span>
 <span class="sd">            }</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">_IsaacData</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="p">[],</span> <span class="n">obs</span><span class="o">=</span><span class="p">[])</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">_IsaacData</span> <span class="o">=</span> <span class="n">_IsaacData</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="p">{},</span> <span class="n">obs</span><span class="o">=</span><span class="p">{})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_all</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_IsaacData</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_IsaacData</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span>
 
     <span class="c1"># Observation</span>
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">set_obs_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">obs</span>
-
-<div class="viewcode-block" id="IsaacData.get_obs"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_obs">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<div class="viewcode-block" id="IsaacData.set_obs_data"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.set_obs_data">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_obs_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get isaac observation data</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            isaac observation data list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span></div>
-
-<div class="viewcode-block" id="IsaacData.get_obs_by_id"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_obs_by_id">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_obs_by_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get isaac observation by id</span>
+<span class="sd">        Set isaac observations data</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            task_id: isaac task id</span>
+<span class="sd">            obs (Dict[str, Dict[str, Any]]): obs data with task_name key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">task_id</span><span class="p">,</span> <span class="n">obs_data</span> <span class="ow">in</span> <span class="n">obs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">obs_data</span></div>
+
+<div class="viewcode-block" id="IsaacData.set_obs_data_by_task_name"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.set_obs_data_by_task_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_obs_data_by_task_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set isaac observations data by task name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_name: isaac task name</span>
+<span class="sd">            obs (Dict[str, Dict[str, Any]]): obs data with robot_name key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">robot_name</span><span class="p">,</span> <span class="n">obs_data</span> <span class="ow">in</span> <span class="n">obs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">obs_data</span></div>
+
+<div class="viewcode-block" id="IsaacData.set_obs_by_task_name_and_robot_name"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.set_obs_by_task_name_and_robot_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_obs_by_task_name_and_robot_name</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set isaac observation by task name and robot name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_name: isaac task name</span>
+<span class="sd">            robot_name: isaac robot name</span>
+<span class="sd">            obs (Dict[str, Dict[str, Any]]): obs data with task_name key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">obs</span></div>
+
+<div class="viewcode-block" id="IsaacData.get_obs"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_obs">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get isaac observation by task name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_name: isaac task name</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            isaac observation data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_id</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span></div>
 
-    <span class="c1"># Action</span>
-<div class="viewcode-block" id="IsaacData.add_actions"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.add_actions">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">add_actions</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ActionData</span><span class="p">]):</span>
+<div class="viewcode-block" id="IsaacData.get_obs_by_task_name"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_obs_by_task_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs_by_task_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add actions</span>
+<span class="sd">        Get isaac observation by task name</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            actions: action list</span>
+<span class="sd">            task_name: isaac task name</span>
 
 <span class="sd">        Returns:</span>
+<span class="sd">            isaac observation data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># when add action, return action&#39;s index.</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">action</span><span class="o">.</span><span class="n">robot</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">controller</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">action</span><span class="o">.</span><span class="n">controllers</span><span class="p">}})</span>
-        <span class="k">return</span></div>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
 
-<div class="viewcode-block" id="IsaacData.get_actions"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_actions">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_actions</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<div class="viewcode-block" id="IsaacData.get_obs_by_task_name_and_robot_name"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_obs_by_task_name_and_robot_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs_by_task_name_and_robot_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get actions</span>
+<span class="sd">        Get isaac observation by task name and robot name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_name: isaac task name</span>
+<span class="sd">            robot_name: isaac robot name</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            action(dict like {robot_name: {controller_name: param}}) list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span></div>
+<span class="sd">            isaac observation data</span>
 
-<div class="viewcode-block" id="IsaacData.get_action_by_id"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_action_by_id">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_action_by_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">robot_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+    <span class="c1"># Action</span>
+<div class="viewcode-block" id="IsaacData.set_actions"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.set_actions">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_actions</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ActionData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get action by id</span>
+<span class="sd">        Set action by task_name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            actions (Dict[str, ActionData]): action data with task_name key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">task_name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="IsaacData.get_action_by_task_name"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_action_by_task_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_action_by_task_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get action by task name</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            action(dict like {robot_name: {controller_name: param}})</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">task_id</span><span class="p">]</span></div></div>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="IsaacData.get_action_by_task_name_and_robot_name"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.get_action_by_task_name_and_robot_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_action_by_task_name_and_robot_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get action by task name and robot name</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            action(dict like {robot_name: {controller_name: param}})</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">robot_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">task_name</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="IsaacData.gen_task_idx"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.gen_task_idx">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gen_task_idx</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a id for isaac task</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            task id</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task_idx</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">task_idx_counter</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">task_idx_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">task_idx</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="IsaacData.set_episode_finished"><a class="viewcode-back" href="../../../../api/datahub.html#grutopia.core.datahub.IsaacData.set_episode_finished">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_episode_finished</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set isaac task {task_name} finished</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_name (str): isaac task_name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">finished_tasks</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">finished_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task_name</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Set isaac task </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_episode_finished</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">finished_tasks</span></div>
 </pre></div>
 
               </article>

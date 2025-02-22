@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>grutopia.core.task &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>grutopia.core.task &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scene.html">grutopia.core.scene</a></li>
@@ -268,21 +271,45 @@
 <span id="task"></span><h2>task<a class="headerlink" href="#module-grutopia.core.task.task" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.task.task.</span></span><span class="sig-name descname"><span class="pre">BaseTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TaskUserConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.task.task.</span></span><span class="sig-name descname"><span class="pre">BaseTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TaskRuntime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask" title="Permalink to this definition">¶</a></dt>
 <dd><p>wrap of omniverse isaac sim’s base task</p>
 <ul class="simple">
 <li><p>enable register for auto register task</p></li>
-<li><p>contains robots</p></li>
+<li><p>contains scene/robots/objects.</p></li>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.calculate_metrics">
 <span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.calculate_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.calculate_metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>[summary]</p>
+<dd><p>Calculates and aggregates the results of all metrics registered within the instance.</p>
+<p>This method iterates over the stored metrics, calling their respective <cite>calc</cite> methods to compute
+the metric values. The computed values are then compiled into a dictionary, where each key corresponds
+to the metrics’ name and each value is the result of the metric calculation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotImplementedError</strong> – [description]</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary containing the calculated results of all metrics, with metric names as keys.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that all metrics added to the instance have a <cite>calc</cite> method implemented.</p>
+</div>
+<p>Example Usage:
+<code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">#</span> <span class="pre">Assuming</span> <span class="pre">`self.metrics`</span> <span class="pre">is</span> <span class="pre">populated</span> <span class="pre">with</span> <span class="pre">metric</span> <span class="pre">instances.</span>
+<span class="pre">results</span> <span class="pre">=</span> <span class="pre">calculate_metrics()</span>
+<span class="pre">print(results)</span>
+<span class="pre">#</span> <span class="pre">Output:</span> <span class="pre">{'metric1':</span> <span class="pre">0.85,</span> <span class="pre">'metric2':</span> <span class="pre">0.92,</span> <span class="pre">'metric3':</span> <span class="pre">0.78}</span>
+<span class="pre">`</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.cleanup">
+<span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.cleanup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called before calling a reset() on the world to removed temporary objects that were added during
+simulation for instance.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -302,18 +329,28 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.individual_reset">
 <span class="sig-name descname"><span class="pre">individual_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.individual_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.individual_reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>reload this task individually without reloading whole world.</p>
+<dd><p>Reload this task individually without reloading whole world.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.is_done">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.is_done"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.is_done" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True of the task is done.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotImplementedError</strong> – this must be overridden.</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">is_done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.is_done"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.is_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True of the task is done. The result should be decided by the state of the task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the environment scene and initializes robots and objects.</p>
+<p>This method first checks if a scene asset path is defined in the runtime configuration. If so, it creates a scene using the provided path and specified parameters such as scaling and positioning. The scene is then populated with robots and objects based on the configurations stored within <cite>self.runtime</cite>.</p>
+<p>Raises:
+- Exceptions may be raised during file operations or USD scene creation, but specific exceptions are not documented here.</p>
+<p>Attributes Modified:
+- <strong>self.robots</strong>: A collection of initialized robots set up within the scene.
+- <strong>self.objects</strong>: A dictionary mapping object names to their respective initialized instances within the scene.
+- <strong>self.loaded</strong>: A boolean flag indicating whether the environment has been successfully loaded, set to <cite>True</cite> upon successful completion of this method.</p>
+<p>Logs:
+- Information about the initialized robots and objects is logged using the <cite>log.info</cite> method after successful setup.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -347,15 +384,69 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.set_up_scene">
 <span class="sig-name descname"><span class="pre">set_up_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Scene</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.set_up_scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.set_up_scene" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>Adding assets to the stage as well as adding the encapsulated objects such as XFormPrim..etc</dt><dd><p>to the task_objects happens here.</p>
-</dd>
-</dl>
+<dd><p>Adding assets to the stage as well as adding the encapsulated objects such as XFormPrim..etc
+to the task_objects happens here.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>scene</strong> (<em>Scene</em>) – [description]</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.task.BaseTask.update_metrics">
+<span class="sig-name descname"><span class="pre">update_metrics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/task.html#BaseTask.update_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.task.BaseTask.update_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates all metrics stored within the instance.</p>
+<p>Scans through the dictionary of metrics kept by the current instance,
+invoking the ‘update’ method on each one. This facilitates the aggregation
+or recalculation of metric values as needed.</p>
+<p>Note:
+This method does not return any value; its purpose is to modify the state
+of the metric objects internally.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="metric">
+<h2>metric<a class="headerlink" href="#metric" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-grutopia.core.task.metric"></span><dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.task.metric.BaseMetric">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.task.metric.</span></span><span class="sig-name descname"><span class="pre">BaseMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MetricCfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_runtime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TaskRuntime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/metric.html#BaseMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.metric.BaseMetric" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.metric.BaseMetric.calc">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/metric.html#BaseMetric.calc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.metric.BaseMetric.calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called to calculate the metrics when the episode is terminated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.metric.BaseMetric.register">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/metric.html#BaseMetric.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.metric.BaseMetric.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to register a metric class.(decorator)
+:param name: name of the metric
+:type name: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.metric.BaseMetric.update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/metric.html#BaseMetric.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.metric.BaseMetric.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called at each world step.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="reward">
+<h2>reward<a class="headerlink" href="#reward" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-grutopia.core.task.reward"></span><dl class="py class">
+<dt class="sig sig-object py" id="grutopia.core.task.reward.BaseReward">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.task.reward.</span></span><span class="sig-name descname"><span class="pre">BaseReward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grutopia.core.task.task.BaseTask" title="grutopia.core.task.task.BaseTask"><span class="pre">BaseTask</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/reward.html#BaseReward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.reward.BaseReward" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="grutopia.core.task.reward.BaseReward.register">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/task/reward.html#BaseReward.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.task.reward.BaseReward.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to register a reward class.(decorator)
+:param name: name of the reward
+:type name: str</p>
 </dd></dl>
 
 </dd></dl>
@@ -386,7 +477,7 @@
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -410,13 +501,32 @@
 <li><a class="reference internal" href="#module-grutopia.core.task.task">task</a><ul>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask"><code class="docutils literal notranslate"><span class="pre">BaseTask</span></code></a><ul>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">BaseTask.calculate_metrics()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.cleanup"><code class="docutils literal notranslate"><span class="pre">BaseTask.cleanup()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.get_observations"><code class="docutils literal notranslate"><span class="pre">BaseTask.get_observations()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.individual_reset"><code class="docutils literal notranslate"><span class="pre">BaseTask.individual_reset()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.is_done"><code class="docutils literal notranslate"><span class="pre">BaseTask.is_done()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.load"><code class="docutils literal notranslate"><span class="pre">BaseTask.load()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.post_reset"><code class="docutils literal notranslate"><span class="pre">BaseTask.post_reset()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.pre_step"><code class="docutils literal notranslate"><span class="pre">BaseTask.pre_step()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.register"><code class="docutils literal notranslate"><span class="pre">BaseTask.register()</span></code></a></li>
 <li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.set_up_scene"><code class="docutils literal notranslate"><span class="pre">BaseTask.set_up_scene()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.task.task.BaseTask.update_metrics"><code class="docutils literal notranslate"><span class="pre">BaseTask.update_metrics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#metric">metric</a><ul>
+<li><a class="reference internal" href="#grutopia.core.task.metric.BaseMetric"><code class="docutils literal notranslate"><span class="pre">BaseMetric</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.task.metric.BaseMetric.calc"><code class="docutils literal notranslate"><span class="pre">BaseMetric.calc()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.task.metric.BaseMetric.register"><code class="docutils literal notranslate"><span class="pre">BaseMetric.register()</span></code></a></li>
+<li><a class="reference internal" href="#grutopia.core.task.metric.BaseMetric.update"><code class="docutils literal notranslate"><span class="pre">BaseMetric.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reward">reward</a><ul>
+<li><a class="reference internal" href="#grutopia.core.task.reward.BaseReward"><code class="docutils literal notranslate"><span class="pre">BaseReward</span></code></a><ul>
+<li><a class="reference internal" href="#grutopia.core.task.reward.BaseReward.register"><code class="docutils literal notranslate"><span class="pre">BaseReward.register()</span></code></a></li>
 </ul>
 </li>
 </ul>

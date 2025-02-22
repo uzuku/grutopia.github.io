@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to use controller &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>How to Use Controller &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="How to use sensor" href="how-to-use-sensor.html" />
-  <link rel="prev" title="How to use robot" href="how-to-use-robot.html" />
+  <link rel="next" title="How to Use Sensor" href="how-to-use-sensor.html" />
+  <link rel="prev" title="Run Benchmark Baseline" href="../get_started/run-benchmark-baseline.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
     var collapsedSections = [];
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -230,7 +233,7 @@
       </li>
 
         
-      <li>How to use controller</li>
+      <li>How to Use Controller</li>
     
     
       <li class="pytorch-breadcrumbs-aside">
@@ -263,37 +266,63 @@
                 
                 
   <section id="how-to-use-controller">
-<h1>How to use controller<a class="headerlink" href="#how-to-use-controller" title="Permalink to this heading">¶</a></h1>
+<h1>How to Use Controller<a class="headerlink" href="#how-to-use-controller" title="Permalink to this heading">¶</a></h1>
 <blockquote>
-<div><p>This tutorial will show you how to use an existed controller for a robot</p>
+<div><p>This tutorial will show you how to use existing controllers for robots.</p>
 </div></blockquote>
 <section id="what-is-controller">
-<h2>What is <code class="docutils literal notranslate"><span class="pre">Controller</span></code><a class="headerlink" href="#what-is-controller" title="Permalink to this heading">¶</a></h2>
-<p>Controllers usually control joints of robot. Also, They’re the entries of robot actions. To make robot move, rab, or
-even speak, chat online, we use controllers.</p>
+<h2>What Is Controller<a class="headerlink" href="#what-is-controller" title="Permalink to this heading">¶</a></h2>
+<p>Controllers typically manage the joints of a robot and serve as the entries to robot actions. We utilize controllers to make a robot move and run.</p>
 </section>
-<section id="which-controllers-are-our-robots-supported">
-<h2>Which controllers are our robots supported<a class="headerlink" href="#which-controllers-are-our-robots-supported" title="Permalink to this heading">¶</a></h2>
-<p>Check <code class="docutils literal notranslate"><span class="pre">grutopia_extension/robots/robot_models.yaml</span></code>,</p>
-<p><img alt="img.png" src="../_images/robot_model_controller.png" /></p>
-<p>This is all controller robot <code class="docutils literal notranslate"><span class="pre">HumanoidRobot</span></code> can use.</p>
+<section id="supported-controllers">
+<h2>Supported Controllers<a class="headerlink" href="#supported-controllers" title="Permalink to this heading">¶</a></h2>
+<p>The directory <code class="docutils literal notranslate"><span class="pre">grutopia_extension/controllers/</span></code> contains a list of all supported controllers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension/
+└── controllers
+    ├── aliengo_move_by_speed_controller.py
+    ├── franka_mocap_teleop_controller.py
+    ├── g1_move_by_speed_controller.py
+    ├── gr1_move_by_speed_controller.py
+    ├── gr1_teleop_controller.py
+    ├── gripper_controller.py
+    ├── humanoid_move_by_speed_controller.py
+    ├── ik_controller.py
+    ├── joint_controller.py
+    ├── move_along_path_points_controller.py
+    ├── move_to_point_by_speed_controller.py
+    ├── move_to_point_oracle_controller.py
+    ├── recover_controller.py
+    ├── rmpflow_controller.py
+    └── rotate_controller.py
+</pre></div>
+</div>
+<p>For each robot, we provide some ready-to-use controller configurations in <code class="docutils literal notranslate"><span class="pre">grutopia_extension/configs/robots/{robot_name}.py</span></code>.</p>
 </section>
 <section id="how-to-use-a-controller">
-<h2>How to use a controller<a class="headerlink" href="#how-to-use-a-controller" title="Permalink to this heading">¶</a></h2>
-<p>Use them in isaac simulation_app’s step loops.</p>
-<p>for example:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
-    <span class="n">actions</span> <span class="o">=</span> <span class="p">[{</span>
-        <span class="n">h1</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;move_to_point&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.0</span><span class="p">,</span> <span class="mf">.0</span><span class="p">]),</span>
-        <span class="p">},</span>
-    <span class="p">}]</span>
-    <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="n">env_actions</span><span class="p">)</span>
+<h2>How to Use a Controller<a class="headerlink" href="#how-to-use-a-controller" title="Permalink to this heading">¶</a></h2>
+<p>A controller must be used with a robot. So first of all, the controller configuration must be added to the controller list in robot configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>move_by_speed_cfg = MoveBySpeedCfg(...)
+
+h1_1 = HumanoidRobotCfg(
+    position=(0.0, 0.0, 1.05),
+    controllers=[
+        move_by_speed_cfg,
+    ],
+）
+</pre></div>
+</div>
+<p>Then in the main loop of the simulation, use the controller name as key, and corresponding action as value in the env action dict:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">move_action</span> <span class="o">=</span> <span class="p">{</span><span class="n">move_by_speed_cfg</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)}</span>
+
+<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+    <span class="n">env_action</span> <span class="o">=</span> <span class="n">move_action</span>
+    <span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="n">env_actions</span><span class="p">)</span>
     <span class="o">...</span>
 <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>for more usage, please read source code~</p>
+<p>It is important to specify the controllers in the robot before use. Please refer to the <a class="reference internal" href="how-to-use-robot.html"><span class="std std-doc">how to use robot</span></a> for more detailed information.</p>
 </section>
 </section>
 
@@ -305,12 +334,12 @@ even speak, chat online, we use controllers.</p>
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="how-to-use-sensor.html" class="btn btn-neutral float-right" title="How to use sensor" accesskey="n"
+    <a href="how-to-use-sensor.html" class="btn btn-neutral float-right" title="How to Use Sensor" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
     
-    <a href="how-to-use-robot.html" class="btn btn-neutral" title="How to use robot" accesskey="p"
+    <a href="../get_started/run-benchmark-baseline.html" class="btn btn-neutral" title="Run Benchmark Baseline" accesskey="p"
       rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
     
   </div>
@@ -320,7 +349,7 @@ even speak, chat online, we use controllers.</p>
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -340,10 +369,10 @@ even speak, chat online, we use controllers.</p>
           <div class="pytorch-right-menu" id="pytorch-right-menu">
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
-<li><a class="reference internal" href="#">How to use controller</a><ul>
-<li><a class="reference internal" href="#what-is-controller">What is <code class="docutils literal notranslate"><span class="pre">Controller</span></code></a></li>
-<li><a class="reference internal" href="#which-controllers-are-our-robots-supported">Which controllers are our robots supported</a></li>
-<li><a class="reference internal" href="#how-to-use-a-controller">How to use a controller</a></li>
+<li><a class="reference internal" href="#">How to Use Controller</a><ul>
+<li><a class="reference internal" href="#what-is-controller">What Is Controller</a></li>
+<li><a class="reference internal" href="#supported-controllers">Supported Controllers</a></li>
+<li><a class="reference internal" href="#how-to-use-a-controller">How to Use a Controller</a></li>
 </ul>
 </li>
 </ul>

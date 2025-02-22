@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>Installation &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -168,25 +168,28 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -273,7 +276,7 @@
 <li><p>NVIDIA Driver: 525.85+</p></li>
 </ul>
 <blockquote>
-<div><p>GRUtopia is built upon NVIDIA’s <a class="reference external" href="https://www.nvidia.com/en-us/omniverse/">Omniverse</a> and <a class="reference external" href="https://developer.nvidia.com/isaac-sim">Isaac Sim</a> platforms, so we inherit their dependencies. For more information, please see <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/requirements.html">Isaac Sim’s Requirements</a>.</p>
+<div><p>GRUtopia is built upon NVIDIA’s <a class="reference external" href="https://www.nvidia.com/en-us/omniverse/">Omniverse</a> and <a class="reference external" href="https://developer.nvidia.com/isaac-sim">Isaac Sim</a> platforms, inheriting their dependencies. GRUtopia 2.0.0 specifically requires Isaac Sim 4.2.0. To ensure optimal performance and avoid any potential issues, it is essential to use this version rather than any earlier releases, such as 4.1.0. For more information, please see <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/requirements.html">Isaac Sim’s Requirements</a>.</p>
 </div></blockquote>
 <p>Two ways of installation are provided:</p>
 <ul class="simple">
@@ -281,33 +284,22 @@
 <li><p>Install with Docker (Linux): <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_container.html">container installation</a> of Isaac Sim is required, and is recommended for deployment on remote headless servers or the Cloud using a Docker container running Linux.</p></li>
 </ul>
 <p>See more: <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_faq.html#isaac-sim-setup-differences">Differences Between Workstation And Docker</a>.</p>
-<p>Windows support is in our roadmap, welcome to contribute!</p>
+<p>Windows support is in our roadmap. Contributions are welcome!</p>
 </section>
 <section id="install-from-source-linux">
 <h2>Install from source (Linux)<a class="headerlink" href="#install-from-source-linux" title="Permalink to this heading">¶</a></h2>
-<p>Make sure you have <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_workstation.html">Isaac Sim 2023.1.1</a> installed.</p>
-<p><a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">Conda</a> is required to install from source.</p>
+<p>There are two methods provided to install GRUtopia:</p>
+<ul class="simple">
+<li><p>Installation from GitHub</p></li>
+<li><p>Installation from PyPI</p></li>
+</ul>
+<p>In addition, the <a class="reference internal" href="how-to-use-grscenes.html"><span class="std std-doc">dataset</span></a> is provided alongside with a download script that supports dataset download  via OpenXLab and HuggingFace.</p>
+<p>Before proceeding with the installation, ensure that you have <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_workstation.html">Isaac Sim 4.2.0</a> and <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">Conda</a> installed.</p>
+<section id="install-grutopia-from-github">
+<h3>Install GRUtopia from GitHub<a class="headerlink" href="#install-grutopia-from-github" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
-<li><p>Navigate to Isaac Sim root path (default path in Ubuntu is <code class="docutils literal notranslate"><span class="pre">$HOME/.local/share/ov/pkg/isaac_sim-2023.1.1</span></code>) and clone the repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>PATH/TO/ISAAC_SIM/ROOT
-$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:OpenRobotLab/GRUtopia.git
-</pre></div>
-</div>
-</li>
-<li><p>Download <a class="reference external" href="https://openxlab.org.cn/datasets/OpenRobotLab/GRScenes/cli/main">dataset</a> and save it to the <code class="docutils literal notranslate"><span class="pre">assets</span></code> directory under GRUtopia root path.</p>
-<p>The file structure should be like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRUtopia
-├── assets
-│   ├── objects
-│   ├── policy
-│   ├── robots
-│   └── scenes
-├── demo
-│   ├── configs
-│   ├── h1_city.py
-│   ├── h1_locomotion.py
-│   └── h1_npc.py
-...
+<li><p>Install GRUtopia</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:OpenRobotLab/GRUtopia.git
 </pre></div>
 </div>
 </li>
@@ -321,15 +313,52 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..<sp
 </pre></div>
 </div>
 </li>
+<li><p>Download dataset to the specified directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>grutopia/download_assets.py
+</pre></div>
+</div>
+</li>
 <li><p>Verify the Installation.</p>
-<p>Run at the root path of Isaac Sim:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>PATH/TO/ISAAC_SIM/ROOT
-$<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_locomotion.py<span class="w">  </span><span class="c1"># start simulation</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>grutopia/demo/h1_locomotion.py<span class="w">  </span><span class="c1"># start simulation</span>
 </pre></div>
 </div>
 <p>If properly installed, Isaac Sim GUI window should pop up and you can see a humanoid robot (Unitree H1) walking following a pre-defined trajectory in Isaac Sim.</p>
 </li>
 </ol>
+</section>
+<section id="install-grutopia-from-pypi">
+<h3>Install GRUtopia from PyPI<a class="headerlink" href="#install-grutopia-from-pypi" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>Create conda env with <code class="docutils literal notranslate"><span class="pre">python=3.10</span></code> specified</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;env&gt;<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+</pre></div>
+</div>
+</li>
+<li><p>Install GRUtopia</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;env&gt;
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">grutopia</span><span class="o">==</span><span class="m">2</span>.0.0
+</pre></div>
+</div>
+</li>
+<li><p>Configure the conda environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.setup_conda_pypi
+
+$<span class="w"> </span>conda<span class="w"> </span>deactivate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;env&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Download dataset to the specified directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w">  </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.download_assets
+</pre></div>
+</div>
+</li>
+<li><p>Verify the Installation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.demo.h1_locomotion<span class="w">  </span><span class="c1"># start simulation</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
 </section>
 <section id="install-with-docker-linux">
 <h2>Install with Docker (Linux)<a class="headerlink" href="#install-with-docker-linux" title="Permalink to this heading">¶</a></h2>
@@ -340,45 +369,26 @@ $<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_locomo
 </pre></div>
 </div>
 </li>
-<li><p>Download <a class="reference external" href="https://openxlab.org.cn/datasets/OpenRobotLab/GRScenes/cli/main">dataset</a> and save it to the <code class="docutils literal notranslate"><span class="pre">assets</span></code> directory under GRUtopia root path.</p>
-<p>The file structure should be like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRUtopia
-├── assets
-│   ├── objects
-│   ├── policy
-│   ├── robots
-│   └── scenes
-├── demo
-│   ├── configs
-│   ├── h1_city.py
-│   ├── h1_locomotion.py
-│   └── h1_npc.py
-...
-</pre></div>
-</div>
-</li>
 <li><p>Pull the Isaac Sim image (<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">login</span></code> is required, please refer to <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/isaac-sim">NGC Documents</a>).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/isaac-sim:2023.1.1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/isaac-sim:4.2.0
 </pre></div>
 </div>
 </li>
-<li><p>Build docker image.</p>
+<li><p>Build docker image, replacing <your tag> with your desired tag:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
 
-$<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>grutopia:0.0.1<span class="w"> </span>.
+$<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>grutopia:&lt;your<span class="w"> </span>tag&gt;<span class="w"> </span>.
 </pre></div>
 </div>
 </li>
-<li><p>Start docker container.</p>
+<li><p>Start docker container, replacing <your tag> with the above tag:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
 
 $<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CACHE_ROOT</span><span class="o">=</span><span class="nv">$HOME</span>/docker<span class="w">  </span><span class="c1"># set cache root path</span>
-$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">WEBUI_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1<span class="w">  </span><span class="c1"># set webui listen address, default to 127.0.0.1</span>
 
 $<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>grutopia<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-e<span class="w"> </span><span class="s2">&quot;ACCEPT_EULA=Y&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-e<span class="w"> </span><span class="s2">&quot;PRIVACY_CONSENT=Y&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="s2">&quot;WEBUI_HOST=</span><span class="si">${</span><span class="nv">WEBUI_HOST</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/isaac-sim/GRUtopia<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">CACHE_ROOT</span><span class="si">}</span>/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">CACHE_ROOT</span><span class="si">}</span>/isaac-sim/cache/ov:/root/.cache/ov:rw<span class="w"> </span><span class="se">\</span>
@@ -388,17 +398,23 @@ $<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </spa
 <span class="w">  </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">CACHE_ROOT</span><span class="si">}</span>/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">CACHE_ROOT</span><span class="si">}</span>/isaac-sim/data:/root/.local/share/ov/data:rw<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">CACHE_ROOT</span><span class="si">}</span>/isaac-sim/documents:/root/Documents:rw<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>grutopia:0.0.1
+<span class="w">  </span>grutopia:&lt;your<span class="w"> </span>tag&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Download dataset to the specified directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run inside container</span>
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.download_assets
 </pre></div>
 </div>
 </li>
 <li><p>Verify the Installation.</p>
 <p>Run inside container:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run inside container</span>
-$<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_locomotion.py<span class="w">  </span><span class="c1"># start simulation</span>
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.demo.h1_locomotion<span class="w">  </span><span class="c1"># start simulation</span>
 </pre></div>
 </div>
-<p>If properly installed, observation from simulation will be displayed in the terminal every 100 steps, and you can access the Isaac Sim through WebRTC at <a class="reference external" href="http://127.0.0.1:8211/streaming/webrtc-demo/?server=127.0.0.1">http://127.0.0.1:8211/streaming/webrtc-demo/?server=127.0.0.1</a> (if you have set a different <code class="docutils literal notranslate"><span class="pre">WEBUI_HOST</span></code>, use that instead of <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>).</p>
+<p>If properly installed, observation from simulation will be displayed in the terminal every 100 steps, and you can access the Isaac Sim through Omniverse Streaming Client via <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>.</p>
 </li>
 </ol>
 </section>
@@ -427,7 +443,7 @@ $<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_locomo
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -449,7 +465,11 @@ $<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_locomo
               <ul>
 <li><a class="reference internal" href="#">Installation</a><ul>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li><a class="reference internal" href="#install-from-source-linux">Install from source (Linux)</a></li>
+<li><a class="reference internal" href="#install-from-source-linux">Install from source (Linux)</a><ul>
+<li><a class="reference internal" href="#install-grutopia-from-github">Install GRUtopia from GitHub</a></li>
+<li><a class="reference internal" href="#install-grutopia-from-pypi">Install GRUtopia from PyPI</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#install-with-docker-linux">Install with Docker (Linux)</a></li>
 </ul>
 </li>

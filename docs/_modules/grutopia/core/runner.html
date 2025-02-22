@@ -165,25 +165,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/scene.html">grutopia.core.scene</a></li>
@@ -258,120 +261,361 @@
                 
                 
   <h1>Source code for grutopia.core.runner</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="c1"># import numpy as np</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core</span> <span class="kn">import</span> <span class="n">World</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.prims.xform_prim</span> <span class="kn">import</span> <span class="n">XFormPrim</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.stage</span> <span class="kn">import</span> <span class="n">add_reference_to_stage</span>  <span class="c1"># noqa F401</span>
-<span class="kn">from</span> <span class="nn">omni.physx.scripts</span> <span class="kn">import</span> <span class="n">utils</span>
-<span class="kn">from</span> <span class="nn">pxr</span> <span class="kn">import</span> <span class="n">Usd</span>  <span class="c1"># noqa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">World</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.loggers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLogger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.prims.xform_prim</span><span class="w"> </span><span class="kn">import</span> <span class="n">XFormPrim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.simulation_context</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulationContext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.utils.stage</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_reference_to_stage</span>  <span class="c1"># noqa F401</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.physx.scripts</span><span class="w"> </span><span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pxr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usd</span>  <span class="c1"># noqa</span>
 
 <span class="c1"># Init</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.config</span> <span class="kn">import</span> <span class="n">SimulatorConfig</span><span class="p">,</span> <span class="n">TaskUserConfig</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.register</span> <span class="kn">import</span> <span class="n">import_all_modules_for_register</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.scene</span> <span class="kn">import</span> <span class="n">delete_prim_in_stage</span>  <span class="c1"># noqa F401</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.scene</span> <span class="kn">import</span> <span class="n">create_object</span><span class="p">,</span> <span class="n">create_scene</span>  <span class="c1"># noqa F401</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.task.task</span> <span class="kn">import</span> <span class="n">BaseTask</span><span class="p">,</span> <span class="n">create_task</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.util</span> <span class="kn">import</span> <span class="n">log</span>
-<span class="kn">from</span> <span class="nn">grutopia.npc</span> <span class="kn">import</span> <span class="n">NPC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulatorRuntime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.runtime.task_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskRuntime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">delete_prim_in_stage</span>  <span class="c1"># noqa F401</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_object</span><span class="p">,</span> <span class="n">create_scene</span>  <span class="c1"># noqa F401</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.task.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTask</span><span class="p">,</span> <span class="n">create_task</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncRequest</span><span class="p">,</span> <span class="n">log</span>  <span class="c1"># noqa F401</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util.clear_task</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_stage_by_prim_path</span>
 
 
-<div class="viewcode-block" id="SimulatorRunner"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner">[docs]</a><span class="k">class</span> <span class="nc">SimulatorRunner</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">SimulatorConfig</span><span class="p">):</span>
-        <span class="n">import_all_modules_for_register</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">config</span>
-        <span class="n">physics_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">physics_dt</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">physics_dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">rendering_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_dt</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+<div class="viewcode-block" id="SimulatorRunner"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SimulatorRunner</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator_runtime</span><span class="p">:</span> <span class="n">SimulatorRuntime</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_runtime_manager</span> <span class="o">=</span> <span class="n">simulator_runtime</span><span class="o">.</span><span class="n">task_runtime_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span> <span class="o">=</span> <span class="n">simulator_runtime</span>
+        <span class="n">physics_dt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">physics_dt</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">physics_dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_dt</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
         <span class="n">physics_dt</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">physics_dt</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">physics_dt</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">physics_dt</span>
-        <span class="n">rendering_dt</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">rendering_dt</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rendering_dt</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">rendering_dt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">physics_dt</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Simulator physics dt: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="n">World</span><span class="p">(</span><span class="n">physics_dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">rendering_dt</span><span class="o">=</span><span class="n">rendering_dt</span><span class="p">,</span> <span class="n">stage_units_in_meters</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_fabric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">use_fabric</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;simulator params: physics dt=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="si">}</span><span class="s1">, rendering dt=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span><span class="si">}</span><span class="s1">, use_fabric=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">use_fabric</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics_config</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span> <span class="o">=</span> <span class="n">simulator_runtime</span><span class="o">.</span><span class="n">task_runtime_manager</span><span class="o">.</span><span class="n">metrics_save_path</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span> <span class="o">!=</span> <span class="s1">&#39;console&#39;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">):</span>
+                    <span class="k">pass</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Can not create result file at </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">e</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="p">:</span> <span class="n">World</span> <span class="o">=</span> <span class="n">World</span><span class="p">(</span>
+            <span class="n">physics_dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span>
+            <span class="n">rendering_dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span><span class="p">,</span>
+            <span class="n">stage_units_in_meters</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">sim_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;use_fabric&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_fabric</span><span class="p">},</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">scene</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">stage</span>
 
-        <span class="c1"># setup scene</span>
-        <span class="n">prim_path</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">env_set</span><span class="o">.</span><span class="n">bg_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="o">.</span><span class="n">add_default_ground_plane</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">env_set</span><span class="o">.</span><span class="n">bg_type</span> <span class="o">!=</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span>
-            <span class="n">source</span><span class="p">,</span> <span class="n">prim_path</span> <span class="o">=</span> <span class="n">create_scene</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">env_set</span><span class="o">.</span><span class="n">bg_path</span><span class="p">,</span> <span class="n">prim_path_root</span><span class="o">=</span><span class="s1">&#39;background&#39;</span><span class="p">)</span>
-            <span class="n">add_reference_to_stage</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">prim_path</span><span class="p">)</span>
+        <span class="c1"># Map task_name -&gt; env_id:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_name_to_env_map</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">npc</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NPC</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">npc_config</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">npc</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">npc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NPC</span><span class="p">(</span><span class="n">npc_config</span><span class="p">))</span>
+        <span class="c1"># finished_tasks contains all the finished tasks in current tasks dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finished_tasks</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">render_interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_interval</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_config</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">render_interval</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_interval</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulator_runtime</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">rendering_interval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="mi">5</span>
+        <span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rendering interval: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">render_interval</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">render_trigger</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_render</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">current_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseTask</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">current_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseTask</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">_current_tasks</span>
 
-    <span class="k">def</span> <span class="nf">_warm_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">render</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">warm_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">render</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="n">render</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TaskUserConfig</span><span class="p">]):</span>
-        <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">configs</span><span class="p">:</span>
-            <span class="n">task</span> <span class="o">=</span> <span class="n">create_task</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
-
+    <span class="k">def</span><span class="w"> </span><span class="nf">reload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_warm_up</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="n">World</span><span class="p">(</span><span class="n">physics_dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">rendering_dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rendering_dt</span><span class="p">,</span> <span class="n">stage_units_in_meters</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">scene</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">stage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">render</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="SimulatorRunner.step"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner.step">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">render</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Step function to advance the simulation environment by one time step.</span>
+
+<span class="sd">        This method processes actions for active tasks, steps the simulation world,</span>
+<span class="sd">        collects observations, updates metrics, and determines task terminations. It also</span>
+<span class="sd">        handles rendering based on specified intervals.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            actions (Union[Dict, None], optional): A dictionary mapping task names to</span>
+<span class="sd">                another dictionary of robot names and their respective actions. If None,</span>
+<span class="sd">                no actions are applied. Defaults to None.</span>
+<span class="sd">            render (bool, optional): Flag indicating whether to render the simulation</span>
+<span class="sd">                at this step. True triggers rendering if the render interval is met.</span>
+<span class="sd">                Defaults to True.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[Dict, Dict[str, bool], Dict[str, float]]:</span>
+<span class="sd">                - obs (Dict): A dictionary containing observations for each task,</span>
+<span class="sd">                  further divided by robot names and their observation data.</span>
+<span class="sd">                - terminated_status (Dict[str, bool]): A dictionary mapping task names</span>
+<span class="sd">                  to boolean values indicating whether the task has terminated.</span>
+<span class="sd">                - reward (Dict[str, float]): A dictionary that would contain rewards</span>
+<span class="sd">                  for each task or robot; however, the actual return and computation of</span>
+<span class="sd">                  rewards is not shown in the provided code snippet.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If an error occurs when applying an action to a robot, the</span>
+<span class="sd">                exception is logged and re-raised, providing context about the task,</span>
+<span class="sd">                robot, and current tasks state.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            - The `_world.step()` method advances the simulation, optionally rendering</span>
+<span class="sd">              the environment based on the `render` flag and the render interval.</span>
+<span class="sd">            - `get_obs()` is a method to collect observations from the simulation world,</span>
+<span class="sd">              though its implementation details are not shown.</span>
+<span class="sd">            - Metrics for each task are updated, and upon task completion, results are</span>
+<span class="sd">              saved to a JSON file. This includes a flag &#39;normally_end&#39; set to True,</span>
+<span class="sd">              which seems to indicate normal termination of the task.</span>
+<span class="sd">            - The function also manages a mechanism to prevent further action application</span>
+<span class="sd">              and metric updates for tasks that have been marked as finished.</span>
+
+<span class="sd">        Caution:</span>
+<span class="sd">            The snippet contains a `TODO` comment suggesting there&#39;s an aspect requiring</span>
+<span class="sd">            attention related to &quot;Key optimization interval,&quot; which isn&#39;t addressed in</span>
+<span class="sd">            the docstring or the code shown.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; ================ TODO: Key optimization interval ================= &quot;&quot;&quot;</span>
+        <span class="n">terminated_status</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="p">{}</span>
+
         <span class="k">for</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">action_dict</span> <span class="ow">in</span> <span class="n">actions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># terminated tasks will no longer apply action</span>
+            <span class="k">if</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished_tasks</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">task_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">:</span>
+                <span class="k">continue</span>
+
             <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">task_name</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">action_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">robots</span><span class="p">:</span>
-                    <span class="n">task</span><span class="o">.</span><span class="n">robots</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">apply_action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">task</span><span class="o">.</span><span class="n">robots</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">apply_action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;task_name     : </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">task_name</span><span class="p">)</span>
+                        <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;robot_name    : </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                        <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;current_tasks : </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+                        <span class="k">raise</span> <span class="n">e</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">render_trigger</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">render</span> <span class="o">=</span> <span class="n">render</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_trigger</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_render</span> <span class="o">=</span> <span class="n">render</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_trigger</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_interval</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_trigger</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_interval</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">render_trigger</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="n">render</span><span class="p">)</span>
 
+        <span class="c1"># Step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">)</span>
+
+        <span class="c1"># Get obs</span>
         <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">npc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">npc</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">npc</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;fail to feed npc </span><span class="si">{</span><span class="n">npc</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> with obs: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">render</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">obs</span>
+        <span class="c1"># update metrics</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">is_done</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">finished_tasks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Task </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> finished.&#39;</span><span class="p">)</span>
+                <span class="n">metrics_results</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">()</span>
+                <span class="n">metrics_results</span><span class="p">[</span><span class="s1">&#39;normally_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span> <span class="o">==</span> <span class="s1">&#39;console&#39;</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">metrics_results</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics_save_path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">metrics_results</span><span class="p">))</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="c1"># finished tasks will no longer update metrics</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished_tasks</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+
+        <span class="c1"># update terminated_status and rewards</span>
+        <span class="k">for</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">terminated_status</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">task_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished_tasks</span><span class="p">:</span>
+                <span class="n">terminated_status</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">reward</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span><span class="o">.</span><span class="n">reward</span>
+                <span class="n">reward</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">calc</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">terminated_status</span><span class="p">,</span> <span class="n">reward</span></div>
+
+<div class="viewcode-block" id="SimulatorRunner.get_obs"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner.get_obs">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get obs</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict: obs from isaac sim.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">obs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">get_observations</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">obs</span>
+        <span class="c1"># Add render obs</span>
+        <span class="k">for</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">task_obs</span> <span class="ow">in</span> <span class="n">obs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">robot_name</span><span class="p">,</span> <span class="n">robot_obs</span> <span class="ow">in</span> <span class="n">task_obs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">][</span><span class="s1">&#39;render&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span>
+        <span class="k">return</span> <span class="n">obs</span></div>
 
-    <span class="k">def</span> <span class="nf">get_current_time_step_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="SimulatorRunner.stop"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner.stop">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop all current operations and clean up the **World**</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_time_step_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">current_time_step_index</span>
 
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-            <span class="k">return</span>
-        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">[</span><span class="n">task</span><span class="p">]</span><span class="o">.</span><span class="n">individual_reset</span><span class="p">()</span>
+<div class="viewcode-block" id="SimulatorRunner.reset"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner.reset">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">TaskRuntime</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset the task.</span>
 
-    <span class="k">def</span> <span class="nf">get_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XFormPrim</span><span class="p">:</span>
+<span class="sd">        Args:</span>
+<span class="sd">            task (str): A task name to reset. if task is None, it always means the reset is invoked for the first time</span>
+<span class="sd">            before agents invoke step().</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[Dict, TaskRuntime]: A tuple of two values. The first is a dict of observations.  The second is a</span>
+<span class="sd">            TaskRuntime object representing the new task runtime.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
+        <span class="n">new_task_runtime</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">TaskRuntime</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">new_task_runtime</span>
+
+        <span class="c1"># switch to next episodes</span>
+        <span class="n">new_task_runtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_episode</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finished_tasks</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
+
+        <span class="c1"># finalize tasks</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_finalize</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">new_task_runtime</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finalize the tasks and do some post-processing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">world_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SimulatorRunner.clear_single_task"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner.clear_single_task">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">clear_single_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear single task with task_name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_name (str): Task name to clear.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Clear task </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s1"> fail. The task </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s1"> is not in current_tasks.&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">old_task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span>
+        <span class="n">old_task</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">_task_scene_built</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">_data_logger</span> <span class="o">=</span> <span class="n">DataLogger</span><span class="p">()</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Clear stage: /World/env_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">task_name_to_env_map</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">clear_stage_by_prim_path</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/World/env_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">task_name_to_env_map</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SimulatorRunner.next_episode"><a class="viewcode-back" href="../../../api/env.html#grutopia.core.runner.SimulatorRunner.next_episode">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">TaskRuntime</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Switch to the next episode.</span>
+
+<span class="sd">        This method cleanups a finished task specified by task name and then</span>
+<span class="sd">        switches to the next task if exists.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">             task_name (Optional[str]): The task name of the finished task.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            TaskRuntime: new task runtime.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">             RuntimeError: If the specified task_name is not found in the current tasks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">runtime_env</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">task_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Task with task_name </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s1"> not in current task_runtime_manager.&#39;</span><span class="p">)</span>
+            <span class="n">old_task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_tasks</span><span class="p">[</span><span class="n">task_name</span><span class="p">]</span>
+            <span class="n">old_task_runtime</span> <span class="o">=</span> <span class="n">old_task</span><span class="o">.</span><span class="n">runtime</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clear_single_task</span><span class="p">(</span><span class="n">task_name</span><span class="p">)</span>
+            <span class="n">runtime_env</span> <span class="o">=</span> <span class="n">old_task_runtime</span><span class="o">.</span><span class="n">env</span>
+
+        <span class="n">next_task_runtime</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">TaskRuntime</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_runtime_manager</span><span class="o">.</span><span class="n">get_next_task_runtime</span><span class="p">(</span><span class="n">runtime_env</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">next_task_runtime</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">next_task_runtime</span>
+
+        <span class="n">env_id</span> <span class="o">=</span> <span class="n">next_task_runtime</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">env_id</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">create_task</span><span class="p">(</span><span class="n">next_task_runtime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">set_up_scene</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_sim_context</span><span class="p">()</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">post_reset</span><span class="p">()</span>
+        <span class="n">new_task_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">next_task_runtime</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+
+        <span class="c1"># Map task_name and env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_name_to_env_map</span><span class="p">[</span><span class="n">new_task_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">env_id</span><span class="p">)</span>
+
+        <span class="c1"># Log</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;===================== episode ========================&#39;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Next episode: </span><span class="si">{</span><span class="n">new_task_name</span><span class="si">}</span><span class="s1"> at </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">env_id</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;======================================================&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">next_task_runtime</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reset_sim_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">SimulationContext</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="p">,</span> <span class="n">soft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">_finalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">physics_sim_view</span><span class="p">)</span>  <span class="c1"># noqa</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XFormPrim</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">remove_collider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_collider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">build</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">GetPrimAtPath</span><span class="p">(</span><span class="n">prim_path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">build</span><span class="o">.</span><span class="n">IsValid</span><span class="p">():</span>
             <span class="n">utils</span><span class="o">.</span><span class="n">removeCollider</span><span class="p">(</span><span class="n">build</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_collider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_collider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">build</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">GetPrimAtPath</span><span class="p">(</span><span class="n">prim_path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">build</span><span class="o">.</span><span class="n">IsValid</span><span class="p">():</span>
             <span class="n">utils</span><span class="o">.</span><span class="n">setCollider</span><span class="p">(</span><span class="n">build</span><span class="p">,</span> <span class="n">approximationShape</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>

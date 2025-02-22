@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to use sensor &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>How to Use Sensor &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="How to add custom robot" href="../advanced_tutorials/how-to-add-robot.html" />
-  <link rel="prev" title="How to use controller" href="how-to-use-controller.html" />
+  <link rel="next" title="How to Use Robot" href="how-to-use-robot.html" />
+  <link rel="prev" title="How to Use Controller" href="how-to-use-controller.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
     var collapsedSections = [];
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -230,7 +233,7 @@
       </li>
 
         
-      <li>How to use sensor</li>
+      <li>How to Use Sensor</li>
     
     
       <li class="pytorch-breadcrumbs-aside">
@@ -263,39 +266,49 @@
                 
                 
   <section id="how-to-use-sensor">
-<h1>How to use sensor<a class="headerlink" href="#how-to-use-sensor" title="Permalink to this heading">¶</a></h1>
+<h1>How to Use Sensor<a class="headerlink" href="#how-to-use-sensor" title="Permalink to this heading">¶</a></h1>
 <blockquote>
-<div><p>This tutorial will show you how to use an existed sensors of robot</p>
+<div><p>This tutorial will show you how to use existing sensors.</p>
 </div></blockquote>
-<section id="which-sensors-are-our-robots-supported">
-<h2>Which sensors are our robots supported<a class="headerlink" href="#which-sensors-are-our-robots-supported" title="Permalink to this heading">¶</a></h2>
-<p>In <code class="docutils literal notranslate"><span class="pre">grutopia/core/robot/robot_model.py</span></code>, We know <code class="docutils literal notranslate"><span class="pre">Sensors</span></code> is under <code class="docutils literal notranslate"><span class="pre">RobotModel</span></code>.</p>
-<p><img alt="img.png" src="../_images/robot_model_class.png" /></p>
-<p>Check <code class="docutils literal notranslate"><span class="pre">grutopia_extension/robots/robot_models.yaml</span></code>. We find</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">robots</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;HumanoidRobot&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="nt">sensors</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;camera&quot;</span><span class="w">  </span><span class="c1"># &lt;- this is sensor name</span>
-<span class="w">        </span><span class="nt">prim_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;relative/prim/path/to/camera&quot;</span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Camera&quot;</span>
+<section id="supported-sensors">
+<h2>Supported Sensors<a class="headerlink" href="#supported-sensors" title="Permalink to this heading">¶</a></h2>
+<p>The directory <code class="docutils literal notranslate"><span class="pre">grutopia_extension/sensors/</span></code> contains a list of all supported sensors::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension/
+└── sensors
+    ├── camera.py
+    ├── mocap_controlled_camera.py
+    └── rep_camera.py
 </pre></div>
 </div>
+<p>For each robot, we provide some ready-to-use sensor configurations in <code class="docutils literal notranslate"><span class="pre">grutopia_extension/configs/robots/{robot_name}.py</span></code>.</p>
 </section>
 <section id="how-to-use-a-sensor">
-<h2>How to use a sensor<a class="headerlink" href="#how-to-use-a-sensor" title="Permalink to this heading">¶</a></h2>
-<p>When we run <code class="docutils literal notranslate"><span class="pre">demo/h1_locomotion.py</span></code>, observation from sensors can be got from <code class="docutils literal notranslate"><span class="pre">obs</span></code> (obs = env.step(actions=env_actions))</p>
-<p>Use them in isaac simulation_app’s step loops.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
-    <span class="n">task_name</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
-    <span class="n">robot_name</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">robots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
-    <span class="n">photo</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="n">task_name</span><span class="p">][</span><span class="n">robot_name</span><span class="p">][</span><span class="s1">&#39;camera&#39;</span><span class="p">][</span><span class="s1">&#39;rgba&#39;</span><span class="p">]</span>  <span class="c1"># here get `camera` data</span>
+<h2>How to Use a Sensor<a class="headerlink" href="#how-to-use-a-sensor" title="Permalink to this heading">¶</a></h2>
+<p>Typically, a sensor should be used with a robot. So first of all, the sensor configuration should be added to the sensor list in robot configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>camera_cfg = CameraCfg(...)
+
+h1_1 = HumanoidRobotCfg(
+    position=(0.0, 0.0, 1.05),
+    sensors=[
+        camera_cfg,
+    ],
+    ...
+）
+</pre></div>
+</div>
+<p>In the main loop of the script, we can obtain observations collected from a sensor. In the example below, we retrieve the RGBA data from the camera.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+    <span class="n">env_action</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+    <span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="n">env_actions</span><span class="p">)</span>
+    <span class="n">rgba</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;sensors&#39;</span><span class="p">][</span><span class="s2">&quot;camera&quot;</span><span class="p">][</span><span class="s2">&quot;rgba&quot;</span><span class="p">]</span>
     <span class="o">...</span>
 <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>We can see that <code class="docutils literal notranslate"><span class="pre">step()</span></code> method returns obs as a dictionary, and the data collected by the corresponding sensor can be retrieved by accessing the values in the dictionary.</p>
+<p>It is important to specify the sensors in the robot before use. Please refer to the <a class="reference internal" href="how-to-use-robot.html"><span class="std std-doc">how to use robot</span></a> for more detailed information.</p>
 </section>
 </section>
 
@@ -307,12 +320,12 @@
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="../advanced_tutorials/how-to-add-robot.html" class="btn btn-neutral float-right" title="How to add custom robot" accesskey="n"
+    <a href="how-to-use-robot.html" class="btn btn-neutral float-right" title="How to Use Robot" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
     
-    <a href="how-to-use-controller.html" class="btn btn-neutral" title="How to use controller" accesskey="p"
+    <a href="how-to-use-controller.html" class="btn btn-neutral" title="How to Use Controller" accesskey="p"
       rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
     
   </div>
@@ -322,7 +335,7 @@
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -342,9 +355,9 @@
           <div class="pytorch-right-menu" id="pytorch-right-menu">
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
-<li><a class="reference internal" href="#">How to use sensor</a><ul>
-<li><a class="reference internal" href="#which-sensors-are-our-robots-supported">Which sensors are our robots supported</a></li>
-<li><a class="reference internal" href="#how-to-use-a-sensor">How to use a sensor</a></li>
+<li><a class="reference internal" href="#">How to Use Sensor</a><ul>
+<li><a class="reference internal" href="#supported-sensors">Supported Sensors</a></li>
+<li><a class="reference internal" href="#how-to-use-a-sensor">How to Use a Sensor</a></li>
 </ul>
 </li>
 </ul>

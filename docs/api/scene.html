@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>grutopia.core.scene &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>grutopia.core.scene &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">grutopia.core.scene</a></li>
@@ -268,7 +271,7 @@
 <span id="object"></span><h2>object<a class="headerlink" href="#module-grutopia.core.scene.object" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="grutopia.core.scene.object.ObjectCommon">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.scene.object.</span></span><span class="sig-name descname"><span class="pre">ObjectCommon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/scene/object.html#ObjectCommon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.scene.object.ObjectCommon" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">grutopia.core.scene.object.</span></span><span class="sig-name descname"><span class="pre">ObjectCommon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ObjectCfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/scene/object.html#ObjectCommon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.scene.object.ObjectCommon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object common class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="grutopia.core.scene.object.ObjectCommon.register">
@@ -285,7 +288,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="grutopia.core.scene.object.create_object">
-<span class="sig-prename descclassname"><span class="pre">grutopia.core.scene.object.</span></span><span class="sig-name descname"><span class="pre">create_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/scene/object.html#create_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.scene.object.create_object" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">grutopia.core.scene.object.</span></span><span class="sig-name descname"><span class="pre">create_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ObjectCfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/grutopia/core/scene/object.html#create_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#grutopia.core.scene.object.create_object" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an object.
 :param config: configuration of the objects
 :type config: ObjectConfig</p>
@@ -483,7 +486,7 @@ set name in dest_prim_path</p>
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>

@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to add custom sensor &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>How to Add Custom Sensor &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="grutopia.core.env" href="../api/env.html" />
-  <link rel="prev" title="How to add custom controller" href="how-to-add-controller.html" />
+  <link rel="next" title="How to Add Custom Task" href="how-to-add-task.html" />
+  <link rel="prev" title="How to Add Custom Controller" href="how-to-add-controller.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
     var collapsedSections = [];
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -230,7 +233,7 @@
       </li>
 
         
-      <li>How to add custom sensor</li>
+      <li>How to Add Custom Sensor</li>
     
     
       <li class="pytorch-breadcrumbs-aside">
@@ -263,100 +266,105 @@
                 
                 
   <section id="how-to-add-custom-sensor">
-<h1>How to add custom sensor<a class="headerlink" href="#how-to-add-custom-sensor" title="Permalink to this heading">¶</a></h1>
+<h1>How to Add Custom Sensor<a class="headerlink" href="#how-to-add-custom-sensor" title="Permalink to this heading">¶</a></h1>
 <blockquote>
 <div><p>This tutorial will show you how to add a sensor for a robot</p>
 </div></blockquote>
-<p>Before this tutorial, you should read:</p>
+<p>The implementation of the sensor does not rely on any dependencies.
+It serves as an abstraction layer that can either encapsulate native sensors within Isaac Sim or generate synthetic data outputs to emulate a robot’s sensor behavior.</p>
+<p>To add a custom sensor, you need to:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="how-to-add-robot.html"><span class="std std-doc">how to add robot</span></a></p></li>
+<li><p>Create a config class for sensor config, inheriting from the <code class="docutils literal notranslate"><span class="pre">grutopia.core.config.robot.SensorCfg</span></code>.</p></li>
+<li><p>Create a class for sensor, inheriting from the <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.sensor.BaseSensor</span></code>.</p></li>
 </ul>
-<section id="create-with-grutopia-core-robot-sensor">
-<h2>1. Create with <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.sensor</span></code><a class="headerlink" href="#create-with-grutopia-core-robot-sensor" title="Permalink to this heading">¶</a></h2>
-<p>The sensors in <code class="docutils literal notranslate"><span class="pre">grutopia</span></code> are not just tensor. They are interfaces for robots to passively receive all kinds of
-information.</p>
-<p>The only thing we should matter is: implement <code class="docutils literal notranslate"><span class="pre">BaseSensor</span></code> from <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.sensor</span></code></p>
-<p>Camera sensor FYI</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<section id="create-config-class">
+<h2>Create Config Class<a class="headerlink" href="#create-config-class" title="Permalink to this heading">¶</a></h2>
+<p>Let’s assume we need a depth camera.</p>
+<p>The camera accepts the following config parameters:</p>
+<ul class="simple">
+<li><p>Flag to enable/disable the sensor.</p></li>
+<li><p>Camera resolution.</p></li>
+</ul>
+<p>Here’s an example of a config class for the sensor:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DepthCameraCfg</span><span class="p">(</span><span class="n">SensorCfg</span><span class="p">):</span>
 
-<span class="kn">from</span> <span class="nn">omni.isaac.sensor</span> <span class="kn">import</span> <span class="n">Camera</span> <span class="k">as</span> <span class="n">i_Camera</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;DepthCamera&#39;</span>
+    <span class="n">enable</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Generally, when creating a new config class, reasonable default values for required fields should be specified, and sensor specific config fields can be added when necessary.</p>
+</section>
+<section id="create-sensor-class">
+<h2>Create Sensor Class<a class="headerlink" href="#create-sensor-class" title="Permalink to this heading">¶</a></h2>
+<p>In the simplest scenario, the following methods are required to be implemented in your sensor class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.sensor</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSensor</span>
 
-<span class="kn">from</span> <span class="nn">grutopia.core.config.robot</span> <span class="kn">import</span> <span class="n">RobotUserConfig</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot</span> <span class="kn">import</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">Scene</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot_model</span> <span class="kn">import</span> <span class="n">SensorModel</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.sensor</span> <span class="kn">import</span> <span class="n">BaseSensor</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.util</span> <span class="kn">import</span> <span class="n">log</span>
+
+<span class="nd">@BaseSensor</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DepthCamera&#39;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DepthCamera</span><span class="p">(</span><span class="n">BaseSensor</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">DepthCameraCfg</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the sensor with the given config.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (DepthCameraCfg): sensor configuration.</span>
+<span class="sd">            robot (BaseRobot): robot owning the sensor.</span>
+<span class="sd">            scene (Scene): scene from isaac sim.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get data from sensor.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict: data dict of sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_data</span></code> method gets the sensor data in each step.</p>
+<p>For complete list of sensor methods, please refer to the <a class="reference internal" href="../api/robot.html"><span class="std std-doc">Seonsor API documentation</span></a>.</p>
+<p>Please note that the registration of the sensor class is done through the <code class="docutils literal notranslate"><span class="pre">&#64;BaseSensor.register</span></code> decorator, and the registered name should match the value of <code class="docutils literal notranslate"><span class="pre">type</span></code> field within the corresponding sensor config class (here is <code class="docutils literal notranslate"><span class="pre">DepthCamera</span></code>).</p>
+<p>For some native sensor types, initialization after env reset is required for the sensor to work properly. The <code class="docutils literal notranslate"><span class="pre">post_reset</span></code> method of sensor is meant to be used in this situation.</p>
+<p>An example of sensor class implementation is shown as following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.sensor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Camera</span> <span class="k">as</span> <span class="n">i_Camera</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.sensor</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSensor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia_extension.configs.sensors</span><span class="w"> </span><span class="kn">import</span> <span class="n">DepthCameraCfg</span>
 
 
-<span class="nd">@BaseSensor</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;Camera&#39;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Camera</span><span class="p">(</span><span class="n">BaseSensor</span><span class="p">):</span>
+<span class="nd">@BaseSensor</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DepthCamera&#39;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DepthCamera</span><span class="p">(</span><span class="n">BaseSensor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    wrap of isaac sim&#39;s Camera class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">DepthCameraCfg</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_camera</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">robot_user_config</span><span class="p">:</span> <span class="n">RobotUserConfig</span><span class="p">,</span>
-                 <span class="n">sensor_config</span><span class="p">:</span> <span class="n">SensorModel</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">config</span><span class="p">:</span> <span class="n">DepthCameraCfg</span><span class="p">,</span>
                  <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span>
                  <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">robot_user_config</span><span class="p">,</span> <span class="n">sensor_config</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_user_config</span><span class="o">.</span><span class="n">sensor_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_user_config</span><span class="o">.</span><span class="n">sensor_params</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_camera</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">create_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">i_Camera</span><span class="p">:</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">enable</span><span class="p">:</span>
+            <span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">resolution</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">resolution</span>
+            <span class="n">prim_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span> <span class="o">=</span> <span class="n">i_Camera</span><span class="p">(</span><span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 
-        <span class="n">prim_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_user_config</span><span class="o">.</span><span class="n">prim_path</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensor_config</span><span class="o">.</span><span class="n">prim_path</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;camera_prim_path: &#39;</span> <span class="o">+</span> <span class="n">prim_path</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;name            : &#39;</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_user_config</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensor_config</span><span class="o">.</span><span class="n">name</span><span class="p">]))</span>
-        <span class="k">return</span> <span class="n">i_Camera</span><span class="p">(</span><span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">sensor_init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">switch</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">add_distance_to_image_plane_to_frame</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">add_semantic_segmentation_to_frame</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">add_instance_segmentation_to_frame</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">add_instance_id_segmentation_to_frame</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">add_bounding_box_2d_tight_to_frame</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">switch</span><span class="p">:</span>
-                <span class="n">rgba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">get_rgba</span><span class="p">()</span>
-                <span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">get_depth</span><span class="p">()</span>
-                <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">get_current_frame</span><span class="p">()</span>
-                <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;rgba&#39;</span><span class="p">:</span> <span class="n">rgba</span><span class="p">,</span> <span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">depth</span><span class="p">,</span> <span class="s1">&#39;frame&#39;</span><span class="p">:</span> <span class="n">frame</span><span class="p">}</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">enable</span><span class="p">:</span>
+            <span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera</span><span class="o">.</span><span class="n">get_depth</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">depth</span><span class="p">}</span>
         <span class="k">return</span> <span class="p">{}</span>
-</pre></div>
-</div>
-</section>
-<section id="register-at-robot-models">
-<h2>2. Register at <code class="docutils literal notranslate"><span class="pre">robot_models</span></code><a class="headerlink" href="#register-at-robot-models" title="Permalink to this heading">¶</a></h2>
-<p>Add sensor for robots in <code class="docutils literal notranslate"><span class="pre">grutopia_extension/robots/robot_models.yaml</span></code>.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">robots</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;HumanoidRobot&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="nt">sensors</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;camera&quot;</span>
-<span class="w">        </span><span class="nt">prim_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;relative/prim/path/to/camera&quot;</span><span class="w">  </span><span class="c1"># relative path</span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Camera&quot;</span><span class="w">  </span><span class="c1"># map to key in `register`</span>
-</pre></div>
-</div>
-</section>
-<section id="write-a-demo">
-<h2>3. Write a demo<a class="headerlink" href="#write-a-demo" title="Permalink to this heading">¶</a></h2>
-<p>In simulation_app’s step loop:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>   <span class="o">...</span>
-   <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
-   <span class="n">photo</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;robot_name_in_config&#39;</span><span class="p">][</span><span class="s1">&#39;camera&#39;</span><span class="p">][</span><span class="s1">&#39;frame&#39;</span><span class="p">][</span><span class="s1">&#39;rgba&#39;</span><span class="p">]</span>  <span class="c1"># `camera` is sensor name in model</span>
-   <span class="o">...</span>
 </pre></div>
 </div>
 </section>
@@ -370,12 +378,12 @@ information.</p>
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="../api/env.html" class="btn btn-neutral float-right" title="grutopia.core.env" accesskey="n"
+    <a href="how-to-add-task.html" class="btn btn-neutral float-right" title="How to Add Custom Task" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
     
-    <a href="how-to-add-controller.html" class="btn btn-neutral" title="How to add custom controller" accesskey="p"
+    <a href="how-to-add-controller.html" class="btn btn-neutral" title="How to Add Custom Controller" accesskey="p"
       rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
     
   </div>
@@ -385,7 +393,7 @@ information.</p>
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -405,10 +413,9 @@ information.</p>
           <div class="pytorch-right-menu" id="pytorch-right-menu">
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
-<li><a class="reference internal" href="#">How to add custom sensor</a><ul>
-<li><a class="reference internal" href="#create-with-grutopia-core-robot-sensor">1. Create with <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.sensor</span></code></a></li>
-<li><a class="reference internal" href="#register-at-robot-models">2. Register at <code class="docutils literal notranslate"><span class="pre">robot_models</span></code></a></li>
-<li><a class="reference internal" href="#write-a-demo">3. Write a demo</a></li>
+<li><a class="reference internal" href="#">How to Add Custom Sensor</a><ul>
+<li><a class="reference internal" href="#create-config-class">Create Config Class</a></li>
+<li><a class="reference internal" href="#create-sensor-class">Create Sensor Class</a></li>
 </ul>
 </li>
 </ul>

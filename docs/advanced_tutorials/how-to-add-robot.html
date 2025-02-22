@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to add custom robot &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>How to Add Custom Robot &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="How to add custom controller" href="how-to-add-controller.html" />
-  <link rel="prev" title="How to use sensor" href="../tutorials/how-to-use-sensor.html" />
+  <link rel="next" title="How to Add Custom Controller" href="how-to-add-controller.html" />
+  <link rel="prev" title="How to Use Task" href="../tutorials/how-to-use-task.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
     var collapsedSections = [];
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -230,7 +233,7 @@
       </li>
 
         
-      <li>How to add custom robot</li>
+      <li>How to Add Custom Robot</li>
     
     
       <li class="pytorch-breadcrumbs-aside">
@@ -263,68 +266,91 @@
                 
                 
   <section id="how-to-add-custom-robot">
-<h1>How to add custom robot<a class="headerlink" href="#how-to-add-custom-robot" title="Permalink to this heading">¶</a></h1>
+<h1>How to Add Custom Robot<a class="headerlink" href="#how-to-add-custom-robot" title="Permalink to this heading">¶</a></h1>
 <blockquote>
-<div><p>This tutorial will show you how to add a robot</p>
+<div><p>This tutorial will show you how to add a robot. If you wish to use this robot in practice, you need to:</p>
+<ul class="simple">
+<li><p>Learn <a class="reference internal" href="how-to-add-controller.html"><span class="std std-doc">how to add a custom controller</span></a> to control the robot you’ve built.</p></li>
+<li><p>Learn <a class="reference internal" href="how-to-add-sensor.html"><span class="std std-doc">how to add a custom sensor</span></a> to collect data.</p></li>
+</ul>
 </div></blockquote>
-<section id="add-isaac-sim-robot">
-<h2>1. Add isaac sim robot<a class="headerlink" href="#add-isaac-sim-robot" title="Permalink to this heading">¶</a></h2>
-<blockquote>
-<div><p>Assuming you already have an usd file of a robot, and it has drivable joints.</p>
-</div></blockquote>
-<p>Create a file in <code class="docutils literal notranslate"><span class="pre">grutopia_extension/robots</span></code>, named <code class="docutils literal notranslate"><span class="pre">demo_robot.py</span></code>. Inherit the robot class from isaac.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">omni.isaac.core.robots.robot</span> <span class="kn">import</span> <span class="n">Robot</span> <span class="k">as</span> <span class="n">IsaacRobot</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.stage</span> <span class="kn">import</span> <span class="n">add_reference_to_stage</span>
+<p>To add a custom robot, you need to:</p>
+<ul class="simple">
+<li><p>Create a config class for robot config, inheriting from the <code class="docutils literal notranslate"><span class="pre">grutopia.core.config.robot.RobotCfg</span></code>.</p></li>
+<li><p>Create a class for robot, inheriting from the <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.BaseRobot</span></code>.</p></li>
+</ul>
+<section id="create-config-class">
+<h2>Create Config Class<a class="headerlink" href="#create-config-class" title="Permalink to this heading">¶</a></h2>
+<p>Here’s an example of a config class for a robot:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotCfg</span>
 
-
-<span class="k">class</span> <span class="nc">DemoRobot</span><span class="p">(</span><span class="n">IsaacRobot</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="n">usd_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="n">position</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">orientation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">scale</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="n">add_reference_to_stage</span><span class="p">(</span><span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span> <span class="n">usd_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">usd_path</span><span class="p">))</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
-        <span class="c1"># Set robot-specific parameters/attributes here</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemoRobotCfg</span><span class="p">(</span><span class="n">RobotCfg</span><span class="p">):</span>
+    <span class="c1"># meta info</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;demo&#39;</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;DemoRobot&#39;</span>
+    <span class="n">prim_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/World/demo&#39;</span>
+    <span class="n">create_robot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">usd_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;./assets/demo_robot.usd&#39;</span>
 </pre></div>
 </div>
+<p>Generally, when creating a new config class, reasonable default values for required fields should be specified, and robot specific config fields can be added when necessary.</p>
 </section>
-<section id="wrap-with-grutopia-core-robot-robot">
-<h2>2. Wrap with <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.robot</span></code><a class="headerlink" href="#wrap-with-grutopia-core-robot-robot" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">omni.isaac.core.scenes</span> <span class="kn">import</span> <span class="n">Scene</span>
+<section id="create-robot-class">
+<h2>Create Robot Class<a class="headerlink" href="#create-robot-class" title="Permalink to this heading">¶</a></h2>
+<p>In the simplest scenario, the following methods are required to be implemented in your robot class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.scenes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span>
 
-<span class="kn">from</span> <span class="nn">grutopia.core.config.robot</span> <span class="kn">import</span> <span class="n">RobotUserConfig</span> <span class="k">as</span> <span class="n">Config</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot</span> <span class="kn">import</span> <span class="n">BaseRobot</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot_model</span> <span class="kn">import</span> <span class="n">RobotModel</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.util</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="nd">@BaseRobot</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DemoRobot&#39;</span><span class="p">)</span>  <span class="c1"># Register this robot to grutopia</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemoRobot</span><span class="p">(</span><span class="n">BaseRobot</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">DemoRobotCfg</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the robot with the given config.</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            config (DemoRobotCfg): config for the robot, should be a instance of corresponding config class.</span>
+<span class="sd">            scene (Scene): current scene.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-<span class="c1"># Register this robot to grutopia.core</span>
-<span class="nd">@BaseRobot</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DemoRobot&#39;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">DemoRobotWrapper</span><span class="p">(</span><span class="n">BaseRobot</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply actions of controllers to robot.</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">:</span> <span class="n">RobotModel</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sensor_config</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">sensors</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_gains</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">gains</span>
+<span class="sd">        Args:</span>
+<span class="sd">            action (dict): action dict.</span>
+<span class="sd">              key: controller name.</span>
+<span class="sd">              value: corresponding action array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get observation of robot, including controllers, sensors, and world pose.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">apply_action</span></code> method are used to apply the provided actions, and <code class="docutils literal notranslate"><span class="pre">get_obs</span></code> to obtain the robot’s current observations in each step.</p>
+<p>For complete list of robot methods, please refer to the <a class="reference internal" href="../api/robot.html"><span class="std std-doc">Robot API documentation</span></a>.</p>
+<p>Please note that the registration of the robot class is done through the <code class="docutils literal notranslate"><span class="pre">&#64;BaseRobot.register</span></code> decorator, and the registered name should match the value of <code class="docutils literal notranslate"><span class="pre">type</span></code> field within the corresponding robot config class (here is <code class="docutils literal notranslate"><span class="pre">DemoRobot</span></code>).</p>
+<p>Since a robot typically consists of joints and rigid bodies, <a class="reference external" href="https://docs.omniverse.nvidia.com/py/isaacsim/source/extensions/omni.isaac.core/docs/index.html#robots">Robot</a> class from Isaac Sim, which derives from <a class="reference external" href="https://docs.omniverse.nvidia.com/py/isaacsim/source/extensions/omni.isaac.core/docs/index.html#articulations">Articulation</a> class, are likely to be used in robot implementation. The Articulation class provides high-level encapsulation for <a class="reference external" href="https://docs.omniverse.nvidia.com/extensions/latest/ext_physics/articulations.html">articulated object</a>.</p>
+<p>An example of robot class implementation is shown as following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.robots.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Robot</span> <span class="k">as</span> <span class="n">IsaacRobot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.scenes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.utils.stage</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_reference_to_stage</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.config.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotUserConfig</span> <span class="k">as</span> <span class="n">Config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+
+<span class="nd">@BaseRobot</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DemoRobot&#39;</span><span class="p">)</span>  <span class="c1"># Register this robot to grutopia</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemoRobot</span><span class="p">(</span><span class="n">BaseRobot</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">DemoRobotCfg</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>  <span class="c1"># Use the config class for this robot</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sensor_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sensors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">position</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_start_orientation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">orientation</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">orientation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;demo_robot </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: position    : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span><span class="p">))</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;demo_robot </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: orientation : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_orientation</span><span class="p">))</span>
+        <span class="n">usd_path</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">usd_path</span>
 
-        <span class="n">usd_path</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">usd_path</span>
-        <span class="k">if</span> <span class="n">usd_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;/Isaac&#39;</span><span class="p">):</span>
-            <span class="n">usd_path</span> <span class="o">=</span> <span class="n">get_assets_root_path</span><span class="p">()</span> <span class="o">+</span> <span class="n">usd_path</span>
-
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;demo_robot </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: usd_path         : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">usd_path</span><span class="p">))</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;demo_robot </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: config.prim_path : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span><span class="p">))</span>
-
-        <span class="c1"># Wrap the robot class here.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span> <span class="o">=</span> <span class="n">DemoRobot</span><span class="p">(</span>
+        <span class="n">add_reference_to_stage</span><span class="p">(</span><span class="n">prim_path</span><span class="o">=</span><span class="n">prim_path</span><span class="p">,</span> <span class="n">usd_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">usd_path</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span> <span class="o">=</span> <span class="n">IsaacRobot</span><span class="p">(</span>
             <span class="n">prim_path</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">prim_path</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="n">position</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_position</span><span class="p">,</span>
@@ -336,66 +362,43 @@
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">scale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">set_local_scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_robot_scale</span><span class="p">)</span>
+        <span class="c1"># More initialization here...</span>
 
-        <span class="c1"># Add the attr you want here.</span>
-
-    <span class="o">...</span>
-
-    <span class="k">def</span> <span class="nf">apply_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            action (dict): inputs for controllers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">controller_name</span><span class="p">,</span> <span class="n">controller_action</span> <span class="ow">in</span> <span class="n">action</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">controller_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unknown controller </span><span class="si">{</span><span class="n">controller_name</span><span class="si">}</span><span class="s1"> in action&#39;</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unknown controller </span><span class="si">{</span><span class="n">controller_name</span><span class="si">}</span><span class="s1"> in action&#39;</span><span class="p">)</span>
                 <span class="k">continue</span>
             <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">[</span><span class="n">controller_name</span><span class="p">]</span>
             <span class="n">control</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">action_to_control</span><span class="p">(</span><span class="n">controller_action</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">apply_actuator_model</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">controller_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_subset</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">apply_action</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the observation you need here.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_base</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
 
         <span class="c1"># custom</span>
-        <span class="n">position</span><span class="p">,</span> <span class="n">orientation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_base</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
         <span class="n">obs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
             <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="n">orientation</span><span class="p">,</span>
+            <span class="s1">&#39;controllers&#39;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;sensors&#39;</span><span class="p">:</span> <span class="p">{},</span>
         <span class="p">}</span>
 
         <span class="c1"># common</span>
         <span class="k">for</span> <span class="n">c_obs_name</span><span class="p">,</span> <span class="n">controller_obs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">obs</span><span class="p">[</span><span class="n">c_obs_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">controller_obs</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
+            <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">][</span><span class="n">c_obs_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">controller_obs</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">sensor_name</span><span class="p">,</span> <span class="n">sensor_obs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">obs</span><span class="p">[</span><span class="n">sensor_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensor_obs</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+            <span class="n">obs</span><span class="p">[</span><span class="s1">&#39;sensors&#39;</span><span class="p">][</span><span class="n">sensor_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensor_obs</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">obs</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>And there are many other functions in <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.robot</span></code>, FYI.</p></li>
-</ul>
-</section>
-<section id="register-at-robot-models">
-<h2>3. Register at <code class="docutils literal notranslate"><span class="pre">robot_models</span></code><a class="headerlink" href="#register-at-robot-models" title="Permalink to this heading">¶</a></h2>
-<p>Add you robot model at <code class="docutils literal notranslate"><span class="pre">grutopia_extension/robots/robot_models.yaml</span></code></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DemoRobotWrapper&quot;</span>
-<span class="w">  </span><span class="nt">usd_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;...&quot;</span>
-<span class="w">  </span><span class="nt">controllers</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;...&quot;</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;...&quot;</span>
-</pre></div>
-</div>
-</section>
-<section id="add-controllers-and-sensors">
-<h2>4. Add controllers and sensors<a class="headerlink" href="#add-controllers-and-sensors" title="Permalink to this heading">¶</a></h2>
-<p>See  <a class="reference internal" href="how-to-add-controller.html"><span class="std std-doc">how to add controller</span></a> and <a class="reference internal" href="how-to-add-sensor.html"><span class="std std-doc">how to add sensor</span></a></p>
-</section>
-<section id="write-a-demo">
-<h2>5. Write a demo<a class="headerlink" href="#write-a-demo" title="Permalink to this heading">¶</a></h2>
-<p>See <a class="reference internal" href="how-to-add-controller.html"><span class="std std-doc">how to add controller</span></a> and <a class="reference internal" href="how-to-add-sensor.html"><span class="std std-doc">how to add sensor</span></a></p>
 </section>
 </section>
 
@@ -407,12 +410,12 @@
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="how-to-add-controller.html" class="btn btn-neutral float-right" title="How to add custom controller" accesskey="n"
+    <a href="how-to-add-controller.html" class="btn btn-neutral float-right" title="How to Add Custom Controller" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
     
-    <a href="../tutorials/how-to-use-sensor.html" class="btn btn-neutral" title="How to use sensor" accesskey="p"
+    <a href="../tutorials/how-to-use-task.html" class="btn btn-neutral" title="How to Use Task" accesskey="p"
       rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
     
   </div>
@@ -422,7 +425,7 @@
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -442,12 +445,9 @@
           <div class="pytorch-right-menu" id="pytorch-right-menu">
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
-<li><a class="reference internal" href="#">How to add custom robot</a><ul>
-<li><a class="reference internal" href="#add-isaac-sim-robot">1. Add isaac sim robot</a></li>
-<li><a class="reference internal" href="#wrap-with-grutopia-core-robot-robot">2. Wrap with <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.robot</span></code></a></li>
-<li><a class="reference internal" href="#register-at-robot-models">3. Register at <code class="docutils literal notranslate"><span class="pre">robot_models</span></code></a></li>
-<li><a class="reference internal" href="#add-controllers-and-sensors">4. Add controllers and sensors</a></li>
-<li><a class="reference internal" href="#write-a-demo">5. Write a demo</a></li>
+<li><a class="reference internal" href="#">How to Add Custom Robot</a><ul>
+<li><a class="reference internal" href="#create-config-class">Create Config Class</a></li>
+<li><a class="reference internal" href="#create-robot-class">Create Robot Class</a></li>
 </ul>
 </li>
 </ul>

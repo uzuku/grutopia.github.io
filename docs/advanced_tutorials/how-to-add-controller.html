@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to add custom controller &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>How to Add Custom Controller &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="How to add custom sensor" href="how-to-add-sensor.html" />
-  <link rel="prev" title="How to add custom robot" href="how-to-add-robot.html" />
+  <link rel="next" title="How to Add Custom Sensor" href="how-to-add-sensor.html" />
+  <link rel="prev" title="How to Add Custom Robot" href="how-to-add-robot.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
     var collapsedSections = [];
@@ -168,25 +168,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -230,7 +233,7 @@
       </li>
 
         
-      <li>How to add custom controller</li>
+      <li>How to Add Custom Controller</li>
     
     
       <li class="pytorch-breadcrumbs-aside">
@@ -263,69 +266,117 @@
                 
                 
   <section id="how-to-add-custom-controller">
-<h1>How to add custom controller<a class="headerlink" href="#how-to-add-custom-controller" title="Permalink to this heading">¶</a></h1>
+<h1>How to Add Custom Controller<a class="headerlink" href="#how-to-add-custom-controller" title="Permalink to this heading">¶</a></h1>
 <blockquote>
-<div><p>This tutorial will show you how to add a controller for a robot</p>
+<div><p>This tutorial will show you how to add a custom controller for a robot.</p>
 </div></blockquote>
-<p>Before this tutorial, you should read:</p>
+<p>Note that the controller cannot be operated independently. It must be used with robot to enable robot to act in the environment.</p>
+<p>To add a custom controller, you need to:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="how-to-add-robot.html"><span class="std std-doc">how to add robot</span></a></p></li>
+<li><p>Create a config class for controller config, inheriting from the <code class="docutils literal notranslate"><span class="pre">grutopia.core.config.robot.ControllerCfg</span></code>.</p></li>
+<li><p>Create a class for controller, inheriting from the <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.controller.BaseController</span></code>.</p></li>
 </ul>
-<section id="add-grutopia-core-robot-controller">
-<h2>1. Add <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.controller</span></code><a class="headerlink" href="#add-grutopia-core-robot-controller" title="Permalink to this heading">¶</a></h2>
-<p>Take this “ChatboxController” as an example,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.scenes</span> <span class="kn">import</span> <span class="n">Scene</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.types</span> <span class="kn">import</span> <span class="n">ArticulationAction</span>
-
-<span class="kn">from</span> <span class="nn">grutopia.core.datahub.model_data</span> <span class="kn">import</span> <span class="n">LogData</span><span class="p">,</span> <span class="n">ModelData</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.controller</span> <span class="kn">import</span> <span class="n">BaseController</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot</span> <span class="kn">import</span> <span class="n">BaseRobot</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot_model</span> <span class="kn">import</span> <span class="n">ControllerModel</span>
+<section id="create-config-class">
+<h2>Create Config Class<a class="headerlink" href="#create-config-class" title="Permalink to this heading">¶</a></h2>
+<p>Here’s an example of a config class for a controller:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.config.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">ControllerCfg</span>
 
 
-<span class="nd">@BaseController</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;ChatboxController&#39;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ChatboxController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemoControllerCfg</span><span class="p">(</span><span class="n">ControllerCfg</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ControllerModel</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">ControllerModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;chat&#39;</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">action_to_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">List</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ArticulationAction</span><span class="p">:</span>
-        <span class="c1"># TODO Check input(like [np.array(&#39;I am the sentence&#39;, agent_avatar_data)])</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chat</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArticulationAction</span><span class="p">:</span>
-        <span class="c1"># TODO Set chat action</span>
-        <span class="k">return</span> <span class="n">ArticulationAction</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">{}</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;demo_controller&#39;</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;DemoController&#39;</span>
+    <span class="n">forward_speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
 </pre></div>
 </div>
+<p>Generally, when creating a new config class, reasonable default values for required fields should be specified, and controller specific config fields can be added when necessary.</p>
 </section>
-<section id="register-at-robot-models">
-<h2>2. Register at <code class="docutils literal notranslate"><span class="pre">robot_models</span></code><a class="headerlink" href="#register-at-robot-models" title="Permalink to this heading">¶</a></h2>
-<p>Like this.</p>
-<p><img alt="alt text" src="../_images/robot_models_add_controller.png" /></p>
-</section>
-<section id="write-a-demo">
-<h2>3. Write a demo<a class="headerlink" href="#write-a-demo" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">env_actions</span> <span class="o">=</span> <span class="p">[{</span>
-        <span class="n">h1</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;web_chat&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;你好&#39;</span><span class="p">])</span>
-        <span class="p">}</span>
-    <span class="p">}]</span>
-    <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="o">=</span><span class="n">env_actions</span><span class="p">)</span>
-<span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<section id="create-controller-class">
+<h2>Create Controller Class<a class="headerlink" href="#create-controller-class" title="Permalink to this heading">¶</a></h2>
+<p>In the simplest scenario, the following methods are required to be implemented in your controller class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.utils.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArticulationAction</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.controller</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseController</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span>
+
+
+<span class="nd">@BaseController</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DemoController&#39;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemoController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">DemoControllerCfg</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the controller with the given configuration and its owner robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (DemoControllerCfg): controller configuration.</span>
+<span class="sd">            robot (BaseRobot): robot owning the controller.</span>
+<span class="sd">            scene (Scene): scene from isaac sim.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">action_to_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">List</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ArticulationAction</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert input action (in 1d array format) to joint signals to apply.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action (Union[np.ndarray, List]): input control action.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ArticulationAction: joint signals to apply</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">action_to_control</span></code> method translates the input action into joint signals to apply in each step.</p>
+<p>For complete list of controller methods, please refer to the <a class="reference internal" href="../api/robot.html"><span class="std std-doc">Controller API documentation</span></a>.</p>
+<p>Please note that the registration of the controller class is done through the <code class="docutils literal notranslate"><span class="pre">&#64;BaseController.register</span></code> decorator, and the registered name should match the value of <code class="docutils literal notranslate"><span class="pre">type</span></code> field within the corresponding controller config class (here is <code class="docutils literal notranslate"><span class="pre">DemoController</span></code>).</p>
+<p>Sometimes the calculation logic is defined in a method named <code class="docutils literal notranslate"><span class="pre">forward</span></code> to show the input parameters the controller accepts, making it more human-readable. In this case, the <code class="docutils literal notranslate"><span class="pre">action_to_control</span></code> method itself only expands the parameters, and invokes <code class="docutils literal notranslate"><span class="pre">forward</span></code> method to calculate the joint signals.</p>
+<p>An example of controller class implementation is shown as following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.scenes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.utils.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArticulationAction</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.controller</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseController</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia_extension.configs.controllers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DemoControllerCfg</span>
+
+
+<span class="nd">@BaseController</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;DemoController&#39;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemoController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">DemoControllerCfg</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="n">BaseRobot</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">scene</span><span class="o">=</span><span class="n">scene</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">forward_speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">rotation_speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">scaler</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArticulationAction</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">forward_speed</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">rotation_speed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ArticulationAction</span><span class="p">(</span><span class="n">joint_velocities</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">forward_basis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+        <span class="n">spin_basis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+
+        <span class="n">wheel_vel_for</span> <span class="o">=</span> <span class="n">forward_basis</span> <span class="o">*</span> <span class="n">forward_speed</span>
+        <span class="n">wheel_vel_rot</span> <span class="o">=</span> <span class="n">spin_basis</span> <span class="o">*</span> <span class="n">rotation_speed</span>
+        <span class="n">wheel_vel</span> <span class="o">=</span> <span class="n">wheel_vel_for</span> <span class="o">+</span> <span class="n">wheel_vel_rot</span>
+
+        <span class="k">return</span> <span class="n">ArticulationAction</span><span class="p">(</span><span class="n">joint_velocities</span><span class="o">=</span><span class="n">wheel_vel</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">action_to_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">List</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArticulationAction</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            action (List | np.ndarray): n-element 1d array containing:</span>
+<span class="sd">              0. forward_speed (float)</span>
+<span class="sd">              1. rotation_speed (float)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;action must contain 2 elements&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span>
+            <span class="n">forward_speed</span><span class="o">=</span><span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">rotation_speed</span><span class="o">=</span><span class="n">action</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">scaler</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_robot_scale</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -339,12 +390,12 @@
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="how-to-add-sensor.html" class="btn btn-neutral float-right" title="How to add custom sensor" accesskey="n"
+    <a href="how-to-add-sensor.html" class="btn btn-neutral float-right" title="How to Add Custom Sensor" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
     
-    <a href="how-to-add-robot.html" class="btn btn-neutral" title="How to add custom robot" accesskey="p"
+    <a href="how-to-add-robot.html" class="btn btn-neutral" title="How to Add Custom Robot" accesskey="p"
       rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
     
   </div>
@@ -354,7 +405,7 @@
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -374,10 +425,9 @@
           <div class="pytorch-right-menu" id="pytorch-right-menu">
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
-<li><a class="reference internal" href="#">How to add custom controller</a><ul>
-<li><a class="reference internal" href="#add-grutopia-core-robot-controller">1. Add <code class="docutils literal notranslate"><span class="pre">grutopia.core.robot.controller</span></code></a></li>
-<li><a class="reference internal" href="#register-at-robot-models">2. Register at <code class="docutils literal notranslate"><span class="pre">robot_models</span></code></a></li>
-<li><a class="reference internal" href="#write-a-demo">3. Write a demo</a></li>
+<li><a class="reference internal" href="#">How to Add Custom Controller</a><ul>
+<li><a class="reference internal" href="#create-config-class">Create Config Class</a></li>
+<li><a class="reference internal" href="#create-controller-class">Create Controller Class</a></li>
 </ul>
 </li>
 </ul>

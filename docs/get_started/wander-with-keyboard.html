@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wander with keyboard &mdash; GRUtopia v0.1.0 documentation</title>
+  <title>Wander with keyboard &mdash; GRUtopia v2.0.0 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Interact with NPC through WebUI" href="webui.html" />
+  <link rel="next" title="How to Use GRscenes" href="how-to-use-grscenes.html" />
   <link rel="prev" title="Installation" href="installation.html" />
   <!-- Google Analytics -->
   <script type="text/javascript">
@@ -168,25 +168,28 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/scene.html">grutopia.core.scene</a></li>
@@ -265,53 +268,41 @@
   <section id="wander-with-keyboard">
 <h1>Wander with keyboard<a class="headerlink" href="#wander-with-keyboard" title="Permalink to this heading">¶</a></h1>
 <blockquote>
-<div><p>This tutorial guides you to wander with keyboard as h1 robot.</p>
+<div><p>This tutorial guides you to wander with keyboard as g1 robot.</p>
 </div></blockquote>
-<section id="wander-in-house">
-<h2>Wander in house<a class="headerlink" href="#wander-in-house" title="Permalink to this heading">¶</a></h2>
-<p>VRAM requirement: 12GB+</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># decompress the house scene</span>
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>assets/scenes/
-$<span class="w"> </span>unzip<span class="w"> </span>demo_house.zip
-<span class="c1"># start simulation</span>
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../../..
-$<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_house.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.demo.g1_locomotion
 </pre></div>
 </div>
-<p>You can control the h1 robot with keyboard command:</p>
+<p>You can control the g1 robot with keyboard command:</p>
 <ul class="simple">
-<li><p>W: Move Forward</p></li>
-<li><p>S: Move Backward</p></li>
-<li><p>A: Move Left</p></li>
-<li><p>D: Move Right</p></li>
-<li><p>Q: Turn Left</p></li>
-<li><p>E: Turn Right</p></li>
+<li><p>I: Move Forward</p></li>
+<li><p>K: Move Backward</p></li>
+<li><p>J: Move Left</p></li>
+<li><p>L: Move Right</p></li>
+<li><p>U: Turn Left</p></li>
+<li><p>O: Turn Right</p></li>
 </ul>
-<p>You can change camera view to perspective/first-person/third-person camera.</p>
-</section>
-<section id="wander-in-city">
-<h2>Wander in city<a class="headerlink" href="#wander-in-city" title="Permalink to this heading">¶</a></h2>
-<p>VRAM requirement: 16GB+</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># decompress the city scene</span>
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>assets/scenes/
-$<span class="w"> </span>unzip<span class="w"> </span>demo_city.zip
-<span class="c1"># start simulation</span>
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../../..
-$<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_city.py
+<section id="brief-explanation">
+<h2>Brief Explanation<a class="headerlink" href="#brief-explanation" title="Permalink to this heading">¶</a></h2>
+<p>The keyboard is abstracted as an interaction device. A vector is used to denote which key is being pressed, and this vector is then translated into the robot’s actions at each step.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grutopia_extension.interactions.keyboard</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeyboardInteraction</span>
+
+<span class="n">keyboard</span> <span class="o">=</span> <span class="n">KeyboardInteraction</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="n">env</span><span class="o">.</span><span class="n">simulation_app</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="n">keyboard</span><span class="o">.</span><span class="n">get_input</span><span class="p">()</span>
+    <span class="n">x_speed</span> <span class="o">=</span> <span class="n">command</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">command</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_speed</span> <span class="o">=</span> <span class="n">command</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">command</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">z_speed</span> <span class="o">=</span> <span class="n">command</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="n">command</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">env_action</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">move_by_speed_cfg</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">(</span><span class="n">x_speed</span><span class="p">,</span> <span class="n">y_speed</span><span class="p">,</span> <span class="n">z_speed</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">env_action</span><span class="p">)</span>
+    <span class="o">...</span>
 </pre></div>
 </div>
-<p>You can control the h1 robot with keyboard command:</p>
-<ul class="simple">
-<li><p>W: Move Forward</p></li>
-<li><p>S: Move Backward</p></li>
-<li><p>A: Move Left</p></li>
-<li><p>D: Move Right</p></li>
-<li><p>Q: Turn Left</p></li>
-<li><p>E: Turn Right</p></li>
-</ul>
-<p>You can change camera view to perspective/first-person/third-person camera.</p>
+<p>You can refer to <code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia/demo/g1_locomotion.py</span></code> for a complete example.</p>
 </section>
 </section>
 
@@ -323,7 +314,7 @@ $<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_city.p
   
   <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
     
-    <a href="webui.html" class="btn btn-neutral float-right" title="Interact with NPC through WebUI" accesskey="n"
+    <a href="how-to-use-grscenes.html" class="btn btn-neutral float-right" title="How to Use GRscenes" accesskey="n"
       rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
         class="next-page"></a>
     
@@ -338,7 +329,7 @@ $<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_city.p
 
   <div role="contentinfo">
     <p>
-      &copy; Copyright 2024, OpenRobotLab.
+      &copy; Copyright 2025, OpenRobotLab.
 
     </p>
   </div>
@@ -359,8 +350,7 @@ $<span class="w"> </span>python<span class="w"> </span>./GRUtopia/demo/h1_city.p
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
 <li><a class="reference internal" href="#">Wander with keyboard</a><ul>
-<li><a class="reference internal" href="#wander-in-house">Wander in house</a></li>
-<li><a class="reference internal" href="#wander-in-city">Wander in city</a></li>
+<li><a class="reference internal" href="#brief-explanation">Brief Explanation</a></li>
 </ul>
 </li>
 </ul>

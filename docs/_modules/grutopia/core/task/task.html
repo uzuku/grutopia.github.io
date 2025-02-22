@@ -165,25 +165,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/scene.html">grutopia.core.scene</a></li>
@@ -258,71 +261,109 @@
                 
                 
   <h1>Source code for grutopia.core.task.task</h1><div class="highlight"><pre>
-<span></span><span class="c1"># import random</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">omni.isaac.core.scenes.scene</span> <span class="kn">import</span> <span class="n">Scene</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.tasks</span> <span class="kn">import</span> <span class="n">BaseTask</span> <span class="k">as</span> <span class="n">OmniBaseTask</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.utils.prims</span> <span class="kn">import</span> <span class="n">create_prim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.scenes.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTask</span> <span class="k">as</span> <span class="n">OmniBaseTask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.utils.prims</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_prim</span>
 
-<span class="kn">from</span> <span class="nn">grutopia.core.config</span> <span class="kn">import</span> <span class="n">TaskUserConfig</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot</span> <span class="kn">import</span> <span class="n">init_robots</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.scene</span> <span class="kn">import</span> <span class="n">create_object</span><span class="p">,</span> <span class="n">create_scene</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.task.metric</span> <span class="kn">import</span> <span class="n">BaseMetric</span><span class="p">,</span> <span class="n">create_metric</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.util</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_robots</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRobot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.runtime.task_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskRuntime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.scene</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_object</span><span class="p">,</span> <span class="n">create_scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.task.metric</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMetric</span><span class="p">,</span> <span class="n">create_metric</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
 
 
-<div class="viewcode-block" id="BaseTask"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask">[docs]</a><span class="k">class</span> <span class="nc">BaseTask</span><span class="p">(</span><span class="n">OmniBaseTask</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseTask"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">BaseTask</span><span class="p">(</span><span class="n">OmniBaseTask</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    wrap of omniverse isaac sim&#39;s base task</span>
 
 <span class="sd">    * enable register for auto register task</span>
-<span class="sd">    * contains robots</span>
+<span class="sd">    * contains scene/robots/objects.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tasks</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">TaskUserConfig</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">TaskRuntime</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">robots</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">offset</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robots</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseRobot</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">offset</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span> <span class="o">=</span> <span class="n">scene</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="n">runtime</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseMetric</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseMetric</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">work</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">metric_config</span> <span class="ow">in</span> <span class="n">runtime</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="n">metric_config</span><span class="o">.</span><span class="n">type</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_metric</span><span class="p">(</span><span class="n">metric_config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">metric_config</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="n">metric_config</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_metric</span><span class="p">(</span><span class="n">metric_config</span><span class="p">)</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.task.reward</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseReward</span><span class="p">,</span> <span class="n">create_reward</span>  <span class="c1"># noqa</span>
 
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">scene_asset_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">source</span><span class="p">,</span> <span class="n">prim_path</span> <span class="o">=</span> <span class="n">create_scene</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">scene_asset_path</span><span class="p">,</span>
-                                             <span class="n">prim_path_root</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;World/env_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">env_id</span><span class="si">}</span><span class="s1">/scene&#39;</span><span class="p">)</span>
-            <span class="n">create_prim</span><span class="p">(</span><span class="n">prim_path</span><span class="p">,</span>
-                        <span class="n">usd_path</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
-                        <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">scene_scale</span><span class="p">,</span>
-                        <span class="n">translation</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">scene_position</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BaseReward</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">create_reward</span><span class="p">(</span><span class="n">runtime</span><span class="o">.</span><span class="n">reward_setting</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">runtime</span><span class="o">.</span><span class="n">reward_setting</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">robots</span> <span class="o">=</span> <span class="n">init_robots</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="p">)</span>
+<div class="viewcode-block" id="BaseTask.load"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.load">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Loads the environment scene and initializes robots and objects.</span>
+
+<span class="sd">        This method first checks if a scene asset path is defined in the runtime configuration. If so, it creates a scene using the provided path and specified parameters such as scaling and positioning. The scene is then populated with robots and objects based on the configurations stored within `self.runtime`.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">        - Exceptions may be raised during file operations or USD scene creation, but specific exceptions are not documented here.</span>
+
+<span class="sd">        Attributes Modified:</span>
+<span class="sd">        - **self.robots**: A collection of initialized robots set up within the scene.</span>
+<span class="sd">        - **self.objects**: A dictionary mapping object names to their respective initialized instances within the scene.</span>
+<span class="sd">        - **self.loaded**: A boolean flag indicating whether the environment has been successfully loaded, set to `True` upon successful completion of this method.</span>
+
+<span class="sd">        Logs:</span>
+<span class="sd">        - Information about the initialized robots and objects is logged using the `log.info` method after successful setup.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">scene_asset_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">source</span><span class="p">,</span> <span class="n">prim_path</span> <span class="o">=</span> <span class="n">create_scene</span><span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">scene_asset_path</span><span class="p">),</span>
+                <span class="n">prim_path_root</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;World/env_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">env_id</span><span class="si">}</span><span class="s1">/scene&#39;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">create_prim</span><span class="p">(</span>
+                <span class="n">prim_path</span><span class="p">,</span>
+                <span class="n">usd_path</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
+                <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">scene_scale</span><span class="p">,</span>
+                <span class="n">translation</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">scene_position</span><span class="p">)],</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robots</span> <span class="o">=</span> <span class="n">init_robots</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span>
             <span class="n">_object</span> <span class="o">=</span> <span class="n">create_object</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
             <span class="n">_object</span><span class="o">.</span><span class="n">set_up_scene</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_object</span>
+
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="BaseTask.set_up_scene"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.set_up_scene">[docs]</a>    <span class="k">def</span> <span class="nf">set_up_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseTask.set_up_scene"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.set_up_scene">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_up_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adding assets to the stage as well as adding the encapsulated objects such as XFormPrim..etc</span>
+<span class="sd">        to the task_objects happens here.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            scene (Scene): [description]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span> <span class="o">=</span> <span class="n">scene</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseTask.get_observations"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.get_observations">[docs]</a>    <span class="k">def</span> <span class="nf">get_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<div class="viewcode-block" id="BaseTask.get_observations"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.get_observations">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns current observations from the objects needed for the behavioral layer.</span>
 
@@ -334,7 +375,9 @@
         <span class="n">obs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">robot_name</span><span class="p">,</span> <span class="n">robot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robots</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">obs</span><span class="p">[</span><span class="n">robot_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
+                <span class="n">_obs</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_obs</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">_obs</span><span class="p">:</span>
+                    <span class="n">obs</span><span class="p">[</span><span class="n">robot_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_obs</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -342,34 +385,64 @@
                 <span class="k">return</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="n">obs</span></div>
 
-    <span class="k">def</span> <span class="nf">update_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<div class="viewcode-block" id="BaseTask.update_metrics"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.update_metrics">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">update_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BaseTask.calculate_metrics"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.calculate_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="sd">        Updates all metrics stored within the instance.</span>
+
+<span class="sd">        Scans through the dictionary of metrics kept by the current instance,</span>
+<span class="sd">        invoking the &#39;update&#39; method on each one. This facilitates the aggregation</span>
+<span class="sd">        or recalculation of metric values as needed.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">        This method does not return any value; its purpose is to modify the state</span>
+<span class="sd">        of the metric objects internally.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">metric</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseTask.calculate_metrics"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.calculate_metrics">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Calculates and aggregates the results of all metrics registered within the instance.</span>
+
+<span class="sd">        This method iterates over the stored metrics, calling their respective `calc` methods to compute</span>
+<span class="sd">        the metric values. The computed values are then compiled into a dictionary, where each key corresponds</span>
+<span class="sd">        to the metrics&#39; name and each value is the result of the metric calculation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A dictionary containing the calculated results of all metrics, with metric names as keys.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Ensure that all metrics added to the instance have a `calc` method implemented.</span>
+
+<span class="sd">        Example Usage:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        # Assuming `self.metrics` is populated with metric instances.</span>
+<span class="sd">        results = calculate_metrics()</span>
+<span class="sd">        print(results)</span>
+<span class="sd">        # Output: {&#39;metric1&#39;: 0.85, &#39;metric2&#39;: 0.92, &#39;metric3&#39;: 0.78}</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">metrics_res</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">metrics_res</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">calc</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">metrics_res</span></div>
 
-<div class="viewcode-block" id="BaseTask.is_done"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.is_done">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseTask.is_done"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.is_done">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns True of the task is done.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            NotImplementedError: this must be overridden.</span>
+<span class="sd">        Returns True of the task is done. The result should be decided by the state of the task.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="BaseTask.individual_reset"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.individual_reset">[docs]</a>    <span class="k">def</span> <span class="nf">individual_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseTask.individual_reset"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.individual_reset">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">individual_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        reload this task individually without reloading whole world.</span>
+<span class="sd">        Reload this task individually without reloading whole world.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="BaseTask.pre_step"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.pre_step">[docs]</a>    <span class="k">def</span> <span class="nf">pre_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">simulation_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseTask.pre_step"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.pre_step">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">pre_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_step_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">simulation_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;called before stepping the physics simulation.</span>
 
 <span class="sd">        Args:</span>
@@ -379,26 +452,44 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="BaseTask.post_reset"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.post_reset">[docs]</a>    <span class="k">def</span> <span class="nf">post_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseTask.post_reset"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.post_reset">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">post_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calls while doing a .reset() on the world.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">robot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robots</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">robot</span><span class="o">.</span><span class="n">post_reset</span><span class="p">()</span>
         <span class="k">return</span></div>
 
+<div class="viewcode-block" id="BaseTask.cleanup"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.cleanup">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Called before calling a reset() on the world to removed temporary objects that were added during</span>
+<span class="sd">        simulation for instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="c1"># Using try here because we want to ignore all exceptions</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">remove_object</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;objs cleaned.&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">robot_name</span><span class="p">,</span> <span class="n">robot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robots</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Using try here because we want to ignore all exceptions</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">robot</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">remove_object</span><span class="p">(</span><span class="n">robot_name</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;robots cleaned.&#39;</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="BaseTask.register"><a class="viewcode-back" href="../../../../api/task.html#grutopia.core.task.task.BaseTask.register">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Register a task with its name(decorator).</span>
 <span class="sd">        Args:</span>
 <span class="sd">            name(str): name of the task</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">tasks_class</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">tasks_class</span><span class="p">):</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tasks_class</span>
 
             <span class="nd">@wraps</span><span class="p">(</span><span class="n">tasks_class</span><span class="p">)</span>
-            <span class="k">def</span> <span class="nf">wrapped_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">tasks_class</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">wrapped_function</span>
@@ -406,9 +497,9 @@
         <span class="k">return</span> <span class="n">decorator</span></div></div>
 
 
-<span class="k">def</span> <span class="nf">create_task</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">TaskUserConfig</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
-    <span class="n">task_cls</span> <span class="o">=</span> <span class="n">BaseTask</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">type</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">task_cls</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_task</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">TaskRuntime</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+    <span class="n">task_cls</span><span class="p">:</span> <span class="n">BaseTask</span> <span class="o">=</span> <span class="n">BaseTask</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">type</span><span class="p">](</span><span class="n">config</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">task_cls</span>
 </pre></div>
 
               </article>

@@ -165,25 +165,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../get_started/wander-with-keyboard.html">Wander with keyboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/webui.html">Interact with NPC through WebUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/how-to-use-grscenes.html">How to Use GRscenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-mocap.html">Teleoperating with Mocap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/teleoperating-with-visionpro.html">Teleoperating with VisionPro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/run-benchmark-baseline.html">Run Benchmark Baseline</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-npc.html">Customize NPC with your algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to use robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to use controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to use sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-controller.html">How to Use Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-sensor.html">How to Use Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-robot.html">How to Use Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/how-to-use-task.html">How to Use Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to add custom robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to add custom controller</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to add custom sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-robot.html">How to Add Custom Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-controller.html">How to Add Custom Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-sensor.html">How to Add Custom Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_tutorials/how-to-add-task.html">How to Add Custom Task</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/env.html">grutopia.core.env</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../api/datahub.html">grutopia.core.datahub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/register.html">grutopia.core.register</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/robot.html">grutopia.core.robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/scene.html">grutopia.core.scene</a></li>
@@ -258,52 +261,67 @@
                 
                 
   <h1>Source code for grutopia.core.robot.robot</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.prims</span> <span class="kn">import</span> <span class="n">RigidPrim</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.robots.robot</span> <span class="kn">import</span> <span class="n">Robot</span> <span class="k">as</span> <span class="n">IsaacRobot</span>
-<span class="kn">from</span> <span class="nn">omni.isaac.core.scenes</span> <span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.prims</span><span class="w"> </span><span class="kn">import</span> <span class="n">RigidPrim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.robots.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Robot</span> <span class="k">as</span> <span class="n">IsaacRobot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">omni.isaac.core.scenes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
 
-<span class="kn">from</span> <span class="nn">grutopia.core.config</span> <span class="kn">import</span> <span class="n">RobotUserConfig</span><span class="p">,</span> <span class="n">TaskUserConfig</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.robot.robot_model</span> <span class="kn">import</span> <span class="n">RobotModel</span><span class="p">,</span> <span class="n">RobotModels</span>
-<span class="kn">from</span> <span class="nn">grutopia.core.util</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.config.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotCfg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.runtime.task_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskRuntime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
 
 
-<div class="viewcode-block" id="BaseRobot"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot">[docs]</a><span class="k">class</span> <span class="nc">BaseRobot</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseRobot"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">BaseRobot</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class of robot.&quot;&quot;&quot;</span>
+
     <span class="n">robots</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">RobotUserConfig</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">:</span> <span class="n">RobotModel</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">RobotCfg</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">robot_model</span> <span class="o">=</span> <span class="n">robot_model</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">:</span> <span class="n">IsaacRobot</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="BaseRobot.set_up_to_scene"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.set_up_to_scene">[docs]</a>    <span class="k">def</span> <span class="nf">set_up_to_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobot.set_up_to_scene"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.set_up_to_scene">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_up_to_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up robot in the scene.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            scene (Scene): scene to setup.</span>
+<span class="sd">            scene (Scene): scene to set up.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span>
-        <span class="n">robot_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_model</span>
-        <span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;self.isaac_robot: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">))</span>
-        <span class="kn">from</span> <span class="nn">grutopia.core.robot.controller</span> <span class="kn">import</span> <span class="n">BaseController</span><span class="p">,</span> <span class="n">create_controllers</span>
-        <span class="kn">from</span> <span class="nn">grutopia.core.robot.sensor</span> <span class="kn">import</span> <span class="n">BaseSensor</span><span class="p">,</span> <span class="n">create_sensors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span> <span class="o">=</span> <span class="n">scene</span>
+        <span class="n">robot_cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">:</span>
+            <span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;self.isaac_robot: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">rigid_body</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rigid_bodies</span><span class="p">():</span>
+            <span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rigid_body</span><span class="p">)</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.controller</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseController</span><span class="p">,</span> <span class="n">create_controllers</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">grutopia.core.robot.sensor</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSensor</span><span class="p">,</span> <span class="n">create_sensors</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_controllers</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseSensor</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_sensors</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_controllers</span><span class="p">(</span><span class="n">robot_cfg</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseSensor</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_sensors</span><span class="p">(</span><span class="n">robot_cfg</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseRobot.post_reset"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.post_reset">[docs]</a>    <span class="k">def</span> <span class="nf">post_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobot.post_reset"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.post_reset">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">post_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up things that happen after the world resets.&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">for</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">sensor</span><span class="o">.</span><span class="n">post_reset</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseRobot.apply_action"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.apply_action">[docs]</a>    <span class="k">def</span> <span class="nf">apply_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">controller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">controller</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">sensor</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">rigid_body</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rigid_bodies</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scene</span><span class="o">.</span><span class="n">remove_object</span><span class="p">(</span><span class="n">rigid_body</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rigid body </span><span class="si">{</span><span class="n">rigid_body</span><span class="si">}</span><span class="s1"> removed&#39;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;robot </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> clean up&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseRobot.apply_action"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.apply_action">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">apply_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply actions of controllers to robot.</span>
 
 <span class="sd">        Args:</span>
@@ -313,7 +331,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseRobot.get_obs"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_obs">[docs]</a>    <span class="k">def</span> <span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseRobot.get_obs"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_obs">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get observation of robot, including controllers, sensors, and world pose.</span>
 
 <span class="sd">        Raises:</span>
@@ -321,15 +339,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseRobot.get_robot_ik_base"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_ik_base">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_ik_base</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RigidPrim</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get base link of ik controlled parts.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            RigidPrim: rigid prim of ik base link.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="BaseRobot.get_robot_base"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_base">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RigidPrim</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseRobot.get_robot_base"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_base">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_robot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RigidPrim</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get base link of robot.</span>
 
@@ -338,7 +348,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseRobot.get_robot_scale"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_scale">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseRobot.get_robot_scale"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_scale">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_robot_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get robot scale.</span>
 
 <span class="sd">        Returns:</span>
@@ -346,7 +356,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">get_local_scale</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseRobot.get_robot_articulation"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_articulation">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_articulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IsaacRobot</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseRobot.get_robot_articulation"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.get_robot_articulation">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_robot_articulation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IsaacRobot</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get isaac robots instance (articulation).</span>
 
 <span class="sd">        Returns:</span>
@@ -354,25 +364,25 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span></div>
 
-    <span class="k">def</span> <span class="nf">get_controllers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_controllers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span>
 
-    <span class="k">def</span> <span class="nf">get_world_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isaac_robot</span><span class="o">.</span><span class="n">get_world_pose</span><span class="p">()</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_rigid_bodies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RigidPrim</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="BaseRobot.register"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.BaseRobot.register">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a robot class with its name(decorator).</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name(str): name of the robot class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">robot_class</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">robot_class</span><span class="p">):</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">robots</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot_class</span>
 
             <span class="nd">@wraps</span><span class="p">(</span><span class="n">robot_class</span><span class="p">)</span>
-            <span class="k">def</span> <span class="nf">wrapped_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">robot_class</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">wrapped_function</span>
@@ -380,29 +390,22 @@
         <span class="k">return</span> <span class="n">decorator</span></div></div>
 
 
-<div class="viewcode-block" id="create_robots"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.create_robots">[docs]</a><span class="k">def</span> <span class="nf">create_robots</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">TaskUserConfig</span><span class="p">,</span> <span class="n">robot_models</span><span class="p">:</span> <span class="n">RobotModels</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseRobot</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create robot instances in config.</span>
+<div class="viewcode-block" id="create_robots"><a class="viewcode-back" href="../../../../api/robot.html#grutopia.core.robot.robot.create_robots">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">create_robots</span><span class="p">(</span><span class="n">runtime</span><span class="p">:</span> <span class="n">TaskRuntime</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseRobot</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create robot instances in runtime.</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        config (TaskUserConfig): user config.</span>
-<span class="sd">        robot_models (RobotModels): robot models.</span>
+<span class="sd">        runtime (TaskRuntime): task runtime.</span>
 <span class="sd">        scene (Scene): isaac scene.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Dict[str, BaseRobot]: robot instances dictionary.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">robot_map</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">robot</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">robots</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">robot</span> <span class="ow">in</span> <span class="n">runtime</span><span class="o">.</span><span class="n">robots</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">robot</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">BaseRobot</span><span class="o">.</span><span class="n">robots</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unknown robot type &quot;</span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
         <span class="n">robot_cls</span> <span class="o">=</span> <span class="n">BaseRobot</span><span class="o">.</span><span class="n">robots</span><span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">type</span><span class="p">]</span>
-        <span class="n">robot_models</span> <span class="o">=</span> <span class="n">robot_models</span><span class="o">.</span><span class="n">robots</span>
-        <span class="n">r_model</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">robot_models</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">robot</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
-                <span class="n">r_model</span> <span class="o">=</span> <span class="n">model</span>
-        <span class="k">if</span> <span class="n">r_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;robot model of &quot;</span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s1">&quot; is not found&#39;</span><span class="p">)</span>
-        <span class="n">robot_ins</span> <span class="o">=</span> <span class="n">robot_cls</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">r_model</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+        <span class="n">robot_ins</span><span class="p">:</span> <span class="n">BaseRobot</span> <span class="o">=</span> <span class="n">robot_cls</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
         <span class="n">robot_map</span><span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot_ins</span>
         <span class="n">robot_ins</span><span class="o">.</span><span class="n">set_up_to_scene</span><span class="p">(</span><span class="n">scene</span><span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;===== </span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> loaded =====&#39;</span><span class="p">)</span>
