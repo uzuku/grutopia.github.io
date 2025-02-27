@@ -278,7 +278,7 @@
 </section>
 <section id="supported-tasks">
 <h2>Supported Tasks<a class="headerlink" href="#supported-tasks" title="Permalink to this heading">¶</a></h2>
-<p>The directory <code class="docutils literal notranslate"><span class="pre">grutopia_extension/tasks/__init__.py</span></code> contains a list of all supported tasks:</p>
+<p>The directory <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia_extension/tasks/__init__.py"><code class="docutils literal notranslate"><span class="pre">grutopia_extension/tasks/__init__.py</span></code></a> contains a list of all available tasks:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grutopia_extension.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">manipulation_task</span><span class="p">,</span>
     <span class="n">mobile_manipulation_task</span><span class="p">,</span>
@@ -288,7 +288,7 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>We can also review the configuration of each individual task in <code class="docutils literal notranslate"><span class="pre">grutopia_extension/configs/tasks/__init__.py</span></code></p>
+<p>We can also review the configuration of each individual task in <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia_extension/configs/tasks/__init__.py"><code class="docutils literal notranslate"><span class="pre">grutopia_extension/configs/tasks/__init__.py</span></code></a>.</p>
 </section>
 <section id="how-to-use-a-task">
 <h2>How to Use a Task<a class="headerlink" href="#how-to-use-a-task" title="Permalink to this heading">¶</a></h2>
@@ -299,7 +299,7 @@
     <span class="n">task_config</span><span class="o">=</span><span class="n">SingleInferenceTaskCfg</span><span class="p">(</span>
         <span class="n">episodes</span><span class="o">=</span><span class="p">[</span>
             <span class="n">SingleInferenceEpisodeCfg</span><span class="p">(</span>
-                <span class="n">scene_asset_path</span><span class="o">=</span><span class="s1">&#39;GRUtopia/assets/scenes/empty.usd&#39;</span><span class="p">,</span>
+                <span class="n">scene_asset_path</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">ASSET_PATH</span> <span class="o">+</span> <span class="s1">&#39;/scenes/empty.usd&#39;</span><span class="p">,</span>
                 <span class="n">scene_scale</span><span class="o">=</span><span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span>
                 <span class="n">robots</span><span class="o">=</span><span class="p">[</span><span class="n">h1_1</span><span class="p">],</span>
             <span class="p">),</span>
@@ -309,7 +309,7 @@
 <span class="o">...</span>
 </pre></div>
 </div>
-<p>This configuration is excerpted from <code class="docutils literal notranslate"><span class="pre">demo/h1_locomotion.py</span></code>, which is a demo where a robot moves at a specified speed and direction. It is a task that consists of a single episode and does not terminate automatically, which is suitable for debugging the robot, controller, or sensor.</p>
+<p>This configuration is excerpted from <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia/demo/h1_locomotion.py"><code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia/demo/h1_locomotion.py</span></code></a>, which is a demo where a robot moves at a specified speed and direction. It is a task that consists of a single episode and does not terminate automatically, which is suitable for debugging the robot, controller, or sensor.</p>
 </section>
 </section>
 

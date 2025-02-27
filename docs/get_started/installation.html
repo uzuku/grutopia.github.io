@@ -293,7 +293,7 @@
 <li><p>Installation from GitHub</p></li>
 <li><p>Installation from PyPI</p></li>
 </ul>
-<p>In addition, the <a class="reference internal" href="how-to-use-grscenes.html"><span class="std std-doc">dataset</span></a> is provided alongside with a download script that supports dataset download  via OpenXLab and HuggingFace.</p>
+<p>In addition, the <a class="reference internal" href="how-to-use-grscenes.html"><span class="std std-doc">dataset</span></a> is provided alongside with a download script that supports dataset download via OpenXLab and HuggingFace. You can also <a class="reference internal" href="#prepare-dataset-manually"><span class="xref myst">Prepare Dataset Manually</span></a>.</p>
 <p>Before proceeding with the installation, ensure that you have <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_workstation.html">Isaac Sim 4.2.0</a> and <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">Conda</a> installed.</p>
 <section id="install-grutopia-from-github">
 <h3>Install GRUtopia from GitHub<a class="headerlink" href="#install-grutopia-from-github" title="Permalink to this heading">¶</a></h3>
@@ -336,7 +336,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..<sp
 </li>
 <li><p>Install GRUtopia</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;env&gt;
-$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">grutopia</span><span class="o">==</span><span class="m">2</span>.0.0
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>grutopia
 </pre></div>
 </div>
 </li>
@@ -418,6 +418,15 @@ $<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span
 </li>
 </ol>
 </section>
+<section id="prepare-dataset-manually">
+<h2>Prepare Dataset Manually<a class="headerlink" href="#prepare-dataset-manually" title="Permalink to this heading">¶</a></h2>
+<p>If you prefer the dataset manually, or you only want to download a subset of the dataset, you can refer to the <a class="reference internal" href="how-to-use-grscenes.html"><span class="std std-doc">dataset chapter</span></a> to find the links and content description.</p>
+<p>After downloading the dataset, you should use the following command to tell GRUtopia where the assets locate (with GRUtopia installed):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.set_assets_path
+</pre></div>
+</div>
+<p>The command will prompt you to enter the path to the dataset.</p>
+</section>
 </section>
 
 
@@ -471,6 +480,7 @@ $<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span
 </ul>
 </li>
 <li><a class="reference internal" href="#install-with-docker-linux">Install with Docker (Linux)</a></li>
+<li><a class="reference internal" href="#prepare-dataset-manually">Prepare Dataset Manually</a></li>
 </ul>
 </li>
 </ul>

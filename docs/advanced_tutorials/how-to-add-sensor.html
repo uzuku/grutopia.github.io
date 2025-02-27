@@ -322,7 +322,7 @@ It serves as an abstraction layer that can either encapsulate native sensors wit
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">get_data</span></code> method gets the sensor data in each step.</p>
-<p>For complete list of sensor methods, please refer to the <a class="reference internal" href="../api/robot.html"><span class="std std-doc">Seonsor API documentation</span></a>.</p>
+<p>For complete list of sensor methods, please refer to the <a class="reference internal" href="../api/robot.html#module-grutopia.core.robot.sensor"><span class="std std-ref">Sensor API documentation</span></a>.</p>
 <p>Please note that the registration of the sensor class is done through the <code class="docutils literal notranslate"><span class="pre">&#64;BaseSensor.register</span></code> decorator, and the registered name should match the value of <code class="docutils literal notranslate"><span class="pre">type</span></code> field within the corresponding sensor config class (here is <code class="docutils literal notranslate"><span class="pre">DepthCamera</span></code>).</p>
 <p>For some native sensor types, initialization after env reset is required for the sensor to work properly. The <code class="docutils literal notranslate"><span class="pre">post_reset</span></code> method of sensor is meant to be used in this situation.</p>
 <p>An example of sensor class implementation is shown as following:</p>

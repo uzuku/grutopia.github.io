@@ -267,15 +267,52 @@
                 
   <section id="how-to-use-grscenes">
 <h1>How to Use GRscenes<a class="headerlink" href="#how-to-use-grscenes" title="Permalink to this heading">¶</a></h1>
-<section id="where-to-download">
-<h2>Where to Download<a class="headerlink" href="#where-to-download" title="Permalink to this heading">¶</a></h2>
+<section id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this heading">¶</a></h2>
 <p>GRScenes has been publicly released on <a class="reference external" href="https://openxlab.org.cn/datasets/OpenRobotLab/GRScenes"><strong>OpenXLab</strong></a>, <a class="reference external" href="https://www.modelscope.cn/datasets/Shanghai_AI_Laboratory/GRScenes/summary"><strong>ModelScope</strong></a> and <a class="reference external" href="https://huggingface.co/datasets/OpenRobotLab/GRScenes"><strong>HuggingFace</strong></a>.</p>
 </section>
-<section id="instructions">
-<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading">¶</a></h2>
-<p>The GRScenes dataset provides nearly 100 high-quality scenes, covering home and commercial scenes. The dataset directory structure is as follows.</p>
-<section id="grscenes-100-directory-structure">
-<h3>GRScenes-100 Directory Structure<a class="headerlink" href="#grscenes-100-directory-structure" title="Permalink to this heading">¶</a></h3>
+<section id="overview-of-dataset">
+<h2>Overview of dataset<a class="headerlink" href="#overview-of-dataset" title="Permalink to this heading">¶</a></h2>
+<p>The directory structure of dataset is as following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRScenes
+├── benchmark
+│   ├── meta.zip
+│   ├── object_captions_embeddings.pkl
+│   └── ...
+├── metafile.yaml
+├── objects
+│   ├── table
+│   └── ...
+├── README.md
+├── robots
+│   ├── aliengo/
+│   ├── franka/
+│   ├── g1/
+│   ├── gr1/
+│   ├── h1/
+│   └── ...
+└── scenes
+    ├── empty.usd
+    ├── demo_scenes/
+    └── GRScenes-100/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>benchmark: some metadata files required for running benchmark baselines.</p></li>
+<li><p>objects: USD files of standalone objects.</p></li>
+<li><p>robots: USD files of robots and model weights for controllers.</p></li>
+<li><p>scenes:</p>
+<ul>
+<li><p>empty.usd: a minimum scene with ground plane.</p></li>
+<li><p>demo_scenes: a directory containing scenes for demo scripts.</p></li>
+<li><p>GRScenes-100: a directory containing nearly 100 high-quality scenes, covering home and commercial scenes. You can refer to <a class="reference internal" href="#grscenes-100"><span class="xref myst">GRScenes-100</span></a> chapter for detailed information.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="grscenes-100">
+<h2>GRScenes-100<a class="headerlink" href="#grscenes-100" title="Permalink to this heading">¶</a></h2>
+<p>Directory structure of GRScenes-100 is as following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRScenes-100/commercial_scenes.zip --(unzip)--&gt; commercial_scenes
 └── ...
 GRScenes-100/home_scenes.zip --(unzip)--&gt; home_scenes
@@ -325,13 +362,15 @@ GRScenes-100/home_scenes.zip --(unzip)--&gt; home_scenes
 </ul>
 </section>
 <section id="usage">
-<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h3>
-<p>Please ensure that the <span class="xref myst">prerequisites</span> has been configured before using GRScenes-100.</p>
-<p><strong>1. Use the scene asset for your custom task</strong></p>
-<p>Currently, we have provided two types of scene assets for navigation and manipulation tasks respectively. Users can get these scene assets from the GRScenes dataset, the scene asset path is typically like <code class="docutils literal notranslate"><span class="pre">.../GRScenes-100/home_scenes/scenes/{scene_id}/start_result_xxx.usd</span></code>. Please refer to the <a class="reference internal" href="#../../../grutopia/demo/"><span class="xref myst">demo</span></a> to learn where to input the parameter <code class="docutils literal notranslate"><span class="pre">scene_asset_path</span></code>.</p>
-<p><strong>2. Use the raw dataset</strong></p>
-<p>The dataset contains raw models and raw scenes. We recommend using <a class="reference external" href="https://openusd.org/release/intro.html">OpenUSD python SDK</a> to apply physics APIs such as the rigid body and collider to the models. We also provide an example <a class="reference download internal" download="" href="../_downloads/56ec3ff74897df7fc25c5910ebd31af7/preprocess.py"><span class="xref download myst">preprocess</span></a> script to learn the detailed workflow of the physics property bindings. Besides, here are some other <a class="reference internal" href="#../../../toolkits/grscenes_scripts/"><span class="xref myst">tool scripts</span></a> for GRScenes-100.</p>
-</section>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Use the scene asset for your custom task</p></li>
+</ol>
+<p>Currently, we have provided two types of scene assets for navigation and manipulation tasks respectively. Users can get these scene assets from the GRScenes dataset, the scene asset path is typically like <code class="docutils literal notranslate"><span class="pre">.../GRScenes-100/home_scenes/scenes/{scene_id}/start_result_xxx.usd</span></code>. Please refer to the <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/tree/main/grutopia/demo">examples</a> to learn how to specify scene through <code class="docutils literal notranslate"><span class="pre">scene_asset_path</span></code> field in config.</p>
+<ol class="arabic simple" start="2">
+<li><p>Use the raw dataset</p></li>
+</ol>
+<p>The dataset contains raw models and raw scenes. We recommend using <a class="reference external" href="https://openusd.org/release/intro.html">OpenUSD python SDK</a> to apply physics APIs such as the rigid body and collider to the models. We also provide an example <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/toolkits/grscenes_scripts/preprocess.py">preprocess</a> script to learn the detailed workflow of the physics property bindings. Besides, here are some other <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/tree/main/toolkits/grscenes_scripts">tool scripts</a> for GRScenes-100.</p>
 </section>
 </section>
 
@@ -379,12 +418,10 @@ GRScenes-100/home_scenes.zip --(unzip)--&gt; home_scenes
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
 <li><a class="reference internal" href="#">How to Use GRscenes</a><ul>
-<li><a class="reference internal" href="#where-to-download">Where to Download</a></li>
-<li><a class="reference internal" href="#instructions">Instructions</a><ul>
-<li><a class="reference internal" href="#grscenes-100-directory-structure">GRScenes-100 Directory Structure</a></li>
+<li><a class="reference internal" href="#download">Download</a></li>
+<li><a class="reference internal" href="#overview-of-dataset">Overview of dataset</a></li>
+<li><a class="reference internal" href="#grscenes-100">GRScenes-100</a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

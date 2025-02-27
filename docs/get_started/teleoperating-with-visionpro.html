@@ -316,7 +316,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>GRUto
 </pre></div>
 </div>
 <p>If you see the message “waiting for teleop action…”, it indicates that the solver process has started successfully.</p>
-<p>Then open another session with grutopia conda environment, and specify the locations of server cert and key in <code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia/demo/gr1_teleop.py</span></code>.</p>
+<p>Then open another session with grutopia conda environment, and specify the locations of server cert and key in <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia/demo/gr1_teleop.py"><code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia/demo/gr1_teleop.py</span></code></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 <span class="n">teleop</span> <span class="o">=</span> <span class="n">VuerTeleop</span><span class="p">(</span>
     <span class="n">cert_file</span><span class="o">=</span><span class="s1">&#39;./GRUtopia/mkcert/cert.pem&#39;</span><span class="p">,</span> <span class="n">key_file</span><span class="o">=</span><span class="s1">&#39;./GRUtopia/mkcert/key.pem&#39;</span><span class="p">,</span>   <span class="c1"># Specify locations of your cert and key here</span>
@@ -346,7 +346,7 @@ Select “Enter VR” to begin operations.</p>
 <li><p>The pose of the user’s right hand.</p></li>
 </ul>
 <p>The poses are used to control robot through a teleop controller, followed by a env step. Once the env step finished, the latest vision is collected from cameras and transferred to VisionPro.</p>
-<p>You can refer to <code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia/demo/gr1_teleop.py</span></code> for the complete implementation.</p>
+<p>You can refer to <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia/demo/gr1_teleop.py"><code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia/demo/gr1_teleop.py</span></code></a> for the complete implementation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">teleop</span> <span class="o">=</span> <span class="n">VuerTeleop</span><span class="p">(</span><span class="n">cert_file</span><span class="o">=</span><span class="s1">&#39;./mkcert/cert.pem&#39;</span><span class="p">,</span>
                     <span class="n">key_file</span><span class="o">=</span><span class="s1">&#39;./mkcert/key.pem&#39;</span><span class="p">,</span>
                     <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">720</span><span class="p">,</span> <span class="mi">1280</span><span class="p">))</span>

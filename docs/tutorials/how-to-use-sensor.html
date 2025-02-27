@@ -272,7 +272,7 @@
 </div></blockquote>
 <section id="supported-sensors">
 <h2>Supported Sensors<a class="headerlink" href="#supported-sensors" title="Permalink to this heading">¶</a></h2>
-<p>The directory <code class="docutils literal notranslate"><span class="pre">grutopia_extension/sensors/</span></code> contains a list of all supported sensors::</p>
+<p>The directory <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/tree/main/grutopia_extension/sensors"><code class="docutils literal notranslate"><span class="pre">grutopia_extension/sensors/</span></code></a> contains a list of all available sensors::</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension/
 └── sensors
     ├── camera.py
@@ -287,7 +287,7 @@
 <p>Typically, a sensor should be used with a robot. So first of all, the sensor configuration should be added to the sensor list in robot configuration:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>camera_cfg = CameraCfg(...)
 
-h1_1 = HumanoidRobotCfg(
+h1_1 = H1RobotCfg(
     position=(0.0, 0.0, 1.05),
     sensors=[
         camera_cfg,

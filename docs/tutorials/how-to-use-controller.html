@@ -276,7 +276,7 @@
 </section>
 <section id="supported-controllers">
 <h2>Supported Controllers<a class="headerlink" href="#supported-controllers" title="Permalink to this heading">¶</a></h2>
-<p>The directory <code class="docutils literal notranslate"><span class="pre">grutopia_extension/controllers/</span></code> contains a list of all supported controllers:</p>
+<p>The directory <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/tree/main/grutopia_extension/controllers"><code class="docutils literal notranslate"><span class="pre">grutopia_extension/controllers/</span></code></a> contains a list of all available controllers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension/
 └── controllers
     ├── aliengo_move_by_speed_controller.py
@@ -285,7 +285,7 @@
     ├── gr1_move_by_speed_controller.py
     ├── gr1_teleop_controller.py
     ├── gripper_controller.py
-    ├── humanoid_move_by_speed_controller.py
+    ├── h1_move_by_speed_controller.py
     ├── ik_controller.py
     ├── joint_controller.py
     ├── move_along_path_points_controller.py
@@ -303,7 +303,7 @@
 <p>A controller must be used with a robot. So first of all, the controller configuration must be added to the controller list in robot configuration:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>move_by_speed_cfg = MoveBySpeedCfg(...)
 
-h1_1 = HumanoidRobotCfg(
+h1_1 = H1RobotCfg(
     position=(0.0, 0.0, 1.05),
     controllers=[
         move_by_speed_cfg,

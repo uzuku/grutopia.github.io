@@ -326,7 +326,7 @@
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">action_to_control</span></code> method translates the input action into joint signals to apply in each step.</p>
-<p>For complete list of controller methods, please refer to the <a class="reference internal" href="../api/robot.html"><span class="std std-doc">Controller API documentation</span></a>.</p>
+<p>For complete list of controller methods, please refer to the <a class="reference internal" href="../api/robot.html#module-grutopia.core.robot.controller"><span class="std std-ref">Controller API documentation</span></a>.</p>
 <p>Please note that the registration of the controller class is done through the <code class="docutils literal notranslate"><span class="pre">&#64;BaseController.register</span></code> decorator, and the registered name should match the value of <code class="docutils literal notranslate"><span class="pre">type</span></code> field within the corresponding controller config class (here is <code class="docutils literal notranslate"><span class="pre">DemoController</span></code>).</p>
 <p>Sometimes the calculation logic is defined in a method named <code class="docutils literal notranslate"><span class="pre">forward</span></code> to show the input parameters the controller accepts, making it more human-readable. In this case, the <code class="docutils literal notranslate"><span class="pre">action_to_control</span></code> method itself only expands the parameters, and invokes <code class="docutils literal notranslate"><span class="pre">forward</span></code> method to calculate the joint signals.</p>
 <p>An example of controller class implementation is shown as following:</p>
