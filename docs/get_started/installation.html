@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; GRUtopia v2.0.0 documentation</title>
+  <title>Installation &mdash; GRUtopia v2.0.1 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -403,6 +403,7 @@ $<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </spa
 </div>
 </li>
 <li><p>Download dataset to the specified directory.</p>
+<p>We recommend downloading the dataset to a location under <code class="docutils literal notranslate"><span class="pre">/isaac-sim/GRUtopia/</span></code> in container (which is mounted from a host path) so that it can be retained across container recreations.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run inside container</span>
 $<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>grutopia.download_assets
 </pre></div>

@@ -13,7 +13,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Run Benchmark Baseline &mdash; GRUtopia v2.0.0 documentation</title>
+  <title>Run Benchmark Baseline &mdash; GRUtopia v2.0.1 documentation</title>
   
 
   <link rel="shortcut icon" href="../_static/images/logo192.png" />
@@ -267,43 +267,48 @@
                 
   <section id="run-benchmark-baseline">
 <h1>Run Benchmark Baseline<a class="headerlink" href="#run-benchmark-baseline" title="Permalink to this heading">¶</a></h1>
-<section id="start-baseline-agent">
-<h2>Start Baseline Agent<a class="headerlink" href="#start-baseline-agent" title="Permalink to this heading">¶</a></h2>
-<blockquote>
-<div><p>These agents are currently in the directory <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/tree/main/grutopia_extension/agents"><code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia_extension/agents/</span></code></a>. They may be removed from this repository in the future.</p>
-</div></blockquote>
-<p><strong>System requirements:</strong></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The system overview when running the benchmark baseline is as follows:</p>
+<img src="../_static/image/agent_baseline.png" width="400">
+<p>The agent runs as a separate process with its own python virtual environment, and currently it communicates with the simulation env process through HTTP localhost.</p>
+<p>If you are running GRUtopia in a container, a separate container is recommended for running the agent, and make sure they are in the same network namespace (that is, the containers can connect to each other through localhost).</p>
+<p>For social-navigation/mobile-manipulation benchmark, both the agent process and simulation env process require 16GB+ VRAM separately. We’ve tested them on a host with 2 RTX 4090 equipped, one for the baseline agent process and one for the simulation env process, and you can take it as a spec reference.</p>
+<p><strong>Hardware requirements:</strong></p>
 <ol class="arabic simple">
-<li><p>At least 2 NVIDIA’s RTX-supported GPU installed on the same host.</p></li>
-<li><p>64GB RAM</p></li>
-<li><p>16GB+ VRAM</p></li>
+<li><p>At least 2 RTX-4090 on the same host (or other RTX GPU with equivalent VRAM resource).</p></li>
+<li><p>64GB+ RAM</p></li>
 </ol>
-<blockquote>
-<div><p><strong>Note</strong>: We’ve tested our benchmarks on RTX 4090, and you can take it as a spec reference.</p>
-</div></blockquote>
-<p><strong>Use the agent of the benchmark baseline:</strong></p>
+<p>Generally, running benchmark with our agent baseline including the following steps:</p>
 <ol class="arabic simple">
-<li><p>Start agent as follows.</p></li>
-<li><p>Start the benchmark with run files.</p></li>
+<li><p>Start the baseline agent process.</p></li>
+<li><p>Generate config for all episodes.</p></li>
+<li><p>Run all episodes in simulation.</p></li>
 </ol>
+<hr class="docutils" />
+<p><strong>NOTE</strong>: Agents implementations are currently in the directory <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/tree/main/grutopia_extension/agents"><code class="docutils literal notranslate"><span class="pre">GRUtopia/grutopia_extension/agents/</span></code></a>. They may be migrated to a separate repo in the future.</p>
+</section>
+<section id="social-navigation">
+<h2>Social Navigation<a class="headerlink" href="#social-navigation" title="Permalink to this heading">¶</a></h2>
 <section id="start-baseline-agent-for-social-navigation-benchmark">
-<h3>Start Baseline Agent For Social Navigation Benchmark<a class="headerlink" href="#start-baseline-agent-for-social-navigation-benchmark" title="Permalink to this heading">¶</a></h3>
-<p>The follow steps shows how to run a demo for social navigation agent.</p>
-<section id="install-environment-dependencies">
-<h4>1. Install Environment Dependencies<a class="headerlink" href="#install-environment-dependencies" title="Permalink to this heading">¶</a></h4>
-<blockquote>
-<div><p><strong>Create a new conda env for agent FIRST !!!!!</strong></p>
-</div></blockquote>
-<p>Then install the required Python packages, use the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure your cudatoolkit version matches you pytorch cuda version</span>
-<span class="n">cd</span> <span class="n">grutopia_extension</span><span class="o">/</span><span class="n">agents</span><span class="o">/</span><span class="n">social_navigation_agent</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<h3>1 Start Baseline Agent For Social Navigation Benchmark<a class="headerlink" href="#start-baseline-agent-for-social-navigation-benchmark" title="Permalink to this heading">¶</a></h3>
+<section id="install-dependencies-for-agent">
+<h4>1.1 Install Dependencies for Agent<a class="headerlink" href="#install-dependencies-for-agent" title="Permalink to this heading">¶</a></h4>
+<p>Create a new conda/venv env (for agent), and then install the dependencies within the env:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure your cuda toolkit version matches your pytorch cuda version</span>
+<span class="nb">cd</span><span class="w"> </span>grutopia_extension/agents/social_navigation_agent
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>Tmux is required for running the agent entrypoint script. You can install it by:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux
 </pre></div>
 </div>
 </section>
 <section id="install-submodules">
-<h4>2. Install Submodules<a class="headerlink" href="#install-submodules" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>grutopia_extension/agents/social_navigation_agent
+<h4>1.2 Install Submodules<a class="headerlink" href="#install-submodules" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># PWD: grutopia_extension/agents/social_navigation_agent</span>
 mkdir<span class="w"> </span>images
 <span class="c1"># Please make sure your torch cuda version is equal with your cuda version</span>
 <span class="c1"># GroundingDINO</span>
@@ -311,71 +316,123 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/IDEA-
 
 <span class="c1"># YOLOv7</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/WongKinYiu/yolov7.git
+</pre></div>
+</div>
+<p>The directory structure of the submodules is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension
+├── agents
+│   ├── social_navigation_agent
+│   │   ├── GroundingDINO                            # GroundingDINO repo
+│   │   ├── images                                   # Empty directory
+│   │   └── yolov7                                   # yolov7 repo
 </pre></div>
 </div>
 </section>
 <section id="download-model-weights">
-<h4>3. Download Model Weights<a class="headerlink" href="#download-model-weights" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>data
+<h4>1.3 Download Model Weights<a class="headerlink" href="#download-model-weights" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># PWD: grutopia_extension/agents/social_navigation_agent</span>
+mkdir<span class="w"> </span>data
 <span class="nb">cd</span><span class="w"> </span>data
 </pre></div>
 </div>
 <p>Download the necessary model weights from the provided sources and place them in an accessible directory within the
-project, put them under data folder. These weights are essential for running the models.</p>
+project, put them under the data folder. These weights are essential for running the models.</p>
 <ul class="simple">
-<li><p><strong>MobileSAM</strong>: Download mobile_sam.pt from
-the <a class="reference external" href="https://github.com/ChaoningZhang/MobileSAM">MobileSAM GitHub Repository</a>.</p></li>
-<li><p><strong>GroundingDINO</strong>: Download groundingdino_swint_ogc.pth from
-the <a class="reference external" href="https://github.com/IDEA-Research/GroundingDINO">GroundingDINO GitHub Repository</a>.</p></li>
-<li><p><strong>YOLOv7</strong>: Download yolov7-e6e.pt from the <a class="reference external" href="https://github.com/WongKinYiu/yolov7">YOLOv7 GitHub Repository</a>.</p></li>
+<li><p>MobileSAM: Download mobile_sam.pt from the <a class="reference external" href="https://github.com/ChaoningZhang/MobileSAM/blob/master/weights/mobile_sam.pt">MobileSAM GitHub Repository</a>.</p></li>
+<li><p>GroundingDINO: Download groundingdino_swint_ogc.pth from
+the <a class="reference external" href="https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha2/groundingdino_swinb_cogcoor.pth">GroundingDINO GitHub Repository</a>.</p></li>
+<li><p>YOLOv7: Download yolov7-e6e.pt from the <a class="reference external" href="https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7-e6e.pt">YOLOv7 GitHub Repository</a>.</p></li>
 </ul>
-<blockquote>
-<div><p>Note: Ensure these files are saved in a directory where the code can access them.</p>
-</div></blockquote>
-</section>
-<section id="set-api-key">
-<h4>4. Set Api Key<a class="headerlink" href="#set-api-key" title="Permalink to this heading">¶</a></h4>
-<p>Put your api key in <code class="docutils literal notranslate"><span class="pre">./modules/vlm/api_key</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── api_key.txt
-├── azure_api_key.txt
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension
+├── agents
+│   ├── social_navigation_agent
+│   │   ├── data
+│   │   │   ├── groundingdino_swint_ogc.pth
+│   │   │   ├── mobile_sam.pt
+│   │   │   └── yolov7-e6e.pt
 </pre></div>
 </div>
 </section>
-<section id="run-the-initialization-script">
-<h4>5. Run the Initialization Script<a class="headerlink" href="#run-the-initialization-script" title="Permalink to this heading">¶</a></h4>
-<p>Launch required servers for the agent.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/launch_vlm_servers.sh
+<section id="configure-api-keys">
+<h4>1.4 Configure API Keys<a class="headerlink" href="#configure-api-keys" title="Permalink to this heading">¶</a></h4>
+<p>Put your API keys under <code class="docutils literal notranslate"><span class="pre">./modules/vlm/api_key</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension
+├── agents
+│   ├── social_navigation_agent
+│   │   ├── modules
+│   │   │   └── vlm
+│   │   │   │   └── api_key
+│   │   │   │   │   ├── azure_api_key.txt
+│   │   │   │   │   └── azure_api_key_e.txt
+</pre></div>
+</div>
+<p>As mentioned above:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">azure_api_key.txt</span></code>: The API key for the Azure OpenAI <code class="docutils literal notranslate"><span class="pre">gpt-4o</span></code> model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">azure_api_key_e.txt</span></code>: The API key for the Azure OpenAI <code class="docutils literal notranslate"><span class="pre">text-embedding-3-large</span></code> embedding model.</p></li>
+</ul>
+<p>You can learn how to get the keys through this <a class="reference external" href="https://learn.microsoft.com/zh-cn/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions">link</a>.</p>
+</section>
+<section id="run-the-agent-process">
+<h4>1.5 Run the Agent Process<a class="headerlink" href="#run-the-agent-process" title="Permalink to this heading">¶</a></h4>
+<p>Launch the agent process</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># PWD: grutopia_extension/agents/social_navigation_agent</span>
+./scripts/launch_vlm_servers.sh
 </pre></div>
 </div>
 </section>
-<section id="generate-episodes-config">
-<h4>6. Generate episodes config<a class="headerlink" href="#generate-episodes-config" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate episodes config for social navigation task</span>
-<span class="n">python</span> <span class="n">GRUtopia</span><span class="o">/</span><span class="n">grutopia_extension</span><span class="o">/</span><span class="n">agents</span><span class="o">/</span><span class="n">social_navigation_agent</span><span class="o">/</span><span class="n">generate_sn_episodes</span><span class="o">.</span><span class="n">py</span>
+</section>
+<section id="generate-episodes-config-for-social-navigation-task">
+<h3>2. Generate episodes config for social navigation task<a class="headerlink" href="#generate-episodes-config-for-social-navigation-task" title="Permalink to this heading">¶</a></h3>
+<p>A python script <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia_extension/agents/social_navigation_agent/generate_sn_episodes.py"><code class="docutils literal notranslate"><span class="pre">generate_sn_episodes.py</span></code></a> is provided to generate episodes config for social navigation task. Currently it generates a python entrypoint file for each episode, since our env does not fully support multiple episodes yet. For example, if there’s 30 episodes to run for the benchmark, 30 python scripts will be generated, and each python script contains the full process to run one episode in simulation Env.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate episodes config for social navigation task</span>
+<span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
+<span class="nb">cd</span><span class="w"> </span>..
+python<span class="w"> </span>GRUtopia/grutopia_extension/agents/social_navigation_agent/generate_sn_episodes.py<span class="w"> </span>--help<span class="w">  </span><span class="c1"># See options when generating episodes config</span>
+python<span class="w"> </span>GRUtopia/grutopia_extension/agents/social_navigation_agent/generate_sn_episodes.py
 </pre></div>
 </div>
-<p>The results will be saved in /path/to/results given in the corresponding config creating files.</p>
+<p>If no options are provided, the generated scripts will be saved in <code class="docutils literal notranslate"><span class="pre">./sn_episodes</span></code>. You can override the path when generating (see <code class="docutils literal notranslate"><span class="pre">--help</span></code>).</p>
+</section>
+<section id="run-the-episodes-in-simulation-env">
+<h3>3 Run the Episodes in Simulation Env<a class="headerlink" href="#run-the-episodes-in-simulation-env" title="Permalink to this heading">¶</a></h3>
+<p>Open a new session and switch to the python virtual environment for simulation env, which is the one you created when <a class="reference internal" href="installation.html"><span class="std std-doc">install GRUtopia</span></a>.</p>
+<p>First install the dependencies required for running the benchmark:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/benchmark.txt
+</pre></div>
+</div>
+<p>It may take quite a long time to run all the episodes. You can verify the setting by running the demo episode first:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
+<span class="nb">cd</span><span class="w"> </span>..
+python<span class="w"> </span>GRUtopia/grutopia/demo/h1_social_navigation.py
+</pre></div>
+</div>
+<p>If the demo episode runs successfully, you can run all the episodes in the benchmark by running all the python scripts generated in step 2. The scripts can also be distributed to different machines and run in parallel as long as the agent process is started on these machines (since currently the two processes can only communicated through localhost…).</p>
+<p>Currently, the process and logic of running benchmark baseline is quite rough, and we are continuously working on optimizing it.</p>
 </section>
 </section>
+<section id="mobile-manipulation">
+<h2>Mobile Manipulation<a class="headerlink" href="#mobile-manipulation" title="Permalink to this heading">¶</a></h2>
 <section id="start-baseline-agent-for-mobile-manipulation-benchmark">
-<h3>Start Baseline Agent For Mobile Manipulation Benchmark<a class="headerlink" href="#start-baseline-agent-for-mobile-manipulation-benchmark" title="Permalink to this heading">¶</a></h3>
-<p>The follow steps shows how to run a demo for mobile manipulation agent.</p>
-<section id="id1">
-<h4>1. Install Environment Dependencies<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
-<blockquote>
-<div><p><strong>Create a new conda env for agent FIRST !!!!!</strong></p>
-</div></blockquote>
-<p>Then install the required Python packages, use the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure your cudatoolkit version matches you pytorch cuda version</span>
-<span class="n">cd</span> <span class="n">grutopia_extension</span><span class="o">/</span><span class="n">agents</span><span class="o">/</span><span class="n">mobile_manipulation_agent</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<h3>1 Start Baseline Agent For Mobile Manipulation Benchmark<a class="headerlink" href="#start-baseline-agent-for-mobile-manipulation-benchmark" title="Permalink to this heading">¶</a></h3>
+<section id="install-environment-dependencies">
+<h4>1.1 Install Environment Dependencies<a class="headerlink" href="#install-environment-dependencies" title="Permalink to this heading">¶</a></h4>
+<p>Create a new conda/venv env (for agent), and then install the dependencies within the env:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure your cuda toolkit version matches your pytorch cuda version</span>
+<span class="nb">cd</span><span class="w"> </span>grutopia_extension/agents/mobile_manipulation_agent
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>Tmux is required for running the agent entrypoint script. You can install it by:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h4>2. Install Submodules<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
-<p>8</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>grutopia_extension/agents/mobile_manipulation_agent
+<section id="id1">
+<h4>1.2 Install Submodules<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># PWD: grutopia_extension/agents/mobile_manipulation_agent</span>
 mkdir<span class="w"> </span>images
 <span class="c1"># Please make sure your torch cuda version is equal with your cuda version</span>
 <span class="c1"># GroundingDINO</span>
@@ -385,73 +442,99 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/IDEA-
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/WongKinYiu/yolov7.git
 </pre></div>
 </div>
+<p>The directory structure of the submodules are as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension
+├── agents
+│   ├── mobile_manipulation_agent
+│   │   ├── GroundingDINO                            # GroundingDINO repo
+│   │   ├── images                                   # Empty directory
+│   │   └── yolov7                                   # yolov7 repo
+</pre></div>
+</div>
 </section>
-<section id="id3">
-<h4>3. Download Model Weights<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>data
+<section id="id2">
+<h4>1.3 Download Model Weights<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># PWD: grutopia_extension/agents/mobile_manipulation_agent</span>
+mkdir<span class="w"> </span>data
 <span class="nb">cd</span><span class="w"> </span>data
 </pre></div>
 </div>
 <p>Download the necessary model weights from the provided sources and place them in an accessible directory within the
 project, put them under data folder. These weights are essential for running models.</p>
 <ul class="simple">
-<li><p>MobileSAM: Download mobile_sam.pt from the <a class="reference external" href="https://github.com/ChaoningZhang/MobileSAM">MobileSAM GitHub Repository</a>.</p></li>
+<li><p>MobileSAM: Download mobile_sam.pt from the <a class="reference external" href="https://github.com/ChaoningZhang/MobileSAM/blob/master/weights/mobile_sam.pt">MobileSAM GitHub Repository</a>.</p></li>
 <li><p>GroundingDINO: Download groundingdino_swint_ogc.pth from
-the <a class="reference external" href="https://github.com/IDEA-Research/GroundingDINO">GroundingDINO GitHub Repository</a>.</p></li>
-<li><p>YOLOv7: Download yolov7-e6e.pt from the <a class="reference external" href="https://github.com/WongKinYiu/yolov7">YOLOv7 GitHub Repository</a>.</p></li>
+the <a class="reference external" href="https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha2/groundingdino_swinb_cogcoor.pth">GroundingDINO GitHub Repository</a>.</p></li>
+<li><p>YOLOv7: Download yolov7-e6e.pt from the <a class="reference external" href="https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7-e6e.pt">YOLOv7 GitHub Repository</a>.</p></li>
 </ul>
-<blockquote>
-<div><p>Note: Ensure these files are saved in a directory where the code can access them.</p>
-</div></blockquote>
+<p><strong>NOTE</strong>: Ensure these files are saved in a directory where the code can access them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension
+├── agents
+│   ├── mobile_manipulation_agent
+│   │   ├── data
+│   │   │   ├── groundingdino_swint_ogc.pth
+│   │   │   ├── mobile_sam.pt
+│   │   │   └── yolov7-e6e.pt
+</pre></div>
+</div>
+</section>
+<section id="configure-api-key">
+<h4>1.4 Configure API Key<a class="headerlink" href="#configure-api-key" title="Permalink to this heading">¶</a></h4>
+<p>Put your api key under <code class="docutils literal notranslate"><span class="pre">./modules/vlm/api_key</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>grutopia_extension
+├── agents
+│   ├── mobile_manipulation_agent
+│   │   ├── modules
+│   │   │   └── vlm
+│   │   │   │   └── api_key
+│   │   │   │   │   ├── azure_api_key.txt
+│   │   │   │   │   └── azure_api_key_e.txt
+</pre></div>
+</div>
+<p>As mentioned above:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">azure_api_key.txt</span></code>: The API key for the Azure OpenAI <code class="docutils literal notranslate"><span class="pre">gpt-4o</span></code> model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">azure_api_key_e.txt</span></code>: The API key for the Azure OpenAI <code class="docutils literal notranslate"><span class="pre">text-embedding-3-large</span></code> embedding model.</p></li>
+</ul>
+<p>You can learn how to get the keys through this <a class="reference external" href="https://learn.microsoft.com/zh-cn/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions">link</a>.</p>
+</section>
+<section id="id3">
+<h4>1.5 Run the Agent Process<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<p>Launch the agent process</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># PWD: grutopia_extension/agents/mobile_manipulation_agent</span>
+./scripts/launch_vlm_servers.sh
+</pre></div>
+</div>
+</section>
+</section>
+<section id="generate-episodes-config-for-mobile-manipulation-task">
+<h3>2 Generate episodes config for mobile manipulation task<a class="headerlink" href="#generate-episodes-config-for-mobile-manipulation-task" title="Permalink to this heading">¶</a></h3>
+<p>A python script <a class="reference external" href="https://github.com/OpenRobotLab/GRUtopia/blob/main/grutopia_extension/agents/mobile_manipulation_agent/generate_mm_episodes.py"><code class="docutils literal notranslate"><span class="pre">generate_mm_episodes.py</span></code></a> is provided to generate episodes config for mobile manipulation task. Currently it generates a python entrypoint file for each episode, since our env does not fully support multiple episodes yet. For example, if there’s 30 episodes to run for the benchmark, 30 python scripts will be generated, and each python script contains the full process to run one episode in simulation Env.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate episodes config for mobile manipulation task</span>
+<span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
+<span class="nb">cd</span><span class="w"> </span>..
+python<span class="w"> </span>GRUtopia/grutopia_extension/agents/mobile_manipulation_agent/generate_mm_episodes.py<span class="w"> </span>--help<span class="w">  </span><span class="c1"># See options when generating episodes config</span>
+python<span class="w"> </span>GRUtopia/grutopia_extension/agents/mobile_manipulation_agent/generate_mm_episodes.py
+</pre></div>
+</div>
+<p>If no options are provided, the generated scripts will be saved in <code class="docutils literal notranslate"><span class="pre">./mm_episodes</span></code>. You can override the path when generating (see <code class="docutils literal notranslate"><span class="pre">--help</span></code>).</p>
 </section>
 <section id="id4">
-<h4>4. Set Api Key<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
-<p>Put your api key in <code class="docutils literal notranslate"><span class="pre">./modules/vlm/api_key</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── api_key.txt
-├── azure_api_key.txt
+<h3>3 Run the Episodes in Simulation Env<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>Open a new session and switch to the python virtual environment for simulation env, which is the one you created when <a class="reference internal" href="installation.html"><span class="std std-doc">install GRUtopia</span></a>.</p>
+<p>First install the dependencies required for running the benchmark:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/benchmark.txt
 </pre></div>
 </div>
-</section>
-<section id="id5">
-<h4>5. Run the Initialization Script<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
-<p>Launch required servers for the agent.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/launch_vlm_servers.sh
+<p>It may take quite a long time to run all the episodes. You can verify the setting by running the demo episode first:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>PATH/TO/GRUTOPIA/ROOT
+<span class="nb">cd</span><span class="w"> </span>..
+python<span class="w"> </span>GRUtopia/grutopia/demo/mobile_manipulation.py
 </pre></div>
 </div>
-</section>
-<section id="id6">
-<h4>6. Generate episodes config<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate episodes config for mobile manipulation task</span>
-<span class="n">python</span> <span class="n">GRUtopia</span><span class="o">/</span><span class="n">grutopia_extension</span><span class="o">/</span><span class="n">agents</span><span class="o">/</span><span class="n">mobile_manipulation_agent</span><span class="o">/</span><span class="n">generate_mm_episodes</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-</section>
-</section>
-</section>
-<section id="run-a-demo-for-agent">
-<h2>Run a demo for agent<a class="headerlink" href="#run-a-demo-for-agent" title="Permalink to this heading">¶</a></h2>
-<blockquote>
-<div><p>Please use the conda env of grutopia to run the following demos rather than the agents’ conda env.</p>
-</div></blockquote>
-<p>It takes too long to run the entire benchmark. You can try demos first.</p>
-<section id="for-social-navigation-benchmark">
-<h3>For social navigation Benchmark<a class="headerlink" href="#for-social-navigation-benchmark" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># run Social Navigation agent</span>
-<span class="n">python</span> <span class="n">GRUtopia</span><span class="o">/</span><span class="n">grutopia</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">h1_social_navigation</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-</section>
-<section id="for-mobile-manipulation-benchmark">
-<h3>For Mobile Manipulation Benchmark<a class="headerlink" href="#for-mobile-manipulation-benchmark" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># run mobile manipulation agent</span>
-<span class="n">python</span> <span class="n">GRUtopia</span><span class="o">/</span><span class="n">grutopia</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">mobile_manipulation</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-<blockquote>
-<div><p>To run the entire benchmark, you can run the executable files generated by generate_sn_episodes.py/generate_mm_episodes.py one by one</p>
-<p>Manual distribution is also supported :)</p>
-<p>Automatic distributed benchmark is coming soon…</p>
-</div></blockquote>
+<p>If the demo episode runs successfully, you can run all the episodes in the benchmark by running all the python scripts generated in step 2. The scripts can also be distributed to different machines and run in parallel as long as the agent process is started on these machines (since currently the two processes can only communicated through localhost…).</p>
+<p>Currently, the process and logic of running benchmark baseline is quite rough, and we are continuously working on optimizing it.</p>
 </section>
 </section>
 </section>
@@ -500,30 +583,31 @@ the <a class="reference external" href="https://github.com/IDEA-Research/Groundi
             <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
               <ul>
 <li><a class="reference internal" href="#">Run Benchmark Baseline</a><ul>
-<li><a class="reference internal" href="#start-baseline-agent">Start Baseline Agent</a><ul>
-<li><a class="reference internal" href="#start-baseline-agent-for-social-navigation-benchmark">Start Baseline Agent For Social Navigation Benchmark</a><ul>
-<li><a class="reference internal" href="#install-environment-dependencies">1. Install Environment Dependencies</a></li>
-<li><a class="reference internal" href="#install-submodules">2. Install Submodules</a></li>
-<li><a class="reference internal" href="#download-model-weights">3. Download Model Weights</a></li>
-<li><a class="reference internal" href="#set-api-key">4. Set Api Key</a></li>
-<li><a class="reference internal" href="#run-the-initialization-script">5. Run the Initialization Script</a></li>
-<li><a class="reference internal" href="#generate-episodes-config">6. Generate episodes config</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#social-navigation">Social Navigation</a><ul>
+<li><a class="reference internal" href="#start-baseline-agent-for-social-navigation-benchmark">1 Start Baseline Agent For Social Navigation Benchmark</a><ul>
+<li><a class="reference internal" href="#install-dependencies-for-agent">1.1 Install Dependencies for Agent</a></li>
+<li><a class="reference internal" href="#install-submodules">1.2 Install Submodules</a></li>
+<li><a class="reference internal" href="#download-model-weights">1.3 Download Model Weights</a></li>
+<li><a class="reference internal" href="#configure-api-keys">1.4 Configure API Keys</a></li>
+<li><a class="reference internal" href="#run-the-agent-process">1.5 Run the Agent Process</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#start-baseline-agent-for-mobile-manipulation-benchmark">Start Baseline Agent For Mobile Manipulation Benchmark</a><ul>
-<li><a class="reference internal" href="#id1">1. Install Environment Dependencies</a></li>
-<li><a class="reference internal" href="#id2">2. Install Submodules</a></li>
-<li><a class="reference internal" href="#id3">3. Download Model Weights</a></li>
-<li><a class="reference internal" href="#id4">4. Set Api Key</a></li>
-<li><a class="reference internal" href="#id5">5. Run the Initialization Script</a></li>
-<li><a class="reference internal" href="#id6">6. Generate episodes config</a></li>
+<li><a class="reference internal" href="#generate-episodes-config-for-social-navigation-task">2. Generate episodes config for social navigation task</a></li>
+<li><a class="reference internal" href="#run-the-episodes-in-simulation-env">3 Run the Episodes in Simulation Env</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#mobile-manipulation">Mobile Manipulation</a><ul>
+<li><a class="reference internal" href="#start-baseline-agent-for-mobile-manipulation-benchmark">1 Start Baseline Agent For Mobile Manipulation Benchmark</a><ul>
+<li><a class="reference internal" href="#install-environment-dependencies">1.1 Install Environment Dependencies</a></li>
+<li><a class="reference internal" href="#id1">1.2 Install Submodules</a></li>
+<li><a class="reference internal" href="#id2">1.3 Download Model Weights</a></li>
+<li><a class="reference internal" href="#configure-api-key">1.4 Configure API Key</a></li>
+<li><a class="reference internal" href="#id3">1.5 Run the Agent Process</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#run-a-demo-for-agent">Run a demo for agent</a><ul>
-<li><a class="reference internal" href="#for-social-navigation-benchmark">For social navigation Benchmark</a></li>
-<li><a class="reference internal" href="#for-mobile-manipulation-benchmark">For Mobile Manipulation Benchmark</a></li>
+<li><a class="reference internal" href="#generate-episodes-config-for-mobile-manipulation-task">2 Generate episodes config for mobile manipulation task</a></li>
+<li><a class="reference internal" href="#id4">3 Run the Episodes in Simulation Env</a></li>
 </ul>
 </li>
 </ul>
