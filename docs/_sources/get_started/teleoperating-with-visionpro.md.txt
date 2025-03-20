@@ -73,7 +73,9 @@ Once the simulation starts, open Safari on VisionPro and navigate to:
 https://192.168.100.101:8012?ws=wss://192.168.100.101:8012 (Replace 192.168.100.101 with your own IP address.)
 Select "Enter VR" to begin operations.
 
-![](../_static/image/teleop_with_vision_pro.jpg)
+<video width="960" height="540" controls>
+    <source src="../_static/video/gr1_teleop.webm" type="video/webm">
+</video>
 
 ## Brief Explanation
 
