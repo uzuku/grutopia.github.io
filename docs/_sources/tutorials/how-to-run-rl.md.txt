@@ -1,3 +1,0 @@
-# How to run rl on GRUtopia
-
-> WIP
